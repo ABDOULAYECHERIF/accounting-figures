@@ -1,0 +1,559 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>WF Ultra Intro</title>
+	<style>
+		body {
+			margin: 0;
+			overflow: hidden;
+			background: #000;
+			font-family: 'Inter', sans-serif;
+		}
+		#canvas {
+			position: fixed;
+			top: 0;
+			left: 0;
+			outline: none;
+		}
+		#ui {
+			position: fixed;
+			bottom: 10%;
+			width: 100%;
+			text-align: center;
+			color: white;
+			font-size: 2rem;
+			opacity: 0;
+			text-shadow: 0 0 10px rgba(100, 200, 255, 0.8);
+			transform: translateY(30px);
+			transition: all 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+		}
+		#ui.visible {
+			opacity: 1;
+			transform: translateY(0);
+		}
+		.loading {
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			color: rgba(255, 255, 255, 0.8);
+			font-size: 1.2rem;
+			font-family: monospace;
+		}
+	</style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<div id="ui">Fix it. Fast. Forever.</div>
+<div class="loading">Initializing quantum renderer...</div>
+
+<script>
+	// ======================
+	// Ultra Premium Config
+	// ======================
+	const CONFIG = {
+		PARTICLE_COUNT: 5000,
+		BLOOM_PARAMS: {
+			strength: 1.5,
+			radius: 0.8,
+			threshold: 0.6
+		},
+		COLOR_SCHEME: {
+			primary: [0.2, 0.6, 1.0],  // Sky blue
+			secondary: [1.0, 1.0, 1.0], // Pure white
+			accent: [0.0, 0.8, 1.0],   // Electric blue
+			background: [0.02, 0.02, 0.05]
+		},
+		TIMING: {
+			introDuration: 3.5,
+			holdDuration: 1.5
+		}
+	};
+
+	// ======================
+	// WebGL Context Setup
+	// ======================
+	const canvas = document.getElementById('canvas');
+	const gl = canvas.getContext('webgl2', { antialias: false });
+
+	if (!gl) {
+		document.querySelector('.loading').textContent =
+				"WebGL2 not supported. Please use a modern browser.";
+		throw new Error("WebGL2 not available");
+	}
+
+	// ======================
+	// Shader Library
+	// ======================
+	const shaders = {
+		vertex: `#version 300 es
+                precision highp float;
+                in vec3 position;
+                in vec3 color;
+                in float size;
+                in float life;
+
+                uniform mat4 modelViewMatrix;
+                uniform mat4 projectionMatrix;
+                uniform float uTime;
+
+                out vec3 vColor;
+                out float vLife;
+
+                void main() {
+                    vColor = color;
+                    vLife = life;
+
+                    // Add subtle pulsing animation
+                    float pulse = sin(uTime * 3.0 + float(gl_VertexID)) * 0.1 + 1.0;
+                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                    gl_PointSize = size * pulse * (1.0 + life * 2.0);
+                }
+            `,
+		fragment: `#version 300 es
+                precision highp float;
+
+                in vec3 vColor;
+                in float vLife;
+
+                out vec4 fragColor;
+
+                void main() {
+                    // Circular point with glow
+                    vec2 coord = gl_PointCoord - vec2(0.5);
+                    float dist = length(coord);
+                    float alpha = smoothstep(0.5, 0.3, dist) * vLife;
+
+                    // Core glow effect
+                    float core = smoothstep(0.8, 0.0, dist);
+                    vec3 glow = mix(vColor, vec3(1.0), core * 0.8);
+
+                    fragColor = vec4(glow, alpha);
+                }
+            `,
+		postProcessing: `#version 300 es
+                precision highp float;
+
+                uniform sampler2D uScene;
+                uniform sampler2D uBloom;
+                uniform vec2 uResolution;
+                uniform float uTime;
+
+                in vec2 vUv;
+                out vec4 fragColor;
+
+                void main() {
+                    vec3 scene = texture(uScene, vUv).rgb;
+                    vec3 bloom = texture(uBloom, vUv).rgb;
+
+                    // Combine with bloom
+                    vec3 color = scene + bloom * 0.8;
+
+                    // Add subtle chromatic aberration
+                    float aberration = 0.002 * sin(uTime * 0.5);
+                    vec2 uvR = vUv + vec2(aberration, 0.0);
+                    vec2 uvB = vUv - vec2(aberration, 0.0);
+                    color.r = texture(uScene, uvR).r;
+                    color.b = texture(uScene, uvB).b;
+
+                    // Vignette
+                    vec2 uv = vUv * (1.0 - vUv.yx);
+                    float vignette = uv.x * uv.y * 15.0;
+                    vignette = pow(vignette, 0.25);
+                    color *= vignette;
+
+                    // Tonemapping
+                    color = color / (color + vec3(1.0));
+
+                    // Gamma correction
+                    color = pow(color, vec3(1.0/2.2));
+
+                    fragColor = vec4(color, 1.0);
+                }
+            `
+	};
+
+	// ======================
+	// Quantum Particle System
+	// ======================
+	class QuantumParticles {
+		constructor(count) {
+			this.count = count;
+			this.positions = new Float32Array(count * 3);
+			this.colors = new Float32Array(count * 3);
+			this.sizes = new Float32Array(count);
+			this.lives = new Float32Array(count);
+			this.velocities = new Float32Array(count * 3);
+
+			this.reset();
+		}
+
+		reset() {
+			for (let i = 0; i < this.count; i++) {
+				// Random positions in sphere
+				const radius = 5.0 * Math.pow(Math.random(), 1.0/3.0);
+				const theta = Math.random() * Math.PI * 2;
+				const phi = Math.acos(2.0 * Math.random() - 1.0);
+
+				this.positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
+				this.positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
+				this.positions[i * 3 + 2] = radius * Math.cos(phi);
+
+				// Color based on position
+				const colorMix = Math.random();
+				this.colors[i * 3] = mix(CONFIG.COLOR_SCHEME.primary[0], CONFIG.COLOR_SCHEME.secondary[0], colorMix);
+				this.colors[i * 3 + 1] = mix(CONFIG.COLOR_SCHEME.primary[1], CONFIG.COLOR_SCHEME.secondary[1], colorMix);
+				this.colors[i * 3 + 2] = mix(CONFIG.COLOR_SCHEME.primary[2], CONFIG.COLOR_SCHEME.secondary[2], colorMix);
+
+				this.sizes[i] = 2.0 + Math.random() * 3.0;
+				this.lives[i] = 0.0;
+
+				// Random velocities
+				this.velocities[i * 3] = (Math.random() - 0.5) * 0.2;
+				this.velocities[i * 3 + 1] = (Math.random() - 0.5) * 0.2;
+				this.velocities[i * 3 + 2] = (Math.random() - 0.5) * 0.2;
+			}
+		}
+
+		update(deltaTime, targetPositions) {
+			for (let i = 0; i < this.count; i++) {
+				// Gradually bring particles to life
+				this.lives[i] = Math.min(1.0, this.lives[i] + deltaTime * 0.5);
+
+				// Calculate attraction to target positions
+				if (targetPositions) {
+					const targetIndex = i % targetPositions.length;
+					const target = targetPositions[targetIndex];
+
+					const dx = target[0] - this.positions[i * 3];
+					const dy = target[1] - this.positions[i * 3 + 1];
+					const dz = target[2] - this.positions[i * 3 + 2];
+
+					const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+					const force = 0.1 * Math.min(1.0, dist * 0.5);
+
+					this.velocities[i * 3] += dx * force * deltaTime;
+					this.velocities[i * 3 + 1] += dy * force * deltaTime;
+					this.velocities[i * 3 + 2] += dz * force * deltaTime;
+				}
+
+				// Apply velocity
+				this.positions[i * 3] += this.velocities[i * 3] * deltaTime * 10.0;
+				this.positions[i * 3 + 1] += this.velocities[i * 3 + 1] * deltaTime * 10.0;
+				this.positions[i * 3 + 2] += this.velocities[i * 3 + 2] * deltaTime * 10.0;
+
+				// Damping
+				this.velocities[i * 3] *= 0.98;
+				this.velocities[i * 3 + 1] *= 0.98;
+				this.velocities[i * 3 + 2] *= 0.98;
+			}
+		}
+	}
+
+	// ======================
+	// Main Application
+	// ======================
+	class WFIntro {
+		constructor() {
+			this.time = 0;
+			this.startTime = performance.now();
+			this.animationPhase = 0; // 0: particles flying, 1: forming logo, 2: holding
+
+			this.initCanvas();
+			this.initShaders();
+			this.initParticles();
+			this.initPostProcessing();
+			this.resize();
+
+			window.addEventListener('resize', this.resize.bind(this));
+			this.animate();
+
+			// Start animation sequence
+			setTimeout(() => {
+				this.animationPhase = 1;
+				document.getElementById('ui').classList.add('visible');
+
+				setTimeout(() => {
+					this.animationPhase = 2;
+				}, CONFIG.TIMING.introDuration * 1000);
+			}, 1000);
+		}
+
+		initCanvas() {
+			canvas.width = window.innerWidth * devicePixelRatio;
+			canvas.height = window.innerHeight * devicePixelRatio;
+			canvas.style.width = window.innerWidth + 'px';
+			canvas.style.height = window.innerHeight + 'px';
+
+			gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
+			gl.enable(gl.BLEND);
+			gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
+			gl.clearColor(...CONFIG.COLOR_SCHEME.background, 1.0);
+		}
+
+		initShaders() {
+			// Particle shader program
+			this.particleProgram = this.createProgram(shaders.vertex, shaders.fragment);
+
+			// Post-processing program
+			this.postProgram = this.createProgram(
+					`#version 300 es
+                    precision highp float;
+                    in vec2 position;
+                    out vec2 vUv;
+                    void main() {
+                        vUv = position * 0.5 + 0.5;
+                        gl_Position = vec4(position, 0.0, 1.0);
+                    }`,
+					shaders.postProcessing
+			);
+		}
+
+		initParticles() {
+			this.particles = new QuantumParticles(CONFIG.PARTICLE_COUNT);
+
+			// Create buffers
+			this.positionBuffer = gl.createBuffer();
+			this.colorBuffer = gl.createBuffer();
+			this.sizeBuffer = gl.createBuffer();
+			this.lifeBuffer = gl.createBuffer();
+		}
+
+		initPostProcessing() {
+			// Create framebuffers
+			this.mainFBO = this.createFramebuffer();
+			this.bloomFBO = this.createFramebuffer();
+
+			// Create fullscreen quad
+			this.quadVAO = gl.createVertexArray();
+			gl.bindVertexArray(this.quadVAO);
+
+			const quadBuffer = gl.createBuffer();
+			gl.bindBuffer(gl.ARRAY_BUFFER, quadBuffer);
+			gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+				-1, -1, 1, -1, -1, 1,
+				-1, 1, 1, -1, 1, 1
+			]), gl.STATIC_DRAW);
+
+			gl.enableVertexAttribArray(0);
+			gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
+		}
+
+		createProgram(vertexSrc, fragmentSrc) {
+			const vertexShader = gl.createShader(gl.VERTEX_SHADER);
+			gl.shaderSource(vertexShader, vertexSrc);
+			gl.compileShader(vertexShader);
+
+			const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+			gl.shaderSource(fragmentShader, fragmentSrc);
+			gl.compileShader(fragmentShader);
+
+			const program = gl.createProgram();
+			gl.attachShader(program, vertexShader);
+			gl.attachShader(program, fragmentShader);
+			gl.linkProgram(program);
+
+			return program;
+		}
+
+		createFramebuffer() {
+			const fbo = gl.createFramebuffer();
+			gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
+
+			const texture = gl.createTexture();
+			gl.bindTexture(gl.TEXTURE_2D, texture);
+			gl.texImage2D(
+					gl.TEXTURE_2D, 0, gl.RGBA16F,
+					canvas.width, canvas.height, 0,
+					gl.RGBA, gl.FLOAT, null
+			);
+			gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+			gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+			gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+			gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+
+			gl.framebufferTexture2D(
+					gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0,
+					gl.TEXTURE_2D, texture, 0
+			);
+
+			return {
+				fbo: fbo,
+				texture: texture
+			};
+		}
+
+		resize() {
+			canvas.width = window.innerWidth * devicePixelRatio;
+			canvas.height = window.innerHeight * devicePixelRatio;
+			canvas.style.width = window.innerWidth + 'px';
+			canvas.style.height = window.innerHeight + 'px';
+
+			gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
+
+			// Resize framebuffers
+			gl.bindTexture(gl.TEXTURE_2D, this.mainFBO.texture);
+			gl.texImage2D(
+					gl.TEXTURE_2D, 0, gl.RGBA16F,
+					canvas.width, canvas.height, 0,
+					gl.RGBA, gl.FLOAT, null
+			);
+
+			gl.bindTexture(gl.TEXTURE_2D, this.bloomFBO.texture);
+			gl.texImage2D(
+					gl.TEXTURE_2D, 0, gl.RGBA16F,
+					canvas.width, canvas.height, 0,
+					gl.RGBA, gl.FLOAT, null
+			);
+		}
+
+		update(deltaTime) {
+			this.time += deltaTime;
+
+			// Calculate target positions based on animation phase
+			let targetPositions = null;
+
+			if (this.animationPhase >= 1) {
+				// Form WF logo shape
+				targetPositions = [];
+				const particleCount = this.particles.count;
+
+				// Generate positions in W and F shapes
+				for (let i = 0; i < particleCount; i++) {
+					let x, y, z = 0;
+					const segment = i / particleCount;
+
+					if (segment < 0.5) {
+						// W shape
+						const wPos = segment * 2;
+						if (wPos < 0.25) {
+							x = -3.0 + wPos * 4.0 * 3.0;
+							y = -2.0 + wPos * 4.0 * 2.0;
+						} else if (wPos < 0.5) {
+							x = 0.0 - (wPos - 0.25) * 4.0 * 2.0;
+							y = 0.0 - (wPos - 0.25) * 4.0 * 2.0;
+						} else if (wPos < 0.75) {
+							x = -2.0 + (wPos - 0.5) * 4.0 * 2.0;
+							y = -2.0 + (wPos - 0.5) * 4.0 * 2.0;
+						} else {
+							x = 0.0 + (wPos - 0.75) * 4.0 * 3.0;
+							y = 0.0 - (wPos - 0.75) * 4.0 * 2.0;
+						}
+					} else {
+						// F shape
+						const fPos = (segment - 0.5) * 2;
+						if (fPos < 0.4) {
+							x = 1.5;
+							y = 2.0 - fPos * 5.0;
+						} else if (fPos < 0.6) {
+							x = 1.5 - (fPos - 0.4) * 5.0;
+							y = 0.0;
+						} else {
+							x = 0.5;
+							y = 0.0 - (fPos - 0.6) * 2.5;
+						}
+					}
+
+					// Add some randomness to create depth
+					z = (Math.random() - 0.5) * 0.5;
+					targetPositions.push([x, y, z]);
+				}
+			}
+
+			this.particles.update(deltaTime, targetPositions);
+		}
+
+		render() {
+			// Render particles to main FBO
+			gl.bindFramebuffer(gl.FRAMEBUFFER, this.mainFBO.fbo);
+			gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+
+			gl.useProgram(this.particleProgram);
+
+			// Update buffers
+			gl.bindBuffer(gl.ARRAY_BUFFER, this.positionBuffer);
+			gl.bufferData(gl.ARRAY_BUFFER, this.particles.positions, gl.DYNAMIC_DRAW);
+			gl.enableVertexAttribArray(0);
+			gl.vertexAttribPointer(0, 3, gl.FLOAT, false, 0, 0);
+
+			gl.bindBuffer(gl.ARRAY_BUFFER, this.colorBuffer);
+			gl.bufferData(gl.ARRAY_BUFFER, this.particles.colors, gl.DYNAMIC_DRAW);
+			gl.enableVertexAttribArray(1);
+			gl.vertexAttribPointer(1, 3, gl.FLOAT, false, 0, 0);
+
+			gl.bindBuffer(gl.ARRAY_BUFFER, this.sizeBuffer);
+			gl.bufferData(gl.ARRAY_BUFFER, this.particles.sizes, gl.DYNAMIC_DRAW);
+			gl.enableVertexAttribArray(2);
+			gl.vertexAttribPointer(2, 1, gl.FLOAT, false, 0, 0);
+
+			gl.bindBuffer(gl.ARRAY_BUFFER, this.lifeBuffer);
+			gl.bufferData(gl.ARRAY_BUFFER, this.particles.lives, gl.DYNAMIC_DRAW);
+			gl.enableVertexAttribArray(3);
+			gl.vertexAttribPointer(3, 1, gl.FLOAT, false, 0, 0);
+
+			// Set uniforms
+			const uTimeLoc = gl.getUniformLocation(this.particleProgram, 'uTime');
+			gl.uniform1f(uTimeLoc, this.time);
+
+			// Draw particles
+			gl.drawArrays(gl.POINTS, 0, this.particles.count);
+
+			// Post-processing
+			gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+			gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+
+			gl.useProgram(this.postProgram);
+			gl.bindVertexArray(this.quadVAO);
+
+			// Set uniforms
+			gl.uniform1i(gl.getUniformLocation(this.postProgram, 'uScene'), 0);
+			gl.uniform1i(gl.getUniformLocation(this.postProgram, 'uBloom'), 1);
+			gl.uniform1f(gl.getUniformLocation(this.postProgram, 'uTime'), this.time);
+			gl.uniform2f(
+					gl.getUniformLocation(this.postProgram, 'uResolution'),
+					canvas.width, canvas.height
+			);
+
+			// Bind textures
+			gl.activeTexture(gl.TEXTURE0);
+			gl.bindTexture(gl.TEXTURE_2D, this.mainFBO.texture);
+
+			gl.activeTexture(gl.TEXTURE1);
+			gl.bindTexture(gl.TEXTURE_2D, this.bloomFBO.texture);
+
+			// Draw fullscreen quad
+			gl.drawArrays(gl.TRIANGLES, 0, 6);
+		}
+
+		animate() {
+			const now = performance.now();
+			const deltaTime = (now - this.startTime) / 1000;
+			this.startTime = now;
+
+			this.update(deltaTime);
+			this.render();
+
+			requestAnimationFrame(this.animate.bind(this));
+		}
+	}
+
+	// Helper function
+	function mix(a, b, t) {
+		return a * (1.0 - t) + b * t;
+	}
+
+	// Start the show!
+	document.querySelector('.loading').textContent = "Booting neural renderer...";
+	setTimeout(() => {
+		document.querySelector('.loading').style.opacity = '0';
+		setTimeout(() => {
+			document.querySelector('.loading').style.display = 'none';
+		}, 500);
+
+		new WFIntro();
+	}, 1500);
+</script>
+</body>
+</html>https://themejunction.net/html/gerold/demo/#https://themejunction.net/html/gerold/demo/#https://themejunction.net/html/gerold/demo/#https://themejunction.net/html/gerold/demo/#
