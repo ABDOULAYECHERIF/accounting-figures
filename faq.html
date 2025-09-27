@@ -1,605 +1,1677 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+  <!-- meta tags -->
+  <meta charset="utf-8" />
+  <meta name="keywords"
+        content="accounting figures, bookkeeping, finance, antwerpen, belgium, tax, consulting, accounting" />
+  <meta name="description" content="Accounting Figures Antwerpen" />
+  <meta name="author" content="accounting figures antwerpen" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<!-- meta tags -->
-<meta charset="utf-8">
-<meta name="keywords" content="bootstrap 5, premium, multipurpose, sass, scss, saas, rtl, business, consulting, accounting" />
-<meta name="description" content="Consulting Finance Accounting HTML5 Template" />
-<meta name="author" content="www.themeht.com" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Title -->
+  <title data-i18n="meta.title">Accounting Figures- Consulting Finance Accounting + RTL Support</title>
 
-<!-- Title -->
-<title>Consulterz - Consulting Finance Accounting + RTL Support</title>
+  <!-- favicon icon -->
+  <link rel="shortcut icon"
+        href="https://accountingfigures.com/wp-content/uploads/2023/05/cropped-Horizontal-Logo-Af_wit_oranje-251x37.png" />
 
-<!-- favicon icon -->
-<link rel="shortcut icon" href="images/favicon.ico" />
+  <!-- inject css start -->
+  <!--== bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <!--== animate -->
+  <link href="css/animate.css" rel="stylesheet" type="text/css" />
+  <!--== fontawesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet" />
+  <!--== magnific-popup -->
+  <link href="css/magnific-popup.css" rel="stylesheet" type="text/css" />
+  <!--== owl.carousel -->
+  <link href="css/owl.carousel.css" rel="stylesheet" type="text/css" />
+  <!--== lightslider -->
+  <link href="css/lightslider.min.css" rel="stylesheet" type="text/css" />
+  <!--== spacing -->
+  <link href="css/spacing.css" rel="stylesheet" type="text/css" />
+  <!--== base -->
+  <link href="css/base.css" rel="stylesheet" type="text/css" />
+  <!--== shortcodes -->
+  <link href="css/shortcodes.css" rel="stylesheet" type="text/css" />
+  <!--== style -->
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <!--== responsive -->
+  <link href="css/responsive.css" rel="stylesheet" type="text/css" />
+  <!--== color-customizer -->
+  <link href="#" data-style="styles" rel="stylesheet" />
+  <link href="css/color-customize/color-customizer.css" rel="stylesheet" type="text/css" />
+  <!-- inject css end -->
 
-<!-- inject css start -->
+  <!-- HOVER DROPDOWN + Z-INDEX/OVERFLOW PATCH -->
+  <style>
+    #site-header,
+    #header-wrap .navbar {
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
 
-<!--== bootstrap -->
-<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    #header-wrap .navbar-nav .nav-link {
+      padding: .25rem 0 .35rem !important;
+      line-height: 1.2;
+    }
 
-<!--== animate -->
-<link href="css/animate.css" rel="stylesheet" type="text/css" />
+    #header-wrap {
+      position: relative;
+      z-index: 1001;
+    }
 
-<!--== fontawesome -->
-<link href="css/fontawesome-all.css" rel="stylesheet" type="text/css" />
+    /* DESKTOP (>=992px): dropdown hugs the link */
+    @media (min-width: 992px) {
+      #header-wrap .navbar .dropdown-menu {
+        position: absolute !important;
+        margin-top: 0 !important;
+        top: calc(100% - 4px) !important;
+      }
+    }
 
-<!--== magnific-popup -->
-<link href="css/magnific-popup.css" rel="stylesheet" type="text/css" />
+    /* MOBILE (<992px): dropdown expands inline inside the menu */
+    @media (max-width: 991.98px) {
 
-<!--== owl.carousel -->
-<link href="css/owl.carousel.css" rel="stylesheet" type="text/css" />
+      #navbarNavDropdown,
+      #navbarNavDropdown .navbar-nav {
+        overflow: visible !important;
+      }
 
-<!--== lightslider -->
-<link href="css/lightslider.min.css" rel="stylesheet" type="text/css" />
+      /* z-index just in case */
+      #navbarNavDropdown .dropdown-menu {
+        z-index: 2000;
+      }
+    }
 
-<!--== spacing -->
-<link href="css/spacing.css" rel="stylesheet" type="text/css" />
 
-<!--== base -->
-<link href="css/base.css" rel="stylesheet" type="text/css" />
+    @media (min-width: 992px) and (hover: hover) and (pointer: fine) {
+      .navbar .dropdown:hover>.dropdown-menu {
+        display: block;
+      }
+    }
 
-<!--== shortcodes -->
-<link href="css/shortcodes.css" rel="stylesheet" type="text/css" />
+    .navbar-nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
 
-<!--== style -->
-<link href="css/style.css" rel="stylesheet" type="text/css" />
+    .navbar-nav .nav-item {
+      position: relative;
+    }
 
-<!--== responsive -->
-<link href="css/responsive.css" rel="stylesheet" type="text/css" />
+    .navbar-nav .nav-link {
+      padding-bottom: 0 !important;
+    }
 
-<!--== color-customizer -->
-<link href="#" data-style="styles" rel="stylesheet">
-<link href="css/color-customize/color-customizer.css" rel="stylesheet" type="text/css" />
+    .navbar .dropdown-toggle {
+      margin-bottom: 0 !important;
+    }
 
-<!-- inject css end -->
+    /* Language pill */
+    .langbtn {
+      border: 1px solid rgba(255, 255, 255, .25);
+      border-radius: 999px;
+      padding: .35rem .75rem;
+      background: transparent;
+      color: #fff;
+    }
 
+    .dropdown-menu.lang {
+      min-width: 10rem;
+    }
+
+    .dropdown-item.active-lang {
+      font-weight: 700;
+    }
+
+    /* Only lift the language dropdown above the banner */
+    .header-top {
+      overflow: visible !important;
+    }
+
+    /* taake menu clip na ho */
+    .language-selection {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* local stacking context */
+    .language-selection .dropdown-menu {
+      z-index: 2000;
+    }
+
+    /* banner/slider se upar */
+    .fullscreen-banner,
+    .banner {
+      z-index: 1;
+    }
+
+    /* banner neeche rahe */
+    /* ------- custom language dropdown (no bootstrap) ------- */
+    .lang-wrap {
+      position: relative;
+    }
+
+    .langbtn {
+      cursor: pointer;
+    }
+
+    .lang-menu {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 6px);
+      min-width: 10rem;
+      padding: .5rem 0;
+      margin: 0;
+      list-style: none;
+      background: #fff;
+      border: 1px solid rgba(0, 0, 0, .1);
+      border-radius: .5rem;
+      box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+      display: none;
+      /* hidden by default */
+      z-index: 2000;
+      /* banner se upar */
+    }
+
+    .lang-menu.show {
+      display: block;
+    }
+
+    .lang-menu a {
+      display: block;
+      padding: .45rem .9rem;
+      color: #222;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .lang-menu a:hover {
+      background: rgba(0, 0, 0, .05);
+    }
+
+    .lang-menu a.active-lang {
+      font-weight: 700;
+    }
+
+    /* language hover dropdown */
+    .lang-hover {
+      position: relative;
+    }
+
+    .langbtn {
+      cursor: pointer;
+    }
+
+    .lang-menu {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 6px);
+      min-width: 10rem;
+      padding: .5rem 0;
+      margin: 0;
+      list-style: none;
+      background: #fff;
+      border: 1px solid rgba(0, 0, 0, .1);
+      border-radius: .5rem;
+      box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+      display: none;
+      z-index: 2000;
+    }
+
+    .lang-menu a {
+      display: block;
+      padding: .45rem .9rem;
+      color: #222;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .lang-menu a:hover {
+      background: rgba(0, 0, 0, .05);
+    }
+
+    .lang-menu a.active-lang {
+      font-weight: 700;
+    }
+
+    /* Desktop: show on hover */
+    @media (hover:hover) and (pointer:fine) {
+      .lang-hover:hover .lang-menu {
+        display: block;
+      }
+    }
+
+    /* Touch devices: .open class par show */
+    .lang-hover.open .lang-menu {
+      display: block;
+    }
+
+    /* Header z-index/overflow (already added but keeping for safety) */
+    .header-top {
+      overflow: visible !important;
+    }
+
+    .language-selection {
+      position: relative;
+      z-index: 2;
+    }
+
+    .fullscreen-banner,
+    .banner {
+      z-index: 1;
+    }
+
+    /* Put the top bar (language) ABOVE the navbar + banner */
+    .header-top {
+      position: relative;
+      /* new */
+      z-index: 3000;
+      /* higher than #header-wrap */
+      overflow: visible !important;
+    }
+
+    /* Language menu stays above everything */
+    .lang-menu {
+      z-index: 3001;
+      /* optional but safe */
+    }
+
+    .right-nav {
+      margin-left: 12px;
+    }
+
+    /* pushes Contact a bit right */
+    @media (min-width: 992px) {
+      .language-selection {
+        margin-right: 10px;
+      }
+    }
+
+    /* MOBILE: Services centered + custom +/– on the right */
+
+    @media (max-width: 991.98px) {
+
+      /* Each menu link full-width, centered */
+      #navbarNavDropdown .navbar-nav .nav-link {
+        display: block !important;
+        width: 100% !important;
+        text-align: center !important;
+        padding-left: 16px !important;
+        padding-right: 48px !important;
+        /* right icon space */
+        position: relative !important;
+        /* for ::after positioning */
+        z-index: 3;
+        /* stay above dropdown panel */
+      }
+
+      /* Remove BS caret */
+      #navbarNavDropdown .nav-item.dropdown>.nav-link.dropdown-toggle::after {
+        content: none !important;
+      }
+
+      /* Our + / – icon: always at right, vertically centered */
+      #navbarNavDropdown .nav-item.dropdown>.nav-link.dropdown-toggle::after {
+        content: "+";
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 22px;
+        font-weight: 800;
+        line-height: 1;
+      }
+
+      #navbarNavDropdown .nav-item.dropdown>.nav-link.dropdown-toggle[aria-expanded="true"]::after {
+        content: "–";
+      }
+
+      /* Submenu flows inside drawer and does NOT cover the toggle */
+      #header-wrap .navbar .dropdown-menu {
+        position: static !important;
+        /* no absolute on mobile */
+        float: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        background: #0b0e2a !important;
+        padding-top: .25rem !important;
+        /* tiny gap so it doesn't overlap "Services" */
+      }
+
+      /* Make submenu items wrap nicely */
+      #header-wrap .navbar .dropdown-menu .dropdown-item {
+        white-space: normal !important;
+        word-break: break-word;
+        padding: .85rem 1.25rem !important;
+        text-align: center;
+        color: #fff;
+      }
+
+      /* Prevent any horizontal scroll on the drawer */
+      #navbarNavDropdown {
+        overflow-x: hidden !important;
+      }
+
+      /* Make sure the li doesn't clip things */
+      #navbarNavDropdown .nav-item.dropdown {
+        overflow: visible !important;
+      }
+    }
+
+    /* Backdrop behind the mobile menu */
+    .menu-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .55);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 1040;
+      transition: opacity .2s ease;
+    }
+
+    .menu-backdrop.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Menu opened = body scroll lock */
+    body.menu-open {
+      overflow: hidden;
+    }
+
+
+
+    * Backdrop behind the mobile menu */ .menu-backdrop {
+                                           position: fixed;
+                                           inset: 0;
+                                           background: rgba(0, 0, 0, .55);
+                                           opacity: 0;
+                                           pointer-events: none;
+                                           z-index: 1040;
+                                           transition: opacity .2s ease;
+                                         }
+
+    .menu-backdrop.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Menu opened = body scroll lock */
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    /* collapse ko positioned container banao */
+    #navbarNavDropdown {
+      position: relative;
+    }
+
+    /* X button ka z-index bohot upar */
+    #navbarNavDropdown .menu-close {
+      z-index: 1300;
+      /* links/panel se upar */
+      pointer-events: auto;
+      /* clicks definitely yahan ayen */
+    }
+
+
+
+    #navbarNavDropdown {
+      position: relative;
+    }
+
+    #navbarNavDropdown .menu-close {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      width: 36px;
+      height: 36px;
+      background: transparent;
+      border: 0;
+      z-index: 2000;
+      /* menu se upar */
+    }
+
+    #navbarNavDropdown .menu-close::before,
+    #navbarNavDropdown .menu-close::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 22px;
+      height: 2px;
+      background: rgba(255, 255, 255, .95);
+      transform-origin: center;
+    }
+
+    #navbarNavDropdown .menu-close::before {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    #navbarNavDropdown .menu-close::after {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+  </style>
 </head>
 
 <body>
+<div id="menu-backdrop" class="menu-backdrop d-lg-none" aria-hidden="true"></div>
 
 <!-- page wrapper start -->
-
 <div class="page-wrapper">
 
-<!-- preloader start -->
-
-<div id="ht-preloader">
-  <div class="clear-loader">
+  <!-- preloader start -->
+  <div id="ht-preloader">
+    <div class="clear-loader">
       <div class="loader"></div>
+    </div>
   </div>
-</div>
+  <!-- preloader end -->
 
-<!-- preloader end -->
-
-
-<!--header start-->
-
-<header id="site-header" class="header">
-  <div class="header-top">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 d-flex align-items-center justify-content-between">
+  <!--header start-->
+  <header id="site-header" class="header header-2">
+    <div class="header-top">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-12 d-flex align-items-center justify-content-between">
             <div class="social-icons">
               <ul class="list-inline">
-                <li><a href="#"><i class="fab fa-facebook-f"></i></a>
-                </li>
-                <li><a href="#"><i class="fab fa-google-plus-g"></i></a>
-                </li>
-                <li><a href="#"><i class="fab fa-twitter"></i></a>
-                </li>
-                <li><a href="#"><i class="fab fa-linkedin-in"></i></a>
-                </li>
+                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
               </ul>
             </div>
-          <div class="d-flex align-items-center">
-            <div class="language-selection me-2">
-              <div class="dropdown">
-                <button class="dropdown-toggle" data-bs-toggle="dropdown">English</button>
-                <div class="dropdown-menu"> <a href="#" class="dropdown-item">English</a>
-                  <a href="#" class="dropdown-item">Arabic</a>
-                  <a href="#" class="dropdown-item">French</a>
-                  <a href="#" class="dropdown-item">Italian</a>
+            <div class="topbar-link d-flex align-items-center">
+              <div class="d-none d-sm-flex align-items-center me-3">
+                <i class="flaticon-email"></i>
+                <div><a href="mailto:themeht23@gmail.com" data-i18n="top.emailText">contact@accountfigures.com</a>
                 </div>
               </div>
-            </div> <a class="btn-sm" href="login.html">Login</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="header-middle">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 d-flex align-items-center justify-content-between">
-          <a class="navbar-brand logo" href="index.html">
-            <img id="logo-img" class="img-fluid" src="images/logo.png" alt="">
-          </a>
-          <div class="topbar-link d-none d-sm-flex align-items-center justify-content-between">
-              <div class="d-flex align-items-center me-3"> <i class="flaticon-email"></i>
-                <div>
-                  <h6>Email Us</h6>
-                  <a href="mailto:themeht23@gmail.com">themeht23@gmail.com</a>
-                </div>
-              </div>
-              <div class="d-none d-md-flex align-items-center me-3"> <i class="flaticon-phone"></i>
-                <div>
-                  <h6>Call Us</h6>
-                  <a href="tel:+912345678900"> +91-234-567-8900</a>
-                </div>
-              </div>
-              <div class="d-none d-lg-flex align-items-center"> <i class="flaticon-24-hours"></i>
-                <div>
-                  <h6>Working Hours</h6>
-                  <p class="mb-0">Mon-Sat 8am to 7pm</p>
-                </div>
+              <div class="d-none d-md-flex align-items-center me-3">
+                <i class="flaticon-phone"></i>
+                <div><a href="tel:+912345678900"> +32 3 300 02 13</a></div>
               </div>
             </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div id="header-wrap">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <!-- Navbar -->
-          <nav class="navbar navbar-expand-lg">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"> <span></span>
-              <span></span>
-              <span></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-              <ul class="navbar-nav me-auto">
-                <!-- Home -->
-                <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Home</a>
-                  <div class="dropdown-menu">
-                    <ul class="list-unstyled">
-                      <li><a href="index.html">Home 1</a>
-                      </li>
-                      <li><a href="index-2.html">Home 2</a>
-                      </li>
-                      <li><a href="index-3.html">Home 3</a>
-                      </li>
-                      <li><a href="index-4.html">Home 4</a>
-                      </li>
-                      <li><a href="index-5.html">Home 5</a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Shop</a>
-                  <div class="dropdown-menu">
-                    <ul class="list-unstyled">
-                      <li><a href="index-shop.html">Shop Home</a>
-                      </li>
-                      <li><a href="product-grid.html">Product Grid</a>
-                          </li>
-                           <li><a href="product-list.html">Product List</a>
-                          </li>                         
-                          <li><a href="product-single.html">Product Single</a>
-                          </li>
-                           <li><a href="product-cart.html">Shoping Cart</a>
-                          </li>
-                          <li><a href="product-checkout.html">Checkout</a>
-                          </li>
-                          <li><a href="order-complete.html">Order Complete</a>
-                          </li>
-                    </ul>
-                  </div>
-                </li>
-                <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">About Us</a>
-                  <div class="dropdown-menu">
-                    <ul class="list-unstyled">
-                      <li><a href="about-our-company.html">About Our Company</a>
-                      </li>
-                      <li><a href="our-history.html">Our History</a>
-                      </li>
-                      <li><a href="mission-values.html">Mission & Values</a>
-                      </li>
-                      <li><a href="career.html">Career</a>
-                      </li>
-                      <li><a href="career-single.html">Career Single</a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li class="nav-item dropdown"> <a class="nav-link active dropdown-toggle" href="#" data-bs-toggle="dropdown">Pages</a>
-                  <div class="dropdown-menu">
-                    <ul class="list-unstyled">
-                      <li class="dropdown dropdown-submenu"> <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
-                      Case Studies
-                    </a>
-                        <ul class="dropdown-menu">
-                          <li><a href="case-studies.html">Case Studies 1</a>
-                          </li>
-                          <li><a href="case-studies-2.html">Case Studies 2</a>
-                          </li>
-                          <li><a href="case-studies-3.html">Case Studies 3</a>
-                          </li>
-                           <li><a href="case-studies-4.html">Case Studies 4</a>
-                          </li>
-                          <li><a href="case-studies-single.html">Case Studies Single</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li class="dropdown dropdown-submenu"> <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
-                      Team
-                    </a>
-                        <ul class="dropdown-menu">
-                          <li><a href="team.html">Team 1</a>
-                          </li>
-                          <li><a href="team-2.html">Team 2</a>
-                          </li>
-                          <li><a href="team-single.html">Team Single</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li class="dropdown dropdown-submenu"> <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
-                      Element
-                    </a>
-                        <ul class="dropdown-menu">
-                          <li><a href="shortcode-accordion.html">Accordion</a>
-                          </li>
-                          <li> <a href="shortcode-button.html">Button</a>
-                          </li>
-                          <li><a href="shortcode-blog-post.html">Blog</a>
-                          </li>
-                          <li> <a href="shortcode-counter.html">Counter</a>
-                          </li>
-                          <li> <a href="shortcode-feature.html">Feature Box</a>
-                          </li>
-                          <li> <a href="shortcode-progress-bar.html">Progress Bar</a>
-                          </li>
-                          <li> <a href="shortcode-social-icon.html">Social Icon</a>
-                          </li>                          
-                          <li> <a href="shortcode-tab.html">Tab</a>
-                          </li>
-                          <li> <a href="shortcode-team.html">Team</a>
-                          </li>
-                          <li> <a href="shortcode-testimonial.html">Testimonial</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a href="faq.html">Faq</a>
-                      </li>
-                      <li><a href="pricing.html">Pricing</a>
-                      </li>
-                      <li><a href="maintenance.html">Maintenance</a>
-                      </li>
-                      <li><a href="coming-soon.html">Coming Soon</a>
-                      </li>
-                      <li><a href="error-404.html">404 Error</a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Services</a>
-                  <div class="dropdown-menu">
-                    <ul class="list-unstyled">
-                      <li><a href="business-services.html">Business Services</a>
-                      </li>
-                      <li><a href="software-research.html">Software & Research</a>
-                      </li>
-                      <li> <a href="finance-restructuring.html">Finance and Restructuring</a>
-                      </li>
-                      <li> <a href="energy-environment.html">Energy & Environment</a>
-                      </li>
-                      <li> <a href="investment-planning.html">Investment Planning</a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Blogs</a>
-                  <div class="dropdown-menu">
-                    <ul class="list-unstyled">
-                      <li><a href="blog-grid-2.html">Blog Grid 2</a>
-                      </li>
-                      <li><a href="blog-grid-3.html">Blog Grid 3</a>
-                      </li>
-                      <li><a href="blog-left-sidebar.html">Blog left sidebar</a>
-                      </li>
-                      <li><a href="blog-right-sidebar.html">Blog right sidebar</a>
-                      </li>
-                      <li><a href="blog-single.html">Blog Single</a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Contact Us</a>
-                  <div class="dropdown-menu">
-                    <ul class="list-unstyled">
-                      <li><a href="contact.html">Contact us 1</a>
-                      </li>
-                      <li><a href="contact-2.html">Contact us 2</a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="right-nav align-items-center d-flex justify-content-end"> <a class="btn me-1 me-sm-3" href="#"><span>Request A Quote</span></a>
+
+            <!-- Language dropdown (EN/NL only) -->
+            <div class="d-flex align-items-center">
+              <!-- Language dropdown (hover to open like Services) -->
+              <div class="language-selection me-2 lang-hover">
+                <button id="langBtn" class="langbtn" data-i18n="lang.current" aria-haspopup="true"
+                        aria-expanded="false">
+                  English
+                </button>
+                <ul class="lang-menu" role="menu" aria-labelledby="langBtn">
+                  <li><a href="#" class="lang-option" data-lang="en" role="menuitem">English</a></li>
+                  <li><a href="#" class="lang-option" data-lang="nl" role="menuitem">Nederlands</a></li>
+                </ul>
+              </div>
+
               <div class="search-icon me-1 me-sm-3">
                 <a id="search" href="javascript:void(0)"><i class="flaticon-search"></i></a>
               </div>
-              <div>
-                <div class="cart"> <a href="#" id="header-cart-btn"><span class="cart-badge">2</span> <i class="flaticon-shopping-cart"></i></a>
-                  <!-- Cart List Area Start -->
-                  <ul class="cart-list">
-                    <li>
-                      <a href="#" class="image">
-                        <img src="images/product-thumb/01.jpg" class="img-fluid cart-thumb" alt="">
-                      </a>
-                      <div class="cart-item-desc">
-                        <h6><a href="#">Women's Fashion</a></h6>
-                        <p>1x - <span class="price">$132</span>
-                        </p>
-                      </div>
-                    </li>
-                    <li>
-                      <a href="#" class="image">
-                        <img src="images/product-thumb/02.jpg" class="img-fluid cart-thumb" alt="">
-                      </a>
-                      <div class="cart-item-desc">
-                        <h6><a href="#">Goggles</a></h6>
-                        <p>1x - <span class="price">$28</span>
-                        </p>
-                      </div>
-                    </li>
-                    <li class="total text-end"> <span class="d-block">Total: $160.00</span>
-                    </li>
-                    <li><a href="product-cart.html" class="btn">Cart</a>
-                      <a href="product-checkout.html" class="btn btn-border">Checkout</a>
-                    </li>
-                  </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="header-wrap">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg align-items-center">
+              <a class="navbar-brand logo" href="index.html">
+                <img class="img-fluid"
+                     src="https://accountingfigures.com/wp-content/uploads/2023/05/cropped-Horizontal-Logo-Af_wit_oranje-251x37.png"
+                     alt="">
+              </a>
+
+              <!-- toggler -->
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                      aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+
+              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <button class="menu-close d-lg-none" type="button" aria-label="Close menu"></button>
+
+                <ul class="navbar-nav mx-auto">
+                  <li class="nav-item"><a class="nav-link active" href="index.html" data-i18n="nav.home">Home</a></li>
+
+                  <!-- Services dropdown -->
+                  <li class="nav-item dropdown" data-bs-auto-close="outside">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-display="static"
+                       role="button" aria-expanded="false" data-i18n="nav.services">Services</a>
+                    <ul class="dropdown-menu dropdown-menu-dark services-menu p-3">
+                      <li><a class="dropdown-item" href="services-self-employed.html" data-i18n="nav.s1">For the
+                        self-employed and liberal professionals</a></li>
+                      <li><a class="dropdown-item" href="services-entrepreneurs.html" data-i18n="nav.s2">For ambitious
+                        entrepreneurs</a></li>
+                      <li><a class="dropdown-item" href="services-finance-teams.html" data-i18n="nav.s3">For finance
+                        teams</a></li>
+                    </ul>
+                  </li>
+                  <li class="nav-item"><a class="nav-link" href="about-us.html" data-i18n="nav.about">About Us</a>
+                  </li>
+                  <li class="nav-item"><a class="nav-link" href="working-at.html" data-i18n="nav.working">Working
+                    At</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#" data-i18n="nav.news">News</a></li>
+                </ul>
+              </div>
+
+              <div class="right-nav align-items-center d-flex justify-content-end">
+                <a class="btn btn-theme" href="contact.html"><span data-i18n="cta.contact">Contact Us</span></a>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="search-input" id="search-input-box">
+    <div class="container">
+      <form class="d-flex justify-content-between search-inner">
+        <input type="text" class="form-control" id="search-input" placeholder="Search Here"
+               data-i18n-ph="search.placeholder" />
+        <button type="submit" class="btn"></button>
+        <span class="flaticon-close" id="close-search" title="Close Search"></span>
+      </form>
+    </div>
+  </div>
+  <!--header end-->
+
+  <!--hero section start-->
+  <section class="banner p-0 position-relative fullscreen-banner">
+    <div class="banner-slider owl-carousel no-pb" data-dots="false" data-nav="true">
+      <div class="item" data-bg-img="https://www.businesslabs.co/wp-content/uploads/2017/05/consulting.jpg"
+           data-overlay="5">
+        <div class="align-center">
+          <div class="container">
+            <div class="row justify-content-center text-center">
+              <div class="col-lg-7 col-md-12">
+                <h1 class="mb-4 text-white animated1" data-i18n="hero1.title">Simplifying Your Finances, Maximizing
+                  Your Success</h1>
+                <p class="lead text-white animated2" data-i18n="hero1.lead">Your Trusted Partner in Accounting, Tax &
+                  Financial Advisory</p>
+                <div class="animated3 mt-5">
+                  <a class="btn btn-2" href="https://calendly.com/madjicherif23-xqhr/30min?month=2025-09"
+                     target="_blank" rel="noopener noreferrer">
+                    <span class="btn-icon btn-arrow"></span>
+                    <span class="btn-text" data-i18n="btn.contactUs">Book a call</span>
+                  </a>
+                  <a class="btn btn-2 btn-border white" href="#"><span class="btn-icon btn-arrow"></span><span
+                          class="btn-text" data-i18n="btn.freeTrial">Free Trial</span></a>
                 </div>
               </div>
             </div>
-          </nav>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</header>
 
- <div class="search-input" id="search-input-box">
-            <div class="container ">
-                <form class="d-flex justify-content-between search-inner">
-                    <input type="text" class="form-control" id="search-input" placeholder="Search Here">
-                    <button type="submit" class="btn"></button>
-                    <span class="flaticon-close" id="close-search" title="Close Search"></span>
-                </form>
-            </div>
-        </div>
+      <div class="item"
+           data-bg-img="https://small-business-consultant.net/wp-content/uploads/2017/03/Business-Consulting-Image.jpg"
+           data-overlay="5">
+        <div class="align-center">
+          <div class="container">
+            <div class="row justify-content-center text-center">
+              <div class="col-lg-7 col-md-12">
+                <h1 class="mb-4 text-white animated1" data-i18n="hero2.title">Focus on Growth – We Handle Your Numbers
+                </h1>
+                <p class="lead text-white animated2" data-i18n="hero2.lead">Simplifying Your Finances, Maximizing Your
+                  Success</p>
+                <div class="animated3 mt-5">
+                  <a class="btn btn-2" href="https://calendly.com/madjicherif23-xqhr/30min?month=2025-09"
+                     target="_blank" rel="noopener noreferrer">
+                    <span class="btn-icon btn-arrow"></span>
+                    <span class="btn-text" data-i18n="btn.contactUs">Book a call</span>
+                  </a>
 
-<!--header end-->
-
-
-<!--page title start-->
-
-<section class="page-title parallaxie" data-bg-img="images/bg/08.jpg">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-md-12">
-        <h1>Frequently Asked Questions</h1>
-        <nav aria-label="breadcrumb" class="page-breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a>
-            </li>
-            <li class="breadcrumb-item"><a href="#">Pages</a>
-            </li>
-            <li class="breadcrumb-item active" aria-current="page">F.A.Q.</li>
-          </ol>
-        </nav>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!--page title end-->
-
-
-<!--body content start-->
-
-<div class="page-content">
-
-<section>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12">
-        <div id="accordion" class="accordion">
-          <div class="card active">
-            <div class="card-header">
-              <h6 class="mb-0">
-              <a data-bs-toggle="collapse" data-bs-parent="#accordion" href="#collapse1" aria-expanded="true">consectetur adipisicing elit, sed ?</a>
-              </h6>
-            </div>
-            <div id="collapse1" class="collapse show" data-bs-parent="#accordion">
-              <div class="card-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodas temporo incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrd exercitation ullamco laboris nisi ut aliquip ex comodo consequat. Duis aute dolor in reprehenderit.</div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header">
-              <h6 class="mb-0">
-              <a data-bs-toggle="collapse" data-bs-parent="#accordion" href="#collapse2">temporo incididunt ut labore et dolore ?</a>
-              </h6>
-            </div>
-            <div id="collapse2" class="collapse" data-bs-parent="#accordion">
-              <div class="card-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodas temporo incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrd exercitation ullamco laboris nisi ut aliquip ex comodo consequat. Duis aute dolor in reprehenderit.</div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header">
-              <h6 class="mb-0">
-              <a data-bs-toggle="collapse" data-bs-parent="#accordion" href="#collapse3">quis nostrd exercitation ullamco laboris ?</a>
-              </h6>
-            </div>
-            <div id="collapse3" class="collapse" data-bs-parent="#accordion">
-              <div class="card-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodas temporo incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrd exercitation ullamco laboris nisi ut aliquip ex comodo consequat. Duis aute dolor in reprehenderit.</div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header">
-              <h6 class="mb-0">
-              <a data-bs-toggle="collapse" data-bs-parent="#accordion" href="#collapse4">Duis aute dolor in reprehenderit. ?</a>
-              </h6>
-            </div>
-            <div id="collapse4" class="collapse" data-bs-parent="#accordion">
-              <div class="card-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodas temporo incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrd exercitation ullamco laboris nisi ut aliquip ex comodo consequat. Duis aute dolor in reprehenderit.</div>
+                  <a class="btn btn-2 btn-border white" href="#"><span class="btn-icon btn-arrow"></span><span
+                          class="btn-text" data-i18n="btn.freeTrial">Free Trial</span></a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
     </div>
-  </div>
-</section>
-
-</div>
-
-<!--body content end--> 
+  </section>
+  <!--hero section end-->
 
 
-<!--footer start-->
 
-<footer class="footer">
-  <div class="primary-footer dark-bg">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
-          <h4 class="mb-4 text-white">Our Services</h4>
-          <div class="footer-list">
-            <ul class="list-unstyled">
-              <li><a href="business-services.html">Business Services</a>
-              </li>
-              <li><a href="software-research.html">Software & Research</a>
-              </li>
-              <li> <a href="finance-restructuring.html">Finance and Restructuring</a>
-              </li>
-              <li> <a href="energy-environment.html">Energy & Environment</a>
-              </li>
-              <li> <a href="investment-planning.html">Investment Planning</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 mt-5 mt-md-0">
-          <h4 class="mb-4 text-white">NewsLetter</h4>
-          <p>Get started for 1 Month free trial No Purchace required.</p>
-          <div class="subscribe-form">
-            <form id="mc-form" class="group">
-              <input value="" name="EMAIL" class="email" id="mc-email" placeholder="Email Address" required="" type="email">
-              <input class="btn btn-theme" name="subscribe" value="Subscribe" type="submit">
-            </form>
-          </div>
-          <div class="social-icons social-colored mt-5">
-            <ul class="list-inline">
-              <li class="social-facebook"><a href="#"><i class="fab fa-facebook-f"></i></a>
-              </li>
-              <li class="social-dribbble"><a href="#"><i class="fab fa-dribbble"></i></a>
-              </li>
-              <li class="social-skype"><a href="#"><i class="fab fa-skype"></i></a>
-              </li>
-              <li class="social-linkedin"><a href="#"><i class="fab fa-linkedin-in"></i></a>
-              </li>
-              <li class="social-youtube"><a href="#"><i class="fab fa-youtube"></i></a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-xl-4 col-lg-5 ms-auto col-md-12 mt-5 mt-lg-0">
-          <h4 class="mb-4 text-white">About Consulterz</h4> 
-          <p class="mb-3">Consulterz - Business Consulting HTML5 Template Is fully Responsive, Creative, Modern HTML5 Template.</p>
-          <div class="footer-cntct">
-            <ul class="media-icon list-unstyled">
-              <li>
-                <p class="mb-0"><i class="flaticon-paper-plane"></i> 423B, Road Wordwide Country, USA</p>
-              </li>
-              <li><i class="flaticon-email"></i>  <a href="mailto:themeht23@gmail.com">themeht23@gmail.com</a>
-              </li>
-              <li><i class="flaticon-phone"></i>  <a href="tel:+912345678900">+91-234-567-8900</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="secondary-footer theme-bg">
-    <div class="container">
-      <div class="copyright">
+  <!--body content start-->
+  <div class="page-content">
+    <!--feature start-->
+    <section>
+      <div class="container-fluid pe-sm-0">
         <div class="row">
-          <div class="col-lg-6"> <span>Copyright 2019 Consulterz Theme by <u><a href="#">ThemeHt</a></u> | All Rights Reserved</span>
+          <div class="mx-auto col-lg-3 col-md-12">
+            <div class="section-title md-mb-3">
+              <h6 data-i18n="cases.kicker">Our Expertise</h6>
+              <h2 class="title" data-i18n="cases.title">Explore Our Case Studies</h2>
+              <p data-i18n="cases.copy">Discover how Accounting Figures helps businesses in Antwerp and beyond with
+                expert accounting, tax consultancy, and financial advisory services tailored to their needs.</p>
+            </div>
+            <a class="btn btn-2" href="https://calendly.com/madjicherif23-xqhr/30min?month=2025-09" target="_blank"
+               rel="noopener noreferrer">
+              <span class="btn-icon btn-arrow"></span>
+              <span class="btn-text" data-i18n="btn.contactUs">Book a free call</span>
+            </a>
           </div>
-          <div class="col-lg-6 text-lg-end footer-list md-mt-2">
-            <ul class="list-inline">
-              <li class="list-inline-item mb-0"><a href="about-our-company.html">About Us</a>
-              </li>
-              <li class="list-inline-item mb-0"><a href="team.html">Team</a>
-              </li>
-              <li class="list-inline-item mb-0"><a href="contact.html">Contact Us</a>
-              </li>
-              <li class="list-inline-item mb-0"><a href="privacy-policy.html">Privacy Policy</a>
-              </li>
-              <li class="list-inline-item mb-0"><a href="terms-and-conditions.html">Terms</a>
-              </li>
-            </ul>
+          <div class="col-lg-8 col-md-12 ms-sm-n5 side-top-bg mt-5 mt-lg-0">
+            <div class="owl-carousel mt-8 ms-sm-5" data-items="3" data-md-items="2" data-sm-items="2" data-margin="30"
+                 data-autoplay="true">
+              <div class="item">
+                <div class="cases-item style-2 text-center">
+                  <div class="cases-images"><img class="img-fluid rounded box-shadow" src="images/case-studies/01.jpg"
+                                                 alt=""></div>
+                  <div class="cases-desc"><span data-i18n="cases.c1.tag">Accounting</span>
+                    <h5><a href="#" data-i18n="cases.c1.title">Streamlined Bookkeeping</a></h5>
+                    <p data-i18n="cases.c1.desc">Helping SMEs maintain accurate, compliant, and efficient financial
+                      records.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="cases-item style-2 text-center">
+                  <div class="cases-images"><img class="img-fluid rounded box-shadow" src="images/case-studies/02.jpg"
+                                                 alt=""></div>
+                  <div class="cases-desc"><span data-i18n="cases.c2.tag">Tax Consultancy</span>
+                    <h5><a href="#" data-i18n="cases.c2.title">Optimized Tax Strategies</a></h5>
+                    <p data-i18n="cases.c2.desc">Reducing liabilities and maximizing returns through proactive tax
+                      planning.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="cases-item style-2 text-center">
+                  <div class="cases-images"><img class="img-fluid rounded box-shadow" src="images/case-studies/03.jpg"
+                                                 alt=""></div>
+                  <div class="cases-desc"><span data-i18n="cases.c3.tag">Financial Advisory</span>
+                    <h5><a href="#" data-i18n="cases.c3.title">Growth & Investment Guidance</a></h5>
+                    <p data-i18n="cases.c3.desc">Supporting your strategic decisions with expert financial insights.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="cases-item style-2 text-center">
+                  <div class="cases-images"><img class="img-fluid rounded box-shadow" src="images/case-studies/04.jpg"
+                                                 alt=""></div>
+                  <div class="cases-desc"><span data-i18n="cases.c4.tag">Payroll</span>
+                    <h5><a href="#" data-i18n="cases.c4.title">Payroll Management</a></h5>
+                    <p data-i18n="cases.c4.desc">Ensuring accurate and compliant payroll processing for your
+                      employees.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="cases-item style-2 text-center">
+                  <div class="cases-images"><img class="img-fluid rounded box-shadow" src="images/case-studies/05.jpg"
+                                                 alt=""></div>
+                  <div class="cases-desc"><span data-i18n="cases.c5.tag">VAT & Compliance</span>
+                    <h5><a href="#" data-i18n="cases.c5.title">VAT Reporting Services</a></h5>
+                    <p data-i18n="cases.c5.desc">Handling your VAT declarations and keeping you compliant year-round.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="cases-item style-2 text-center">
+                  <div class="cases-images"><img class="img-fluid rounded box-shadow" src="images/case-studies/06.jpg"
+                                                 alt=""></div>
+                  <div class="cases-desc"><span data-i18n="cases.c6.tag">Business Setup</span>
+                    <h5><a href="#" data-i18n="cases.c6.title">Company Formation Support</a></h5>
+                    <p data-i18n="cases.c6.desc">Guiding entrepreneurs through the legal and financial setup process.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div><!-- owl -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--feature end-->
+
+    <!--about start-->
+    <section>
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 col-12">
+            <div class="position-relative">
+              <img class="img-fluid rounded box-shadow w-100" src="images/about/03.jpg"
+                   alt="Accounting Figures Team" />
+              <div class="video-btn video-btn-pos">
+                <a class="play-btn popup-youtube me-3" href="https://www.youtube.com/watch?v=P_wKDMcr1Tg"><i
+                        class="fas fa-play"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-12 mt-5 mt-lg-0">
+            <div class="section-title">
+              <h6 data-i18n="about.kicker">About Us</h6>
+              <h2 class="title" data-i18n="about.title">Your Trusted Partner for Accounting & Tax Solutions</h2>
+              <p data-i18n="about.copy">Accounting Figures guarantees a complete management of your administrative,
+                accounting and tax obligations. Both Belgian and international companies can count on a personal and
+                proactive service. Are you looking for a professional consultancy firm that takes care of your
+                accounting and taxation from A to Z? At Accounting Figures you have come to the right place!</p>
+            </div>
+            <div class="ht-progress-bar">
+              <h4 data-i18n="about.p1">Accounting & Bookkeeping</h4>
+              <div class="progress" data-value="100">
+                <div class="progress-bar">
+                  <div class="progress-parcent"><span>100</span>%</div>
+                </div>
+              </div>
+            </div>
+            <div class="ht-progress-bar">
+              <h4 data-i18n="about.p2">Tax Consultancy & Compliance</h4>
+              <div class="progress" data-value="100">
+                <div class="progress-bar">
+                  <div class="progress-parcent"><span>100</span>%</div>
+                </div>
+              </div>
+            </div>
+            <div class="ht-progress-bar mb-0">
+              <h4 data-i18n="about.p3">Financial Advisory & Business Support</h4>
+              <div class="progress" data-value="100">
+                <div class="progress-bar">
+                  <div class="progress-parcent"><span>100</span>%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--about end-->
+
+    <!--counter start-->
+    <section style="margin-bottom: 100px;" class="p-0">
+      <div class="container">
+        <div class="row justify-content-center text-center">
+          <div class="col-lg-8 col-md-12">
+            <div class="section-title">
+              <h6 data-i18n="facts.kicker">Facts & Numbers</h6>
+              <h2 class="title" data-i18n="facts.title">We take care of your numbers so you can focus on growth.</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center text-center">
+          <div class="col-md-8 col-12">
+            <div class="d-sm-flex align-items-center justify-content-between">
+              <div class="counter">
+                <span data-to="4" data-speed="7000">4</span><span>+</span>
+                <h6 data-i18n="facts.years">Years of Expertise</h6>
+              </div>
+              <div class="counter mt-5 mt-sm-0">
+                <span class="count-number" data-to="500" data-speed="7000">500</span><span>+</span>
+                <h6 data-i18n="facts.projects">Tax & Accounting Projects</h6>
+              </div>
+              <div class="counter mt-5 mt-sm-0">
+                <span class="count-number" data-to="300" data-speed="7000">300</span><span>+</span>
+                <h6 data-i18n="facts.clients">Satisfied Clients</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--counter end-->
+
+    <!--service start-->
+    <section class="dark-bg custom-pb-2">
+      <div class="container">
+        <div class="row justify-content-center text-center">
+          <div class="col-lg-8 col-md-12">
+            <div class="section-title">
+              <h6 data-i18n="services.kicker">Our Services</h6>
+              <h2 class="title" data-i18n="services.title">Comprehensive Accounting & Tax Solutions</h2>
+              <p class="text-rgba" data-i18n="services.copy">We help businesses and individuals in Antwerp stay
+                compliant, optimize their taxes, and make informed financial decisions.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8 service cards (titles/desc translated) -->
+        <div class="row">
+          <div class="col-lg-3 col-sm-6">
+            <div class="featured-item style-4">
+              <div class="featured-icon"><i class="flaticon-money"></i></div>
+              <div class="featured-title">
+                <h5 data-i18n="svc.1.t">Accounting & Bookkeeping</h5>
+              </div>
+              <div class="featured-desc">
+                <p data-i18n="svc.1.d">Accurate, timely financial records to keep your business on track.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <div class="featured-item style-4">
+              <div class="featured-icon"><i class="flaticon-solution"></i></div>
+              <div class="featured-title">
+                <h5 data-i18n="svc.2.t">Tax Consultancy</h5>
+              </div>
+              <div class="featured-desc">
+                <p data-i18n="svc.2.d">Strategic tax planning and compliance to minimize liabilities.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <div class="featured-item style-4">
+              <div class="featured-icon"><i class="flaticon-life"></i></div>
+              <div class="featured-title">
+                <h5 data-i18n="svc.3.t">Payroll Management</h5>
+              </div>
+              <div class="featured-desc">
+                <p data-i18n="svc.3.d">Efficient and compliant payroll solutions for small and large businesses.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <div class="featured-item style-4">
+              <div class="featured-icon"><i class="flaticon-testing"></i></div>
+              <div class="featured-title">
+                <h5 data-i18n="svc.4.t">Financial Advisory</h5>
+              </div>
+              <div class="featured-desc">
+                <p data-i18n="svc.4.d">Insights and strategies to support long-term business growth.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-3 col-sm-6">
+            <div class="featured-item style-4">
+              <div class="featured-icon"><i class="flaticon-solution"></i></div>
+              <div class="featured-title">
+                <h5 data-i18n="svc.5.t">VAT & Compliance</h5>
+              </div>
+              <div class="featured-desc">
+                <p data-i18n="svc.5.d">Ensure all your VAT declarations and compliance are handled correctly.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <div class="featured-item style-4">
+              <div class="featured-icon"><i class="flaticon-money"></i></div>
+              <div class="featured-title">
+                <h5 data-i18n="svc.6.t">Startup Accounting</h5>
+              </div>
+              <div class="featured-desc">
+                <p data-i18n="svc.6.d">Tailored accounting and tax setup for new businesses and entrepreneurs.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <div class="featured-item style-4">
+              <div class="featured-icon"><i class="flaticon-testing"></i></div>
+              <div class="featured-title">
+                <h5 data-i18n="svc.7.t">Annual Reporting</h5>
+              </div>
+              <div class="featured-desc">
+                <p data-i18n="svc.7.d">Professional preparation of annual accounts and financial statements.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <div class="featured-item style-4">
+              <div class="featured-icon"><i class="flaticon-life"></i></div>
+              <div class="featured-title">
+                <h5 data-i18n="svc.8.t">Business Advisory</h5>
+              </div>
+              <div class="featured-desc">
+                <p data-i18n="svc.8.d">Helping you make informed decisions for sustainable growth.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--service end-->
+
+    <!--testimonial start-->
+    <section class="p-0 mt-n10">
+      <div class="owl-carousel no-pb" data-items="1" data-dots="false" data-autoplay="true"
+           data-autoplay-timeout="8000">
+        <div class="item">
+          <div class="container-fluid p-0">
+            <div class="row align-items-center g-0">
+              <div class="col-lg-6 col-md-5 ms-md-5 me-n5 z-index-1">
+                <img class="img-fluid w-100 rounded box-shadow" src="images/testimonial/01.jpg"
+                     alt="Accounting client testimonial" />
+              </div>
+              <div class="col-lg-6 col-md-7">
+                <div
+                        class="testimonial style-1 theme-bg py-5 py-md-8 rounded ps-3 ps-md-8 pe-4 pe-lg-9 m-0 overflow-hidden">
+                  <div class="testimonial-content">
+                    <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+                    <p class="text-white" data-i18n="testi.1.txt">“Antwerp Figures helped us streamline our
+                      bookkeeping and financial reporting. Their team ensured our tax compliance was flawless and gave
+                      us a clear strategy to reduce unnecessary costs.”</p>
+                    <div class="testimonial-caption">
+                      <h5 class="text-white">Laura Stevens</h5>
+                      <label data-i18n="testi.1.role">CFO, PrimeTech Industries</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="container-fluid p-0">
+            <div class="row align-items-center g-0">
+              <div class="col-lg-6 col-md-5 ms-md-5 me-n5 z-index-1">
+                <img class="img-fluid w-100 rounded box-shadow" src="images/testimonial/02.jpg"
+                     alt="Tax advisory client testimonial" />
+              </div>
+              <div class="col-lg-6 col-md-7">
+                <div
+                        class="testimonial style-1 theme-bg py-5 py-md-8 rounded ps-3 ps-md-8 pe-4 pe-lg-9 m-0 overflow-hidden">
+                  <div class="testimonial-content">
+                    <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+                    <p class="text-white" data-i18n="testi.2.txt">“Thanks to their expert tax planning and financial
+                      advisory services, we saved over 15% on annual taxes while staying fully compliant. Highly
+                      professional and reliable!”</p>
+                    <div class="testimonial-caption">
+                      <h5 class="text-white">David Nguyen</h5>
+                      <label data-i18n="testi.2.role">Managing Director, Horizon Logistics</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--testimonial end-->
+
+    <!--team start-->
+    <section>
+      <div class="container">
+        <div class="row justify-content-center text-center">
+          <div class="col-lg-8 col-md-12">
+            <div class="section-title">
+              <h6 data-i18n="team.kicker">Team Expert</h6>
+              <h2 class="title" data-i18n="team.title">Meet Our Advisory Team</h2>
+              <p data-i18n="team.copy">Consulterz discovering the source behind the ubiquitous filler text. In seeing
+                a sample of lorem ipsum, his interest was piqued by consectetur</p>
+            </div>
+          </div>
+        </div>
+        <!-- (Names kept as proper nouns) -->
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="owl-carousel" data-items="3" data-md-items="2" data-margin="30" data-sm-items="1"
+                 data-autoplay="true">
+              <div class="item">
+                <div class="team-member style-1">
+                  <div class="team-images">
+                    <img class="img-fluid" src="/images/team/01.jpg" alt="">
+                    <div class="team-social-icon">
+                      <ul>
+                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="team-description">
+                    <h5><a href="team-single.html">Hilton Georges</a></h5>
+                    <span data-i18n="team.roles.manager">Manager</span>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="team-member style-1">
+                  <div class="team-images">
+                    <img class="img-fluid" src="images/team/02.jpg" alt="">
+                    <div class="team-social-icon">
+                      <ul>
+                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="team-description">
+                    <h5><a href="team-single.html">Rilon Jony</a></h5>
+                    <span data-i18n="team.roles.advisor">Advisor</span>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="team-member style-1">
+                  <div class="team-images">
+                    <img class="img-fluid" src="images/team/03.jpg" alt="">
+                    <div class="team-social-icon">
+                      <ul>
+                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="team-description">
+                    <h5><a href="team-single.html">Daisy Loy</a></h5>
+                    <span data-i18n="team.roles.financial">Financial</span>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- owl -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--team end-->
+
+    <!--form start-->
+    <section class="parallaxie" data-bg-img="images/bg/03.jpg">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7 col-md-8">
+            <div class="white-bg box-shadow rounded p-5">
+              <div class="section-title mb-4">
+                <h6 data-i18n="quote.kicker">Request A Quote</h6>
+                <h2 class="title" data-i18n="quote.title">Get Your Personalized Quote Today</h2>
+              </div>
+              <p class="line-h-3" data-i18n="quote.copy">For any request, kindly fill in the information below and
+                Accounting Figures will get back to you as possible</p>
+              <form id="queto-form" method="post" action="php/contact.php">
+                <div id="formmessage"></div>
+                <div class="form-group">
+                  <input id="form_name" type="text" name="name" class="form-control" placeholder="Your Name" required
+                         data-error="Name is required." data-i18n-ph="form.name" data-i18n-er="form.nameReq" />
+                </div>
+                <div class="form-group">
+                  <input id="form_email" type="email" name="email" class="form-control" placeholder="Your Email"
+                         required data-error="Valid email is required." data-i18n-ph="form.email"
+                         data-i18n-er="form.emailReq" />
+                </div>
+                <div class="form-group">
+                  <input id="form_number" type="text" name="phone" class="form-control" placeholder="Phone Number"
+                         required data-i18n-ph="form.phone" />
+                </div>
+                <div class="form-group">
+                  <select name="select" class="form-control">
+                    <option data-i18n="form.select">- Select Service</option>
+                    <option data-i18n="form.opt.consulting">Consulting</option>
+                    <option data-i18n="form.opt.finance">Financial Advisory</option>
+                    <option data-i18n="form.opt.marketing">StartUp Accounting</option>
+                    <option data-i18n="form.opt.analytics">Bookkeeping</option>
+                  </select>
+                </div>
+                <button class="btn btn-2 mt-5"><span class="btn-icon btn-arrow"></span><span class="btn-text"
+                                                                                             data-i18n="btn.submit">Submit</span></button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--form end-->
+
+
+  </div>
+  <!--body content end-->
+
+  <!--footer start-->
+  <footer class="footer">
+    <div class="primary-footer dark-bg">
+      <div class="container">
+        <div class="row">
+          <!-- Services -->
+          <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
+            <h4 class="mb-4 text-white" data-i18n="footer.svcs">Our Services</h4>
+            <div class="footer-list">
+              <ul class="list-unstyled">
+                <li><a href="services-self-employed.html" data-i18n="footer.l1">Self-Employed and Liberal
+                  Professionals</a></li>
+                <li><a href="services-entrepreneurs.html" data-i18n="footer.l2">For Ambitious Entrepreneurs</a></li>
+                <li><a href="services-finance-teams.html" data-i18n="footer.l3">For Finance Teams</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Newsletter -->
+          <div class="col-lg-4 col-md-6 mt-5 mt-md-0">
+            <h4 class="mb-4 text-white" data-i18n="footer.newsletter">Newsletter</h4>
+            <p data-i18n="footer.nl.copy">Stay informed with the latest tax updates, financial tips, and business
+              advice.</p>
+            <div class="subscribe-form">
+              <form id="mc-form" class="group">
+                <input name="EMAIL" class="email" id="mc-email" placeholder="Your Email Address" required type="email"
+                       data-i18n-ph="footer.nl.ph" />
+                <input class="btn btn-theme" name="subscribe" value="Subscribe" type="submit"
+                       data-i18n-v="footer.nl.btn" />
+              </form>
+            </div>
+          </div>
+
+          <!-- About -->
+          <div class="col-xl-4 col-lg-5 ms-auto col-md-12 mt-5 mt-lg-0">
+            <h4 class="mb-4 text-white" data-i18n="footer.about.title">About Accounting Figures</h4>
+            <p class="mb-3" data-i18n="footer.about.copy">We provide expert accounting, tax consultancy, and financial
+              advisory services to help businesses in Antwerp and beyond stay compliant, efficient, and financially
+              strong.</p>
+            <div class="footer-cntct">
+              <ul class="media-icon list-unstyled">
+                <li>
+                  <p class="mb-0"><i class="flaticon-paper-plane"></i> <span data-i18n="footer.addr">Franklinstraat
+                        12, Antwerp, Belgium</span></p>
+                </li>
+                <li><i class="flaticon-email"></i> <a
+                        href="mailto:info@accountingfigures.be">info@accountingfigures.be</a></li>
+                <li><i class="flaticon-phone"></i> <a href="tel:+3234567890">+32 3 456 78 90</a></li>
+              </ul>
+            </div>
+          </div>
+
+        </div><!-- row -->
+      </div>
+    </div>
+
+    <!-- Secondary Footer -->
+    <div class="secondary-footer theme-bg">
+      <div class="container">
+        <div class="copyright">
+          <div class="row">
+            <div class="col-lg-6">
+              <span data-i18n="footer.copy">© 2025 Accounting Figures | All Rights Reserved</span>
+            </div>
+            <div class="col-lg-6 text-lg-end footer-list md-mt-2">
+              <ul class="list-inline">
+                <li class="list-inline-item mb-0"><a href="about-us.html" data-i18n="footer.nav.about">About Us</a>
+                </li>
+
+                <li class="list-inline-item mb-0"><a href="contact.html" data-i18n="footer.nav.contact">Contact</a>
+                </li>
+                <li class="list-inline-item mb-0"><a href="privacy-policy.html" data-i18n="footer.nav.privacy">Privacy
+                  Policy</a></li>
+                <li class="list-inline-item mb-0"><a href="terms.html" data-i18n="footer.nav.terms">Terms &
+                  Conditions</a></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</footer>
-
-<!--footer end-->
-
+  </footer>
+  <!--footer end-->
 
 </div>
-
 <!-- page wrapper end -->
 
-
-<!--color-customizer start-->
-
-<div class="color-customizer closed">
-  <div class="color-button">
-    <a class="opener" href="#"> <i class="fas fa-spinner fa-spin"></i>
-    </a>
-  </div>
-  <div class="clearfix color-chooser text-center">
-    <ul class="colorChange clearfix">
-      <li class="theme-default selected" title="theme-default" data-style="color-1"></li>
-      <li class="theme-2" title="theme-2" data-style="color-2"></li>
-      <li class="theme-3" title="theme-3" data-style="color-3"></li>
-      <li class="theme-4" title="theme-4" data-style="color-4"></li>
-    </ul>
-  </div>
-</div>
-
-<!--color-customizer end-->
-
-
 <!--back-to-top start-->
-
 <div class="scroll-top"><a class="smoothscroll" href="#top"><i class="flaticon-top"></i></a></div>
-
 <!--back-to-top end-->
 
- 
-<!--== jquery -->
+<!-- inject js start -->
+<!-- Bootstrap first -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 <script src="js/theme.js"></script>
-
-<!--== theme-plugin -->
 <script src="js/theme-plugin.js"></script>
-
-<!--== color-customize -->
-<script src="js/color-customize/color-customizer.js"></script> 
-
-<!--== theme-script -->
+<script src="js/color-customize/color-customizer.js"></script>
 <script src="js/theme-script.js"></script>
 
-<!-- inject js end -->
+<!-- Simple i18n (EN/NL) -->
+<script>
+  const TRANSLATIONS = {
+    en: {
+      "lang.current": "English",
+      "meta.title": "Accounting Figures- Consulting Finance Accounting + RTL Support",
+      "nav.home": "Home",
+      "nav.services": "Services",
+      "nav.s1": "For the self-employed and liberal professionals",
+      "nav.s2": "For ambitious entrepreneurs",
+      "nav.s3": "For finance teams",
+      "nav.about": "About Us",
+      "nav.working": "Working At",
+      "nav.news": "News",
+      "cta.contact": "Contact Us",
+      "search.placeholder": "Search Here",
+      "btn.contactUs": "Book a free call",
+      "btn.freeTrial": "Contact Us",
+      "btn.viewMore": "View More",
+      "btn.submit": "Submit",
 
+      "hero1.title": "Simplifying Your Finances, Maximizing Your Success",
+      "hero1.lead": "Your Trusted Partner in Accounting, Tax & Financial Advisory",
+      "hero2.title": "Focus on Growth – We Handle Your Numbers",
+      "hero2.lead": "Simplifying Your Finances, Maximizing Your Success",
+
+      "cases.kicker": "Our Expertise",
+      "cases.title": "Explore Our Case Studies",
+      "cases.copy": "Discover how Accounting Figures helps businesses in Antwerp and beyond with expert accounting, tax consultancy, and financial advisory services tailored to their needs.",
+      "cases.c1.tag": "Accounting",
+      "cases.c1.title": "Streamlined Bookkeeping",
+      "cases.c1.desc": "Helping SMEs maintain accurate, compliant, and efficient financial records.",
+      "cases.c2.tag": "Tax Consultancy",
+      "cases.c2.title": "Optimized Tax Strategies",
+      "cases.c2.desc": "Reducing liabilities and maximizing returns through proactive tax planning.",
+      "cases.c3.tag": "Financial Advisory",
+      "cases.c3.title": "Growth & Investment Guidance",
+      "cases.c3.desc": "Supporting your strategic decisions with expert financial insights.",
+      "cases.c4.tag": "Payroll",
+      "cases.c4.title": "Payroll Management",
+      "cases.c4.desc": "Ensuring accurate and compliant payroll processing for your employees.",
+      "cases.c5.tag": "VAT & Compliance",
+      "cases.c5.title": "VAT Reporting Services",
+      "cases.c5.desc": "Handling your VAT declarations and keeping you compliant year-round.",
+      "cases.c6.tag": "Business Setup",
+      "cases.c6.title": "Company Formation Support",
+      "cases.c6.desc": "Guiding entrepreneurs through the legal and financial setup process.",
+
+      "about.kicker": "About Us",
+      "about.title": "Your Trusted Partner for Accounting & Tax Solutions",
+      "about.copy": "Accounting Figures guarantees a complete management of your administrative, accounting and tax obligations. Both Belgian and international companies can count on a personal and proactive service. Are you looking for a professional consultancy firm that takes care of your accounting and taxation from A to Z? At Accounting Figures you have come to the right place!",
+      "about.p1": "Accounting & Bookkeeping",
+      "about.p2": "Tax Consultancy & Compliance",
+      "about.p3": "Financial Advisory & Business Support",
+
+      "facts.kicker": "Facts & Numbers",
+      "facts.title": "We take care of your numbers so you can focus on growth.",
+      "facts.years": "Years of Expertise",
+      "facts.projects": "Tax & Accounting Projects",
+      "facts.clients": "Satisfied Clients",
+
+      "services.kicker": "Our Services",
+      "services.title": "Comprehensive Accounting & Tax Solutions",
+      "services.copy": "We help businesses and individuals in Antwerp stay compliant, optimize their taxes, and make informed financial decisions.",
+      "svc.1.t": "Accounting & Bookkeeping",
+      "svc.1.d": "Accurate, timely financial records to keep your business on track.",
+      "svc.2.t": "Tax Consultancy",
+      "svc.2.d": "Strategic tax planning and compliance to minimize liabilities.",
+      "svc.3.t": "Payroll Management",
+      "svc.3.d": "Efficient and compliant payroll solutions for small and large businesses.",
+      "svc.4.t": "Financial Advisory",
+      "svc.4.d": "Insights and strategies to support long-term business growth.",
+      "svc.5.t": "VAT & Compliance",
+      "svc.5.d": "Ensure all your VAT declarations and compliance are handled correctly.",
+      "svc.6.t": "Startup Accounting",
+      "svc.6.d": "Tailored accounting and tax setup for new businesses and entrepreneurs.",
+      "svc.7.t": "Annual Reporting",
+      "svc.7.d": "Professional preparation of annual accounts and financial statements.",
+      "svc.8.t": "Business Advisory",
+      "svc.8.d": "Helping you make informed decisions for sustainable growth.",
+
+      "testi.1.txt": "“Antwerp Figures helped us streamline our bookkeeping and financial reporting. Their team ensured our tax compliance was flawless and gave us a clear strategy to reduce unnecessary costs.”",
+      "testi.1.role": "CFO, PrimeTech Industries",
+      "testi.2.txt": "“Thanks to their expert tax planning and financial advisory services, we saved over 15% on annual taxes while staying fully compliant. Highly professional and reliable!”",
+      "testi.2.role": "Managing Director, Horizon Logistics",
+
+      "team.kicker": "Team Expert",
+      "team.title": "Meet Our Advisory Team",
+      "team.copy": "Consulterz discovering the source behind the ubiquitous filler text. In seeing a sample of lorem ipsum, his interest was piqued by consectetur",
+      "team.roles.manager": "Manager",
+      "team.roles.advisor": "Advisor",
+      "team.roles.financial": "Financial",
+      "team.roles.accountant": "Accountant",
+
+      "quote.kicker": "Request A Quote",
+      "quote.title": "Get Your Personalized Quote Today",
+      "quote.copy": "For any request, kindly fill in the information below and Accounting Figures will get back to you as possible",
+      "form.name": "Your Name",
+      "form.nameReq": "Name is required.",
+      "form.email": "Your Email",
+      "form.emailReq": "Valid email is required.",
+      "form.phone": "Phone Number",
+      "form.select": "- Select Service",
+
+      "form.opt.consulting": "Consulting",
+      "form.opt.finance": "Finance",
+      "form.opt.marketing": "Marketing",
+      "form.opt.analytics": "Avanced Analytics",
+      "form.opt.planning": "planning",
+
+
+
+      "footer.svcs": "Our Services",
+      "footer.l1": "Self-Employed and Liberal Professionals",
+      "footer.l2": "For Ambitious Entrepreneurs",
+      "footer.l3": "For Finance Teams",
+      "footer.newsletter": "Newsletter",
+      "footer.nl.copy": "Stay informed with the latest tax updates, financial tips, and business advice.",
+      "footer.nl.ph": "Your Email Address",
+      "footer.nl.btn": "Subscribe",
+      "footer.about.title": "About Accounting Figures",
+      "footer.about.copy": "We provide expert accounting, tax consultancy, and financial advisory services to help businesses in Antwerp and beyond stay compliant, efficient, and financially strong.",
+      "footer.addr": "Franklinstraat 12, Antwerp, Belgium",
+      "footer.copy": "© 2025 Accounting Figures | All Rights Reserved",
+      "footer.nav.about": "About Us",
+      "footer.nav.working": "Working at",
+      "footer.nav.contact": "Contact Us",
+      "footer.nav.privacy": "Privacy Policy",
+      "footer.nav.terms": "Terms & Conditions",
+      "form.opt.analytics": "Advanced Analytics",
+      "form.opt.planning": "Planning"
+
+    },
+
+    nl: {
+      "lang.current": "Nederlands",
+      "meta.title": "Accounting Figures - Consulting, Boekhouding & Belastingadvies",
+      "nav.home": "Startpagina",
+      "nav.services": "Diensten",
+      "nav.s1": "Voor zelfstandigen en vrije beroepen",
+      "nav.s2": "Voor ambitieuze ondernemers",
+      "nav.s3": "Voor financiële teams",
+      "nav.about": "Over ons",
+      "nav.working": "Werken bij",
+      "nav.news": "Nieuws",
+      "cta.contact": "Contact opnemen",
+      "search.placeholder": "Zoek hier",
+      "btn.contactUs": "Boek een gratis gesprek",
+      "btn.freeTrial": "Neem contact met ons op",
+      "btn.viewMore": "Meer bekijken",
+      "btn.submit": "Versturen",
+
+      "hero1.title": "We vereenvoudigen uw financiën voor maximaal succes",
+      "hero1.lead": "Uw betrouwbare partner in boekhouding, belastingen en financieel advies",
+      "hero2.title": "Focus op groei – wij regelen de cijfers",
+      "hero2.lead": "We vereenvoudigen uw financiën voor maximaal succes",
+
+      "cases.kicker": "Onze expertise",
+      "cases.title": "Ontdek onze cases",
+      "cases.copy": "Zie hoe Accounting Figures bedrijven in Antwerpen en daarbuiten helpt met boekhouding, belastingadvies en financiële begeleiding op maat.",
+      "cases.c1.tag": "Boekhouding",
+      "cases.c1.title": "Gestroomlijnde boekhouding",
+      "cases.c1.desc": "KMO’s helpen met nauwkeurige, conforme en efficiënte administratie.",
+      "cases.c2.tag": "Belastingadvies",
+      "cases.c2.title": "Geoptimaliseerde belastingstrategieën",
+      "cases.c2.desc": "Lagere lasten en hogere opbrengsten door proactieve planning.",
+      "cases.c3.tag": "Financieel advies",
+      "cases.c3.title": "Groei- & investeringsadvies",
+      "cases.c3.desc": "Ondersteuning bij strategische keuzes met deskundige inzichten.",
+      "cases.c4.tag": "Loonadministratie",
+      "cases.c4.title": "Payrollbeheer",
+      "cases.c4.desc": "Correcte en conforme loonverwerking voor uw medewerkers.",
+      "cases.c5.tag": "BTW & Compliance",
+      "cases.c5.title": "BTW-aangiften",
+      "cases.c5.desc": "Wij verzorgen uw BTW en houden u het hele jaar compliant.",
+      "cases.c6.tag": "Ondernemingsstart",
+      "cases.c6.title": "Oprichtingsbegeleiding",
+      "cases.c6.desc": "Begeleiding bij de juridische en financiële opstart.",
+
+      "about.kicker": "Over ons",
+      "about.title": "Uw betrouwbare partner voor boekhouding & belasting",
+      "about.copy": "Accounting Figures staat in voor het volledige beheer van uw administratieve, boekhoudkundige en fiscale verplichtingen. Belgische én internationale bedrijven rekenen op onze persoonlijke en proactieve service. Op zoek naar een kantoor dat uw boekhouding en fiscaliteit van A tot Z verzorgt? Dan bent u hier aan het juiste adres!",
+      "about.p1": "Boekhouding",
+      "about.p2": "Belastingadvies & compliance",
+      "about.p3": "Financieel advies & business support",
+
+      "facts.kicker": "Feiten & cijfers",
+      "facts.title": "Wij zorgen voor uw cijfers, u focust op groei.",
+      "facts.years": "Jaren expertise",
+      "facts.projects": "Boekhoud- & belastingdossiers",
+      "facts.clients": "Tevreden klanten",
+
+      "services.kicker": "Onze diensten",
+      "services.title": "Complete boekhouding & belastingoplossingen",
+      "services.copy": "We helpen particulieren en bedrijven in Antwerpen compliant te blijven, belastingen te optimaliseren en doordachte financiële keuzes te maken.",
+      "svc.1.t": "Boekhouding",
+      "svc.1.d": "Nauwkeurige en tijdige financiële rapportering.",
+      "svc.2.t": "Belastingadvies",
+      "svc.2.d": "Strategische planning en naleving om lasten te beperken.",
+      "svc.3.t": "Payrollbeheer",
+      "svc.3.d": "Efficiënte en conforme loonadministratie.",
+      "svc.4.t": "Financieel advies",
+      "svc.4.d": "Inzichten en strategie voor duurzame groei.",
+      "svc.5.t": "BTW & compliance",
+      "svc.5.d": "Correcte BTW-aangiften en naleving.",
+      "svc.6.t": "Start-up boekhouding",
+      "svc.6.d": "Opzet van boekhouding en fiscaliteit voor starters.",
+      "svc.7.t": "Jaarrekening",
+      "svc.7.d": "Professionele opmaak van jaarrekeningen.",
+      "svc.8.t": "Business advies",
+      "svc.8.d": "Onderbouwde beslissingen voor lange termijn.",
+
+      "testi.1.txt": "“Antwerp Figures stroomlijnde onze boekhouding en rapportering. Hun team waarborgde foutloze fiscale naleving en gaf ons een duidelijke strategie om kosten te verlagen.”",
+      "testi.1.role": "CFO, PrimeTech Industries",
+      "testi.2.txt": "“Door hun fiscale planning en financieel advies bespaarden we >15% op onze jaarlijkse belastingen, volledig compliant. Zeer professioneel en betrouwbaar!”",
+      "testi.2.role": "Managing Director, Horizon Logistics",
+
+      "team.kicker": "Experts",
+      "team.title": "Maak kennis met ons team",
+      "team.copy": "Ontdek het team achter onze dienstverlening.",
+      "team.roles.manager": "Manager",
+      "team.roles.advisor": "Adviseur",
+      "team.roles.financial": "Financieel",
+      "team.roles.accountant": "Boekhouder",
+
+      "quote.kicker": "Offerte aanvragen",
+      "quote.title": "Ontvang vandaag uw persoonlijke offerte",
+      "quote.copy": "Voor elke aanvraag, vul alstublieft de onderstaande informatie in en de financiële afdeling zal zo snel mogelijk contact met u opnemen.",
+      "form.name": "Uw naam",
+      "form.nameReq": "Naam is verplicht.",
+      "form.email": "Uw e-mail",
+      "form.emailReq": "Geldig e-mailadres is verplicht.",
+      "form.phone": "Telefoonnummer",
+      "form.select": "- Kies dienst",
+      "form.opt.consulting": "Consultancy",
+      "form.opt.finance": "Financiën",
+      "form.opt.marketing": "Marketing",
+      "form.opt.analytics": "Advanced Analytics",
+      "form.opt.planning": "Planning",
+
+      "blog.kicker": "Nieuws",
+      "blog.title": "Lees ons laatste nieuws",
+      "blog.copy": "Blijf op de hoogte met inzichten en updates.",
+      "blog.p1.cat": "Over",
+      "blog.p1.title": "De grootste zorgen rond consultancy",
+      "blog.p2.cat": "Business",
+      "blog.p2.title": "Laat klanten uw facturen verbeteren",
+      "blog.p3.cat": "Consultancy",
+      "blog.p3.title": "Waarom Consulterz bij uw bedrijf past",
+
+      "footer.svcs": "Onze diensten",
+      "footer.l1": "Voor ambitieuze ondernemers",
+      "footer.l2": "Belastingadvies",
+      "footer.l3": "Financieel advies",
+
+      "footer.newsletter": "Nieuwsbrief",
+      "footer.nl.copy": "Blijf op de hoogte van belastingupdates, financiële tips en zakelijk advies.",
+      "footer.nl.ph": "Uw e-mailadres",
+      "footer.nl.btn": "Inschrijven",
+      "footer.about.title": "Over Accounting Figures",
+      "footer.about.copy": "Wij bieden boekhouding, belastingadvies en financieel advies om bedrijven in Antwerpen en daarbuiten sterk en compliant te houden.",
+      "footer.addr": "Franklinstraat 12, Antwerpen, België",
+      "footer.copy": "© 2025 Accounting Figures | Alle rechten voorbehouden",
+      "footer.nav.about": "Over ons",
+      "footer.nav.working": "Werken bij",
+      "footer.nav.contact": "Contact opnemen",
+      "footer.nav.privacy": "Privacybeleid",
+      "footer.nav.terms": "Algemene voorwaarden",
+      "form.opt.analytics": "Geavanceerde analytics",
+      "form.opt.planning": "Planning",
+
+      // Blog categories
+      "blog.p1.cat": "Over",        // already correct
+      "blog.p2.cat": "Zakelijk",    // was "Business"
+      "blog.p3.cat": "Advies",      // was "Consultancy"
+    }
+  };
+  document.querySelectorAll('#navbarNavDropdown .dropdown-toggle').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      if (window.innerWidth < 992) {
+        e.preventDefault();           // href="#" jump roko
+        e.stopPropagation();          // theme handlers ko rok do
+        var dd = bootstrap.Dropdown.getOrCreateInstance(el, { display: 'static' });
+        dd.toggle();
+      }
+    });
+  });
+
+  function applyI18n(lang) {
+    const dict = TRANSLATIONS[lang] || TRANSLATIONS.en;
+
+    // text nodes
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const key = el.getAttribute("data-i18n");
+      if (dict[key]) el.innerHTML = dict[key];
+    });
+
+    document.querySelectorAll("[data-i18n-ph]").forEach(el => {
+      const key = el.getAttribute("data-i18n-ph");
+      if (dict[key]) el.setAttribute("placeholder", dict[key]);
+    });
+
+    // validation error messages
+    document.querySelectorAll("[data-i18n-er]").forEach(el => {
+      const key = el.getAttribute("data-i18n-er");
+      if (dict[key]) el.setAttribute("data-error", dict[key]);
+    });
+
+    // inputs whose value text should change (e.g., newsletter button)
+    document.querySelectorAll("[data-i18n-v]").forEach(el => {
+      const key = el.getAttribute("data-i18n-v");
+      if (dict[key]) el.setAttribute("value", dict[key]);
+    });
+
+    // html lang
+    document.documentElement.setAttribute("lang", lang === "nl" ? "nl" : "en");
+
+    // dropdown current label
+    const currentBtn = document.getElementById("langDropdown") || document.getElementById("langBtn");
+    if (currentBtn) currentBtn.textContent = dict["lang.current"] || (lang === "nl" ? "Nederlands" : "English");
+
+    // mark active in menu
+    document.querySelectorAll(".lang-option").forEach(a => {
+      a.classList.toggle("active-lang", a.dataset.lang === lang);
+    });
+
+    // persist
+    localStorage.setItem("site_lang", lang);
+  }
+
+  function setLanguage(lang) {
+    if (!TRANSLATIONS[lang]) lang = "en";
+    applyI18n(lang);
+  }
+
+  // initialize from storage or browser
+  (function initLang() {
+    const stored = localStorage.getItem("site_lang");
+    const browserIsNL = (navigator.language || "").toLowerCase().startsWith("nl");
+    const initial = stored || (browserIsNL ? "nl" : "en");
+    applyI18n(initial);
+  })();
+
+  // click handler for language dropdown
+  document.addEventListener("click", function (e) {
+    const a = e.target.closest(".lang-option");
+    if (a) {
+      e.preventDefault();
+      setLanguage(a.dataset.lang);
+    }
+  });
+  (function () {
+    const wrap = document.querySelector('.lang-hover');
+    const btn = document.getElementById('langBtn');
+    if (!wrap || !btn) return;
+
+    // Tap to open/close on touch
+    btn.addEventListener('touchstart', function (e) {
+      wrap.classList.toggle('open');
+      btn.setAttribute('aria-expanded', wrap.classList.contains('open') ? 'true' : 'false');
+      e.preventDefault();
+    }, { passive: false });
+
+    // Close when tapping outside
+    document.addEventListener('touchstart', function (e) {
+      if (!wrap.classList.contains('open')) return;
+      if (!e.target.closest('.lang-hover')) {
+        wrap.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    }, { passive: true });
+
+    // Close on ESC (keyboard)
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && wrap.classList.contains('open')) {
+        wrap.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.focus();
+      }
+    });
+  })();
+</script>
+<script>
+  (function () {
+    const collapseEl = document.getElementById('navbarNavDropdown');
+    if (!collapseEl) return;
+
+    const toggler = document.querySelector('.navbar-toggler');
+    const closeBtn = collapseEl.querySelector('.menu-close');
+    const backdrop = document.getElementById('menu-backdrop');
+
+    // Single BS instance
+    const collapse = bootstrap.Collapse.getOrCreateInstance(collapseEl, { toggle: false });
+
+    function hardClose() {
+      try { collapse.hide(); } catch (e) { }
+      if (toggler && toggler.getAttribute('aria-expanded') === 'true') toggler.click();
+      collapseEl.classList.remove('show', 'collapsing');
+      document.body.classList.remove('menu-open');
+      backdrop && backdrop.classList.remove('show');
+    }
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        hardClose();
+      }, true);
+    }
+
+    // Backdrop click
+    backdrop && backdrop.addEventListener('click', hardClose, true);
+
+    // Body class/backdrop sync
+    collapseEl.addEventListener('show.bs.collapse', () => {
+      document.body.classList.add('menu-open');
+      backdrop && backdrop.classList.add('show');
+    });
+    collapseEl.addEventListener('hidden.bs.collapse', () => {
+      document.body.classList.remove('menu-open');
+      backdrop && backdrop.classList.remove('show');
+    });
+
+    // Links/drawer item par close
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('#navbarNavDropdown .nav-link:not(.dropdown-toggle)') ||
+              e.target.closest('#navbarNavDropdown .dropdown-item')) {
+        hardClose();
+      }
+    }, true);
+  })();
+</script>
+<!-- inject js end -->
 </body>
+
 </html>

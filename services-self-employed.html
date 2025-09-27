@@ -445,578 +445,899 @@
       margin: 0;
     }
 
+    @media (max-width: 991.98px) {
+
+      /* Each menu link full-width, centered */
+      #navbarNavDropdown .navbar-nav .nav-link {
+        display: block !important;
+        width: 100% !important;
+        text-align: center !important;
+        padding-left: 16px !important;
+        padding-right: 48px !important;
+        /* right icon space */
+        position: relative !important;
+        /* for ::after positioning */
+        z-index: 3;
+        /* stay above dropdown panel */
+      }
+
+      /* Remove BS caret */
+      #navbarNavDropdown .nav-item.dropdown>.nav-link.dropdown-toggle::after {
+        content: none !important;
+      }
+
+      /* Our + / – icon: always at right, vertically centered */
+      #navbarNavDropdown .nav-item.dropdown>.nav-link.dropdown-toggle::after {
+        content: "+";
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 22px;
+        font-weight: 800;
+        line-height: 1;
+      }
+
+      #navbarNavDropdown .nav-item.dropdown>.nav-link.dropdown-toggle[aria-expanded="true"]::after {
+        content: "–";
+      }
+
+      /* Submenu flows inside drawer and does NOT cover the toggle */
+      #header-wrap .navbar .dropdown-menu {
+        position: static !important;
+        /* no absolute on mobile */
+        float: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        background: #0b0e2a !important;
+        padding-top: .25rem !important;
+        /* tiny gap so it doesn't overlap "Services" */
+      }
+
+      /* Make submenu items wrap nicely */
+      #header-wrap .navbar .dropdown-menu .dropdown-item {
+        white-space: normal !important;
+        word-break: break-word;
+        padding: .85rem 1.25rem !important;
+        text-align: center;
+        color: #fff;
+      }
+
+      /* Prevent any horizontal scroll on the drawer */
+      #navbarNavDropdown {
+        overflow-x: hidden !important;
+      }
+
+      /* Make sure the li doesn't clip things */
+      #navbarNavDropdown .nav-item.dropdown {
+        overflow: visible !important;
+      }
+    }
+
+    /* ================== DESKTOP (>=992px) ================== */
+    @media (min-width: 992px) {
+      .navbar-nav {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+      }
+
+      /* dropdown hugs the link only on desktop */
+      #header-wrap .navbar .dropdown-menu {
+        position: absolute !important;
+        top: calc(100% - 4px) !important;
+        left: 0 !important;
+        margin-top: 0 !important;
+        min-width: 14rem;
+        /* default desktop width */
+        z-index: 1200;
+      }
+
+      .navbar .dropdown:hover>.dropdown-menu {
+        display: block;
+      }
+
+      .navbar .dropdown-toggle:active {
+        pointer-events: none;
+      }
+    }
+
+    /* ================== MOBILE (<992px) ================== */
+    @media (max-width: 991.98px) {
+
+      /* Keep drawer/collapse edges clean */
+      #navbarNavDropdown {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+
+      #navbarNavDropdown .navbar-nav {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+
+      #navbarNavDropdown .nav-item.dropdown {
+        position: relative;
+        overflow: visible !important;
+      }
+
+      /* Menu links centered; leave space at right for +/– */
+      #navbarNavDropdown .navbar-nav .nav-link {
+        display: block !important;
+        width: 100% !important;
+        text-align: center !important;
+        padding-left: 16px !important;
+        padding-right: 48px !important;
+        /* right icon space */
+        position: relative !important;
+        z-index: 3;
+        /* text stays above panel edge */
+      }
+
+      /* Remove Bootstrap caret and use our +/– */
+      #navbarNavDropdown .nav-item.dropdown>.nav-link.dropdown-toggle::before {
+        content: none !important;
+      }
+
+      #navbarNavDropdown .nav-item.dropdown>.nav-link.dropdown-toggle::after {
+        content: "+";
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 22px;
+        font-weight: 800;
+        line-height: 1;
+      }
+
+      #navbarNavDropdown .nav-item.dropdown>.nav-link.dropdown-toggle[aria-expanded="true"]::after {
+        content: "–";
+      }
+
+      /* Submenu panel should flow INSIDE drawer and align perfectly */
+      #header-wrap .navbar .dropdown-menu {
+        position: static !important;
+        /* no absolute on mobile */
+        inset: auto !important;
+        float: none !important;
+        width: 100% !important;
+        /* take full drawer width */
+        max-width: 100% !important;
+        margin: 0 !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        background: #0b0e2a !important;
+        padding-top: .25rem !important;
+        min-width: 0 !important;
+        /* kill Bootstrap min-width */
+      }
+
+      /* If your drawer has side padding and panel looks shifted,
+     stretch panel to drawer edges by neutralising that padding: */
+      /* Uncomment ONLY if you still see a small right shift
+  #navbarNavDropdown .dropdown-menu{
+    margin-left: -16px !important;
+    margin-right: -16px !important;
+  } */
+
+      /* Submenu items */
+      #header-wrap .navbar .dropdown-menu .dropdown-item {
+        white-space: normal !important;
+        word-break: break-word;
+        padding: .85rem 1.25rem !important;
+        text-align: center;
+        color: #fff;
+      }
+    }
+
+
+    .menu-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .55);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 1040;
+      /* header/menu (#header-wrap z-index:1100) se neeche */
+      transition: opacity .2s ease;
+    }
+
+    .menu-backdrop.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Menu opened = body scroll lock */
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    /* collapse ko positioned container banao */
+    #navbarNavDropdown {
+      position: relative;
+    }
+
+    /* X button ka z-index bohot upar */
+    #navbarNavDropdown .menu-close {
+      z-index: 1300;
+      /* links/panel se upar */
+      pointer-events: auto;
+      /* clicks definitely yahan ayen */
+    }
+
+
+
+    #navbarNavDropdown {
+      position: relative;
+    }
+
+    #navbarNavDropdown .menu-close {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      width: 36px;
+      height: 36px;
+      background: transparent;
+      border: 0;
+      z-index: 2000;
+      /* menu se upar */
+    }
+
+    #navbarNavDropdown .menu-close::before,
+    #navbarNavDropdown .menu-close::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 22px;
+      height: 2px;
+      background: rgba(255, 255, 255, .95);
+      transform-origin: center;
+    }
+
+    #navbarNavDropdown .menu-close::before {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    #navbarNavDropdown .menu-close::after {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
     /* caption compact */
   </style>
 </head>
 
 <body>
+<div id="menu-backdrop" class="menu-backdrop d-lg-none" aria-hidden="true"></div>
 
-  <div class="page-wrapper">
 
-    <!-- ======= Header ======= -->
-    <header id="site-header" class="header header-2">
-      <div class="header-top">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-md-12 d-flex align-items-center justify-content-between">
-              <div class="social-icons">
-                <ul class="list-inline">
-                  <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                  <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                  <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                  <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+<div class="page-wrapper">
+
+  <!-- ======= Header ======= -->
+  <header id="site-header" class="header header-2">
+    <div class="header-top">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-12 d-flex align-items-center justify-content-between">
+            <div class="social-icons">
+              <ul class="list-inline">
+                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+              </ul>
+            </div>
+            <div class="topbar-link d-flex align-items-center">
+              <div class="d-none d-sm-flex align-items-center me-3"><i class="flaticon-email"></i>
+                <div><a href="mailto:contact@accountfigures.com">contact@accountfigures.com</a></div>
+              </div>
+              <div class="d-none d-md-flex align-items-center me-3"><i class="flaticon-phone"></i>
+                <div><a href="tel:+3233000213">+32 3 300 02 13</a></div>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="language-selection me-2 lang-hover">
+                <button id="langBtn" class="langbtn" data-i18n="lang.current" aria-haspopup="true"
+                        aria-expanded="false">English</button>
+                <ul class="lang-menu" role="menu" aria-labelledby="langBtn">
+                  <li><a href="#" class="lang-option" data-lang="en" role="menuitem">English</a></li>
+                  <li><a href="#" class="lang-option" data-lang="nl" role="menuitem">Nederlands</a></li>
                 </ul>
               </div>
-              <div class="topbar-link d-flex align-items-center">
-                <div class="d-none d-sm-flex align-items-center me-3"><i class="flaticon-email"></i>
-                  <div><a href="mailto:contact@accountfigures.com">contact@accountfigures.com</a></div>
-                </div>
-                <div class="d-none d-md-flex align-items-center me-3"><i class="flaticon-phone"></i>
-                  <div><a href="tel:+3233000213">+32 3 300 02 13</a></div>
-                </div>
-              </div>
-              <div class="d-flex align-items-center">
-                <div class="language-selection me-2 lang-hover">
-                  <button id="langBtn" class="langbtn" data-i18n="lang.current" aria-haspopup="true"
-                    aria-expanded="false">English</button>
-                  <ul class="lang-menu" role="menu" aria-labelledby="langBtn">
-                    <li><a href="#" class="lang-option" data-lang="en" role="menuitem">English</a></li>
-                    <li><a href="#" class="lang-option" data-lang="nl" role="menuitem">Nederlands</a></li>
-                  </ul>
-                </div>
-                <div class="search-icon me-1 me-sm-3">
-                  <a id="search" href="javascript:void(0)"><i class="flaticon-search"></i></a>
-                </div>
+              <div class="search-icon me-1 me-sm-3">
+                <a id="search" href="javascript:void(0)"><i class="flaticon-search"></i></a>
               </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <div id="header-wrap">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12">
-              <nav class="navbar navbar-expand-lg align-items-center">
-                <a class="navbar-brand logo" href="index.html">
-                  <img class="img-fluid"
-                    src="https://accountingfigures.com/wp-content/uploads/2023/05/cropped-Horizontal-Logo-Af_wit_oranje-251x37.png"
-                    alt="">
-                </a>
-
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
-                  aria-label="Toggle navigation">
-                  <span></span><span></span><span></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                  <ul class="navbar-nav mx-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav.home">Home</a></li>
-                    <li class="nav-item dropdown nav-services">
-                      <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" role="button"
-                        aria-expanded="false" data-i18n="nav.services">Services</a>
-                      <ul class="dropdown-menu dropdown-menu-dark services-menu p-3">
-                        <li><a class="dropdown-item" href="services-self-employed.html" data-i18n="nav.s1">For the
-                            self-employed and liberal professionals</a></li>
-                        <li><a class="dropdown-item" href="services-entrepreneurs.html" data-i18n="nav.s2">For ambitious
-                            entrepreneurs</a></li>
-                        <li><a class="dropdown-item" href="services-finance-teams.html" data-i18n="nav.s3">For finance
-                            teams</a></li>
-                      </ul>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="about-us.html" data-i18n="nav.about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="working-at.html" data-i18n="nav.working">Working
-                        At</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" data-i18n="nav.news">News</a></li>
-                  </ul>
-                </div>
-
-                <div class="right-nav align-items-center d-flex justify-content-end">
-                  <a class="btn btn-theme" href="contact.html"><span data-i18n="cta.contact">Contact Us</span></a>
-                </div>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <!-- search box -->
-    <div class="search-input" id="search-input-box">
-      <div class="container">
-        <form class="d-flex justify-content-between search-inner">
-          <input type="text" class="form-control" id="search-input" placeholder="Search Here"
-            data-i18n-ph="search.placeholder">
-          <button type="submit" class="btn"></button>
-          <span class="flaticon-close" id="close-search" title="Close Search"></span>
-        </form>
       </div>
     </div>
 
-    <!-- ===== Hero ===== -->
-    <section class="inner-hero" style="background-image:url('images/bg/06.jpg');">
-      <div class="container hero-content">
-        <div class="row">
-          <div class="col-lg-9">
-            <h1 class="display-5 fw-bold text-white mb-3 ani-up delay-1" data-i18n="hero.title">Bookkeeper in Berchem
-              for self-employed persons and independent professionals</h1>
-            <p class="lead text-white mb-4 ani-up delay-2" data-i18n="hero.lead">
-              All your paperwork in order, everything tax-optimized and always ready to answer your questions:
-              we are Accounting Figures, nice to meet you!
-            </p>
-            <div class="hero-actions mt-4">
-              
-              <a class="btn btn-2" href="https://calendly.com/madjicherif23-xqhr/30min?month=2025-09" target="_blank" rel="noopener noreferrer">
-                <span class="btn-icon btn-arrow"></span>
-                <span class="btn-text" data-i18n="btn.freeTrial">Book a call</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== NEW: Home-style compact carousel section ===== -->
-    <section class="section-compact">
-      <div class="container-fluid pe-sm-0">
-        <div class="row">
-          <div class="mx-auto col-lg-3 col-md-12">
-            <div class="section-title md-mb-3">
-              <h6 data-i18n="cases.kicker">Our Expertise</h6>
-              <h2 class="title" data-i18n="cases.title">Services for Self-Employed</h2>
-              <p data-i18n="cases.copy">
-                A tight selection of what we do for freelancers and independent professionals — the same look & feel as
-                your homepage “case studies”.
-              </p>
-            </div>
-            <a class="btn btn-2" href="contact.html"><span class="btn-icon btn-arrow"></span><span class="btn-text"
-                data-i18n="btn.viewMore"> Book a Free Call</span></a>
-          </div>
-
-          <div class="col-lg-8 col-md-12 ms-sm-n5 mt-5 mt-lg-0">
-            <div class="owl-carousel mt-4 ms-sm-5" data-items="3" data-md-items="2" data-sm-items="2" data-margin="30"
-              data-autoplay="true">
-              <div class="item">
-                <div class="cases-item style-2 text-center">
-                  <div class="cases-images"><img class="img-fluid rounded box-shadow" src="images/case-studies/01.jpg"
-                      alt=""></div>
-                  <div class="cases-desc"><span data-i18n="cases.s1.tag">Accounting</span>
-                    <h5><a href="#" data-i18n="cases.s1.title">Bookkeeping & Administration</a></h5>
-                    <p data-i18n="cases.s1.desc">Accurate, compliant records for peace of mind.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="cases-item style-2 text-center">
-                  <div class="cases-images"><img class="img-fluid rounded box-shadow" src="images/case-studies/02.jpg"
-                      alt=""></div>
-                  <div class="cases-desc"><span data-i18n="cases.s2.tag">Tax</span>
-                    <h5><a href="#" data-i18n="cases.s2.title">Tax & VAT Returns</a></h5>
-                    <p data-i18n="cases.s2.desc">We file on time and optimize legally.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="cases-item style-2 text-center">
-                  <div class="cases-images"><img class="img-fluid rounded box-shadow" src="images/case-studies/03.jpg"
-                      alt=""></div>
-                  <div class="cases-desc"><span data-i18n="cases.s3.tag">Advisory</span>
-                    <h5><a href="#" data-i18n="cases.s3.title">Fiscale Optimization</a></h5>
-                    <p data-i18n="cases.s3.desc">Smart structures for maximum net income.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="cases-item style-2 text-center">
-                  <div class="cases-images"><img class="img-fluid rounded box-shadow" src="images/case-studies/04.jpg"
-                      alt=""></div>
-                  <div class="cases-desc"><span data-i18n="cases.s4.tag">Startup</span>
-                    <h5><a href="#" data-i18n="cases.s4.title">Company Formation</a></h5>
-                    <p data-i18n="cases.s4.desc">From legal form to the first invoice.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="cases-item style-2 text-center">
-                  <div class="cases-images"><img class="img-fluid rounded box-shadow" src="images/case-studies/05.jpg"
-                      alt=""></div>
-                  <div class="cases-desc"><span data-i18n="cases.s5.tag">Reporting</span>
-                    <h5><a href="#" data-i18n="cases.s5.title">Annual Accounts</a></h5>
-                    <p data-i18n="cases.s5.desc">Clear yearly reporting & insights.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="cases-item style-2 text-center">
-                  <div class="cases-images"><img class="img-fluid rounded box-shadow" src="images/case-studies/06.jpg"
-                      alt=""></div>
-                  <div class="cases-desc"><span data-i18n="cases.s6.tag">Support</span>
-                    <h5><a href="#" data-i18n="cases.s6.title">Proactive Follow-up</a></h5>
-                    <p data-i18n="cases.s6.desc">We keep in touch and keep you on track.</p>
-                  </div>
-                </div>
-              </div>
-            </div><!-- /owl -->
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== What to expect ===== -->
-    <section class="section-expect">
+    <div id="header-wrap">
       <div class="container">
-        <div class="row g-4 align-items-center">
-          <div class="col-lg-6">
-            <h2 class="mb-3" data-i18n="expect.title">What do you expect from your accountant?</h2>
-            <p class="mb-3" data-i18n="expect.p1">
-              Are you self-employed (as a secondary job) or a freelancer, or are you starting out?
-              Then you want your accountant to take care of everything and <strong>optimize</strong> your
-              bookkeeping and tax administration.
-            </p>
-            <p class="mb-0" data-i18n="expect.p2">
-              An accountant who supports you with sound and clear advice. And who also puts that advice into
-              <strong>practice</strong>.
+        <div class="row">
+          <div class="col-lg-12">
+            <nav class="navbar navbar-expand-lg align-items-center">
+              <a class="navbar-brand logo" href="index.html">
+                <img class="img-fluid"
+                     src="https://accountingfigures.com/wp-content/uploads/2023/05/cropped-Horizontal-Logo-Af_wit_oranje-251x37.png"
+                     alt="">
+              </a>
+
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                      aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <button class="menu-close d-lg-none" type="button" aria-label="Close menu"></button>
+
+                <ul class="navbar-nav mx-auto">
+                  <li class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav.home">Home</a></li>
+                  <li class="nav-item dropdown nav-services">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" role="button"
+                       aria-expanded="false" data-i18n="nav.services">Services</a>
+                    <ul class="dropdown-menu dropdown-menu-dark services-menu p-3">
+                      <li><a class="dropdown-item" href="services-self-employed.html" data-i18n="nav.s1">For the
+                        self-employed and liberal professionals</a></li>
+                      <li><a class="dropdown-item" href="services-entrepreneurs.html" data-i18n="nav.s2">For ambitious
+                        entrepreneurs</a></li>
+                      <li><a class="dropdown-item" href="services-finance-teams.html" data-i18n="nav.s3">For finance
+                        teams</a></li>
+                    </ul>
+                  </li>
+                  <li class="nav-item"><a class="nav-link" href="about-us.html" data-i18n="nav.about">About</a></li>
+                  <li class="nav-item"><a class="nav-link" href="working-at.html" data-i18n="nav.working">Working
+                    At</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#" data-i18n="nav.news">News</a></li>
+                </ul>
+              </div>
+
+              <div class="right-nav align-items-center d-flex justify-content-end">
+                <a class="btn btn-theme" href="contact.html"><span data-i18n="cta.contact">Contact Us</span></a>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- search box -->
+  <div class="search-input" id="search-input-box">
+    <div class="container">
+      <form class="d-flex justify-content-between search-inner">
+        <input type="text" class="form-control" id="search-input" placeholder="Search Here"
+               data-i18n-ph="search.placeholder">
+        <button type="submit" class="btn"></button>
+        <span class="flaticon-close" id="close-search" title="Close Search"></span>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== Hero ===== -->
+  <section class="inner-hero" style="background-image:url('images/bg/06.jpg');">
+    <div class="container hero-content">
+      <div class="row">
+        <div class="col-lg-9">
+          <h1 class="display-5 fw-bold text-white mb-3 ani-up delay-1" data-i18n="hero.title">Bookkeeper in Berchem
+            for self-employed persons and independent professionals</h1>
+          <p class="lead text-white mb-4 ani-up delay-2" data-i18n="hero.lead">
+            All your paperwork in order, everything tax-optimized and always ready to answer your questions:
+            we are Accounting Figures, nice to meet you!
+          </p>
+          <div class="hero-actions mt-4">
+
+            <a class="btn btn-2" href="https://calendly.com/madjicherif23-xqhr/30min?month=2025-09" target="_blank"
+               rel="noopener noreferrer">
+              <span class="btn-icon btn-arrow"></span>
+              <span class="btn-text" data-i18n="btn.freeTrial">Book a call</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NEW: Home-style compact carousel section ===== -->
+  <section class="section-compact">
+    <div class="container-fluid pe-sm-0">
+      <div class="row">
+        <div class="mx-auto col-lg-3 col-md-12">
+          <div class="section-title md-mb-3">
+            <h6 data-i18n="cases.kicker">Our Expertise</h6>
+            <h2 class="title" data-i18n="cases.title">Services for Self-Employed</h2>
+            <p data-i18n="cases.copy">
+              A tight selection of what we do for freelancers and independent professionals — the same look & feel as
+              your homepage “case studies”.
             </p>
           </div>
-          <div class="col-lg-6">
-            <div class="p-4 p-lg-5 rounded-3 bg-light box-shadow h-100 we-tight">
-              <h3 class="mb-3" data-i18n="we.title">We do this for you</h3>
-              <p class="mb-4" data-i18n="we.copy">
-                For us, managing your bookkeeping is fundamental. It's our <strong>guidance</strong>
-                that makes the difference. Every independent contractor and freelancer has different priorities—and
-                every situation
-                is unique. With us, you can be sure the whole picture is right.
-              </p>
-              <ul class="check-list">
-                <li data-i18n="we.l1">Assistance with the establishment</li>
-                <li data-i18n="we.l2">Bookkeeping and administration</li>
-                <li data-i18n="we.l3">Advising and tax optimization</li>
-                <li data-i18n="we.l4">Tax and VAT returns</li>
-                <li data-i18n="we.l5">Annual accounts and reports</li>
-                <li data-i18n="we.l6">Clear communication & proactive follow-up</li>
+          <a class="btn btn-2" href="contact.html"><span class="btn-icon btn-arrow"></span><span class="btn-text"
+                                                                                                 data-i18n="btn.viewMore"> Book a Free Call</span></a>
+        </div>
+
+        <div class="col-lg-8 col-md-12 ms-sm-n5 mt-5 mt-lg-0">
+          <div class="owl-carousel mt-4 ms-sm-5" data-items="3" data-md-items="2" data-sm-items="2" data-margin="30"
+               data-autoplay="true">
+            <div class="item">
+              <div class="cases-item style-2 text-center">
+                <div class="cases-images"><img class="img-fluid rounded box-shadow" src="images/case-studies/01.jpg"
+                                               alt=""></div>
+                <div class="cases-desc"><span data-i18n="cases.s1.tag">Accounting</span>
+                  <h5><a href="#" data-i18n="cases.s1.title">Bookkeeping & Administration</a></h5>
+                  <p data-i18n="cases.s1.desc">Accurate, compliant records for peace of mind.</p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="cases-item style-2 text-center">
+                <div class="cases-images"><img class="img-fluid rounded box-shadow" src="images/case-studies/02.jpg"
+                                               alt=""></div>
+                <div class="cases-desc"><span data-i18n="cases.s2.tag">Tax</span>
+                  <h5><a href="#" data-i18n="cases.s2.title">Tax & VAT Returns</a></h5>
+                  <p data-i18n="cases.s2.desc">We file on time and optimize legally.</p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="cases-item style-2 text-center">
+                <div class="cases-images"><img class="img-fluid rounded box-shadow" src="images/case-studies/03.jpg"
+                                               alt=""></div>
+                <div class="cases-desc"><span data-i18n="cases.s3.tag">Advisory</span>
+                  <h5><a href="#" data-i18n="cases.s3.title">Fiscale Optimization</a></h5>
+                  <p data-i18n="cases.s3.desc">Smart structures for maximum net income.</p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="cases-item style-2 text-center">
+                <div class="cases-images"><img class="img-fluid rounded box-shadow" src="images/case-studies/04.jpg"
+                                               alt=""></div>
+                <div class="cases-desc"><span data-i18n="cases.s4.tag">Startup</span>
+                  <h5><a href="#" data-i18n="cases.s4.title">Company Formation</a></h5>
+                  <p data-i18n="cases.s4.desc">From legal form to the first invoice.</p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="cases-item style-2 text-center">
+                <div class="cases-images"><img class="img-fluid rounded box-shadow" src="images/case-studies/05.jpg"
+                                               alt=""></div>
+                <div class="cases-desc"><span data-i18n="cases.s5.tag">Reporting</span>
+                  <h5><a href="#" data-i18n="cases.s5.title">Annual Accounts</a></h5>
+                  <p data-i18n="cases.s5.desc">Clear yearly reporting & insights.</p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="cases-item style-2 text-center">
+                <div class="cases-images"><img class="img-fluid rounded box-shadow" src="images/case-studies/06.jpg"
+                                               alt=""></div>
+                <div class="cases-desc"><span data-i18n="cases.s6.tag">Support</span>
+                  <h5><a href="#" data-i18n="cases.s6.title">Proactive Follow-up</a></h5>
+                  <p data-i18n="cases.s6.desc">We keep in touch and keep you on track.</p>
+                </div>
+              </div>
+            </div>
+          </div><!-- /owl -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== What to expect ===== -->
+  <section class="section-expect">
+    <div class="container">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-6">
+          <h2 class="mb-3" data-i18n="expect.title">What do you expect from your accountant?</h2>
+          <p class="mb-3" data-i18n="expect.p1">
+            Are you self-employed (as a secondary job) or a freelancer, or are you starting out?
+            Then you want your accountant to take care of everything and <strong>optimize</strong> your
+            bookkeeping and tax administration.
+          </p>
+          <p class="mb-0" data-i18n="expect.p2">
+            An accountant who supports you with sound and clear advice. And who also puts that advice into
+            <strong>practice</strong>.
+          </p>
+        </div>
+        <div class="col-lg-6">
+          <div class="p-4 p-lg-5 rounded-3 bg-light box-shadow h-100 we-tight">
+            <h3 class="mb-3" data-i18n="we.title">We do this for you</h3>
+            <p class="mb-4" data-i18n="we.copy">
+              For us, managing your bookkeeping is fundamental. It's our <strong>guidance</strong>
+              that makes the difference. Every independent contractor and freelancer has different priorities—and
+              every situation
+              is unique. With us, you can be sure the whole picture is right.
+            </p>
+            <ul class="check-list">
+              <li data-i18n="we.l1">Assistance with the establishment</li>
+              <li data-i18n="we.l2">Bookkeeping and administration</li>
+              <li data-i18n="we.l3">Advising and tax optimization</li>
+              <li data-i18n="we.l4">Tax and VAT returns</li>
+              <li data-i18n="we.l5">Annual accounts and reports</li>
+              <li data-i18n="we.l6">Clear communication & proactive follow-up</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Video + Intro ===== -->
+  <section class="py-6 py-lg-8">
+    <div class="container">
+      <div class="row g-4 g-lg-5 align-items-center">
+        <div class="col-lg-7">
+          <div class="ratio ratio-16x9 rounded box-shadow overflow-hidden">
+            <iframe src="./images/videohilton.mp4" title="Hilton Georges — Accounting Figures"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="white-bg box-shadow rounded p-4 p-lg-5">
+            <h3 class="mb-2" data-i18n="intro.title">Bookkeeper Berchem</h3>
+            <hr class="mb-3" style="width:80px;border-top:3px solid #ff7a1a;opacity:1">
+            <p class="mb-4" data-i18n="intro.copy">
+              My name is Hilton Georges. After 15 years at various accounting firms, I made the same
+              decision you made: the switch to self-employment. With Accounting Figures, I want to help you get the
+              most
+              out of your tax situation. With the right <strong>advice</strong>, solid guidance, and <strong>open
+              communication</strong>.
+            </p>
+            <a href="contact.html" class="btn btn-2"><span class="btn-icon btn-arrow"></span><span class="btn-text"
+                                                                                                   data-i18n="intro.cta">Schedule a conversation</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Customers carousel (tight) ===== -->
+  <section class="py-6 py-lg-8 bg-white customers-tight">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-3">
+          <h2 class="mb-0" data-i18n="customers.title">Some of our customers</h2>
+        </div>
+        <div class="col-lg-9 mt-4 mt-lg-0">
+          <div class="owl-carousel" data-items="3" data-md-items="3" data-sm-items="2" data-margin="30"
+               data-autoplay="true">
+            <div class="item text-center">
+              <img class="img-fluid mx-auto mb-3" style="max-height:110px" src="images/client/01.png" alt="Client 1">
+              <div class="small text-muted">Client One</div>
+            </div>
+            <div class="item text-center">
+              <img class="img-fluid mx-auto mb-3" style="max-height:110px" src="images/client/02.png" alt="Client 2">
+              <div class="small text-muted">Client Two</div>
+            </div>
+            <div class="item text-center">
+              <img class="img-fluid mx-auto mb-3" style="max-height:110px" src="images/client/03.png" alt="Client 3">
+              <div class="small text-muted">Client Three</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="py-6 py-lg-8">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-8">
+          <h2 class="mb-3" data-i18n="cta2.title">Want to get acquainted?</h2>
+          <p class="mb-0" data-i18n="cta2.copy">
+            Are you starting your own business and looking for an accountant? Not 100% satisfied with your current
+            accountant? Or would you like more information about how we would handle your case? <strong>Schedule a
+            consultation!</strong>
+          </p>
+        </div>
+        <div class="col-lg-4 text-lg-end">
+          <a class="btn btn-theme" href="https://calendly.com/madjicherif23-xqhr/30min?month=2025-09"><span
+                  data-i18n="cta2.btn">Schedule a consultation</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="primary-footer dark-bg">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
+            <h4 class="mb-4 text-white" data-i18n="footer.svcs">Our Services</h4>
+            <div class="footer-list">
+              <ul class="list-unstyled">
+                <li><a href="" data-i18n="footer.l1">Accounting Services</a></li>
+                <li><a href="" data-i18n="footer.l2">Tax Consultancy</a></li>
+                <li><a href="" data-i18n="footer.l3">Financial Advisory</a></li>
+                <li><a href="" data-i18n="footer.l4">Audit & Compliance</a></li>
+                <li><a href="" data-i18n="footer.l5">Investment Planning</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mt-5 mt-md-0">
+            <h4 class="mb-4 text-white" data-i18n="footer.newsletter">Newsletter</h4>
+            <p data-i18n="footer.nl.copy">Stay informed with the latest tax updates, financial tips, and business
+              advice.</p>
+            <div class="subscribe-form">
+              <form id="mc-form" class="group">
+                <input name="EMAIL" class="email" id="mc-email" placeholder="Your Email Address" required type="email"
+                       data-i18n-ph="footer.nl.ph">
+                <input class="btn btn-theme" name="subscribe" value="Subscribe" type="submit"
+                       data-i18n-v="footer.nl.btn">
+              </form>
+            </div>
+          </div>
+
+          <div class="col-xl-4 col-lg-5 ms-auto col-md-12 mt-5 mt-lg-0">
+            <h4 class="mb-4 text-white" data-i18n="footer.about.title">About Accounting Figures</h4>
+            <p class="mb-3" data-i18n="footer.about.copy">We provide expert accounting, tax consultancy, and financial
+              advisory services to help businesses in Antwerp and beyond stay compliant, efficient, and financially
+              strong.</p>
+            <div class="footer-cntct">
+              <ul class="media-icon list-unstyled">
+                <li>
+                  <p class="mb-0"><i class="flaticon-paper-plane"></i> <span data-i18n="footer.addr">Franklinstraat
+                        12, Antwerp, Belgium</span></p>
+                </li>
+                <li><i class="flaticon-email"></i> <a
+                        href="mailto:info@accountingfigures.be">info@accountingfigures.be</a></li>
+                <li><i class="flaticon-phone"></i> <a href="tel:+3234567890">+32 3 456 78 90</a></li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="secondary-footer theme-bg">
+      <div class="container">
+        <div class="copyright">
+          <div class="row">
+            <div class="col-lg-6"><span data-i18n="footer.copy">© 2025 Accounting Figures | All Rights Reserved</span>
+            </div>
+            <div class="col-lg-6 text-lg-end footer-list md-mt-2">
+              <ul class="list-inline">
+                <li class="list-inline-item mb-0"><a href="about-us.html" data-i18n="footer.nav.about">About Us</a>
+                </li>
+                <li class="list-inline-item mb-0"><a href="team.html" data-i18n="footer.nav.team">Our Team</a></li>
+                <li class="list-inline-item mb-0"><a href="contact.html" data-i18n="footer.nav.contact">Contact</a>
+                </li>
+                <li class="list-inline-item mb-0"><a href="privacy-policy.html" data-i18n="footer.nav.privacy">Privacy
+                  Policy</a></li>
+                <li class="list-inline-item mb-0"><a href="terms.html" data-i18n="footer.nav.terms">Terms &
+                  Conditions</a></li>
               </ul>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </footer>
 
-    <!-- ===== Video + Intro ===== -->
-    <section class="py-6 py-lg-8">
-      <div class="container">
-        <div class="row g-4 g-lg-5 align-items-center">
-          <div class="col-lg-7">
-            <div class="ratio ratio-16x9 rounded box-shadow overflow-hidden">
-              <iframe src="./images/videohilton.mp4"
-                      title="Hilton Georges — Accounting Figures"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowfullscreen></iframe>
-            </div>
-          </div>
-          <div class="col-lg-5">
-            <div class="white-bg box-shadow rounded p-4 p-lg-5">
-              <h3 class="mb-2" data-i18n="intro.title">Bookkeeper Berchem</h3>
-              <hr class="mb-3" style="width:80px;border-top:3px solid #ff7a1a;opacity:1">
-              <p class="mb-4" data-i18n="intro.copy">
-                My name is Hilton Georges. After 15 years at various accounting firms, I made the same
-                decision you made: the switch to self-employment. With Accounting Figures, I want to help you get the
-                most
-                out of your tax situation. With the right <strong>advice</strong>, solid guidance, and <strong>open
-                  communication</strong>.
-              </p>
-              <a href="contact.html" class="btn btn-2"><span class="btn-icon btn-arrow"></span><span class="btn-text"
-                  data-i18n="intro.cta">Schedule a conversation</span></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+</div>
 
-    <!-- ===== Customers carousel (tight) ===== -->
-    <section class="py-6 py-lg-8 bg-white customers-tight">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-lg-3">
-            <h2 class="mb-0" data-i18n="customers.title">Some of our customers</h2>
-          </div>
-          <div class="col-lg-9 mt-4 mt-lg-0">
-            <div class="owl-carousel" data-items="3" data-md-items="3" data-sm-items="2" data-margin="30"
-              data-autoplay="true">
-              <div class="item text-center">
-                <img class="img-fluid mx-auto mb-3" style="max-height:110px" src="images/client/01.png" alt="Client 1">
-                <div class="small text-muted">Client One</div>
-              </div>
-              <div class="item text-center">
-                <img class="img-fluid mx-auto mb-3" style="max-height:110px" src="images/client/02.png" alt="Client 2">
-                <div class="small text-muted">Client Two</div>
-              </div>
-              <div class="item text-center">
-                <img class="img-fluid mx-auto mb-3" style="max-height:110px" src="images/client/03.png" alt="Client 3">
-                <div class="small text-muted">Client Three</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+<div class="scroll-top"><a class="smoothscroll" href="#top"><i class="flaticon-top"></i></a></div>
 
-    <!-- ===== CTA ===== -->
-    <section class="py-6 py-lg-8">
-      <div class="container">
-        <div class="row align-items-center g-4">
-          <div class="col-lg-8">
-            <h2 class="mb-3" data-i18n="cta2.title">Want to get acquainted?</h2>
-            <p class="mb-0" data-i18n="cta2.copy">
-              Are you starting your own business and looking for an accountant? Not 100% satisfied with your current
-              accountant? Or would you like more information about how we would handle your case? <strong>Schedule a
-                consultation!</strong>
-            </p>
-          </div>
-          <div class="col-lg-4 text-lg-end">
-            <a class="btn btn-theme" href="https://calendly.com/madjicherif23-xqhr/30min?month=2025-09"><span data-i18n="cta2.btn">Schedule a consultation</span></a>
-          </div>
-        </div>
-      </div>
-    </section>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- ===== Footer ===== -->
-    <footer class="footer">
-      <div class="primary-footer dark-bg">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
-              <h4 class="mb-4 text-white" data-i18n="footer.svcs">Our Services</h4>
-              <div class="footer-list">
-                <ul class="list-unstyled">
-                  <li><a href="" data-i18n="footer.l1">Accounting Services</a></li>
-                  <li><a href="" data-i18n="footer.l2">Tax Consultancy</a></li>
-                  <li><a href="" data-i18n="footer.l3">Financial Advisory</a></li>
-                  <li><a href="" data-i18n="footer.l4">Audit & Compliance</a></li>
-                  <li><a href="" data-i18n="footer.l5">Investment Planning</a></li>
-                </ul>
-              </div>
-            </div>
+<script src="js/theme.js"></script>
+<script src="js/theme-plugin.js"></script>
+<script src="js/color-customize/color-customizer.js"></script>
+<script src="js/theme-script.js"></script>
 
-            <div class="col-lg-4 col-md-6 mt-5 mt-md-0">
-              <h4 class="mb-4 text-white" data-i18n="footer.newsletter">Newsletter</h4>
-              <p data-i18n="footer.nl.copy">Stay informed with the latest tax updates, financial tips, and business
-                advice.</p>
-              <div class="subscribe-form">
-                <form id="mc-form" class="group">
-                  <input name="EMAIL" class="email" id="mc-email" placeholder="Your Email Address" required type="email"
-                    data-i18n-ph="footer.nl.ph">
-                  <input class="btn btn-theme" name="subscribe" value="Subscribe" type="submit"
-                    data-i18n-v="footer.nl.btn">
-                </form>
-              </div>
-            </div>
+<script>
+  const TRANSLATIONS = {
+    en: {
+      "lang.current": "English", "meta.title": "Services – For self-employed & independent professionals | Accounting Figures",
+      "nav.home": "Home", "nav.services": "Services", "nav.s1": "For the self-employed and liberal professionals",
+      "nav.s2": "For ambitious entrepreneurs", "nav.s3": "For finance teams", "nav.about": "About Us",
+      "nav.working": "Working At", "nav.news": "News", "cta.contact": "Contact", "search.placeholder": "Search Here",
+      "btn.contactUs": "Contact Us", "btn.freeTrial": "Book a Free Call", "btn.viewMore": "Contact us",
+      "hero.title": "Bookkeeper in Berchem for self-employed persons and independent professionals",
+      "hero.lead": "All your paperwork in order, everything tax-optimized and always ready to answer your questions: we are Accounting Figures, nice to meet you!",
+      "cases.kicker": "Our Expertise", "cases.title": "Services for Self-Employed",
+      "cases.copy": "A tight selection of what we do for freelancers and independent professionals — presented like your homepage case studies.",
+      "cases.s1.tag": "Accounting", "cases.s1.title": "Bookkeeping & Administration", "cases.s1.desc": "Accurate, compliant records for peace of mind.",
+      "cases.s2.tag": "Tax", "cases.s2.title": "Tax & VAT Returns", "cases.s2.desc": "We file on time and optimize legally.",
+      "cases.s3.tag": "Advisory", "cases.s3.title": "Fiscale Optimization", "cases.s3.desc": "Smart structures for maximum net income.",
+      "cases.s4.tag": "Startup", "cases.s4.title": "Company Formation", "cases.s4.desc": "From legal form to the first invoice.",
+      "cases.s5.tag": "Reporting", "cases.s5.title": "Annual Accounts", "cases.s5.desc": "Clear yearly reporting & insights.",
+      "cases.s6.tag": "Support", "cases.s6.title": "Proactive Follow-up", "cases.s6.desc": "We keep in touch and keep you on track.",
+      "expect.title": "What do you expect from your accountant?",
+      "expect.p1": "Are you self-employed (as a secondary job) or a freelancer, or are you starting out? Then you want your accountant to take care of everything and <strong>optimize</strong> your bookkeeping and tax administration.",
+      "expect.p2": "An accountant who supports you with sound and clear advice. And who also puts that advice into <strong>practice</strong>.",
+      "we.title": "We do this for you",
+      "we.copy": "For us, managing your bookkeeping is fundamental. It's our <strong>guidance</strong> that makes the difference. Every independent contractor and freelancer has different priorities—and every situation is unique. With us, you can be sure the whole picture is right.",
+      "we.l1": "Assistance with the establishment", "we.l2": "Bookkeeping and administration", "we.l3": "Advising and tax optimization",
+      "we.l4": "Tax and VAT returns", "we.l5": "Annual accounts and reports", "we.l6": "Clear communication & proactive follow-up",
+      "intro.title": "Bookkeeper Berchem",
+      "intro.copy": "My name is Hilton Georges. After 15 years at various accounting firms, I made the same decision you made: the switch to self-employment. With Accounting Figures, I want to help you get the mostout of your tax situation. With the right <strong>advice</strong>, solid guidance, and <strong>open communication</strong>.",
+      "intro.cta": "Schedule a conversation",
+      "customers.title": "Some of our customers",
+      "cta2.title": "Want to get acquainted?",
+      "cta2.copy": "Are you starting your own business and looking for an accountant? Not 100% satisfied with your current accountant? Or would you like more information about how we would handle your case? <strong>Schedule a consultation!</strong>",
+      "cta2.btn": "Schedule a consultation",
+      "footer.svcs": "Our Services", "footer.l1": "Accounting Services", "footer.l2": "Tax Consultancy", "footer.l3": "Financial Advisory", "footer.l4": "Audit & Compliance", "footer.l5": "Investment Planning",
+      "footer.newsletter": "Newsletter", "footer.nl.copy": "Stay informed with the latest tax updates, financial tips, and business advice.", "footer.nl.ph": "Your Email Address", "footer.nl.btn": "Subscribe",
+      "footer.about.title": "About Accounting Figures", "footer.about.copy": "We provide expert accounting, tax consultancy, and financial advisory services to help businesses in Antwerp and beyond stay compliant, efficient, and financially strong.",
+      "footer.addr": "Franklinstraat 12, Antwerp, Belgium", "footer.copy": "© 2025 Accounting Figures | All Rights Reserved",
+      "footer.nav.about": "About Us", "footer.nav.team": "Our Team", "footer.nav.contact": "Contact", "footer.nav.privacy": "Privacy Policy", "footer.nav.terms": "Terms & Conditions"
+    },
+    nl: {
+      "lang.current": "Nederlands", "meta.title": "Diensten – Voor zelfstandigen & vrije beroepen | Accounting Figures",
+      "nav.home": "Home", "nav.services": "Diensten", "nav.s1": "Voor zelfstandigen en vrije beroepen",
+      "nav.s2": "Voor ambitieuze ondernemers", "nav.s3": "Voor financiële teams", "nav.about": "Over ons",
+      "nav.working": "Werken bij", "nav.news": "Nieuws", "cta.contact": "Contact", "search.placeholder": "Zoek hier",
+      "btn.contactUs": "Neem contact op", "btn.freeTrial": "boek een gratis gesprek", "btn.viewMore": "boek een gratis gesprek",
+      "hero.title": "Boekhouder in Berchem voor zelfstandigen en vrije beroepen",
+      "hero.lead": "Uw papierwerk op orde, fiscaal geoptimaliseerd en altijd klaar om uw vragen te beantwoorden: wij zijn Accounting Figures, aangenaam!",
+      "cases.kicker": "Onze expertise", "cases.title": "Diensten voor Zelfstandigen",
+      "cases.copy": "Een compacte selectie van wat we doen voor freelancers en vrije beroepen — in dezelfde stijl als de case-studies op de startpagina.",
+      "cases.s1.tag": "Boekhouding", "cases.s1.title": "Boekhouding & Administratie", "cases.s1.desc": "Nauwkeurige, conforme dossiers zonder zorgen.",
+      "cases.s2.tag": "Belastingen", "cases.s2.title": "Belasting- & btw-aangiften", "cases.s2.desc": "Op tijd indienen en wettelijk optimaliseren.",
+      "cases.s3.tag": "Advies", "cases.s3.title": "Fiscale optimalisatie", "cases.s3.desc": "Slimme structuren voor meer nettoloon.",
+      "cases.s4.tag": "Opstart", "cases.s4.title": "Oprichtingsbegeleiding", "cases.s4.desc": "Van rechtsvorm tot eerste factuur.",
+      "cases.s5.tag": "Rapportering", "cases.s5.title": "Jaarrekening", "cases.s5.desc": "Heldere jaarcijfers & inzichten.",
+      "cases.s6.tag": "Opvolging", "cases.s6.title": "Proactieve opvolging", "cases.s6.desc": "We houden contact en houden u op koers.",
+      "expect.title": "Wat verwacht u van uw boekhouder?",
+      "expect.p1": "Bent u zelfstandige (in bijberoep) of freelancer, of start u net? Dan wilt u dat uw boekhouder alles ontzorgt en uw boekhouding en fiscaliteit <strong>optimaliseert</strong>.",
+      "expect.p2": "Een boekhouder die u ondersteunt met helder en degelijk advies. En die dat advies ook in de <strong>praktijk</strong> brengt.",
+      "we.title": "Dit doen wij voor u",
+      "we.copy": "Uw boekhouding verzorgen is voor ons de basis. Het is onze <strong>begeleiding</strong> die het verschil maakt. Elke zelfstandige en freelancer heeft andere prioriteiten—elke situatie is uniek. Bij ons klopt het volledige plaatje.",
+      "we.l1": "Begeleiding bij oprichting", "we.l2": "Boekhouding en administratie", "we.l3": "Advies en fiscale optimalisatie",
+      "we.l4": "Belasting- en btw-aangiften", "we.l5": "Jaarrekening en rapportering", "we.l6": "Duidelijke communicatie & proactieve opvolging",
+      "intro.title": "Boekhouder Berchem",
+      "intro.copy": "Ik ben Hilton Georges. Na 15 jaar bij diverse kantoren maakte ik dezelfde keuze als u: de stap naar zelfstandig ondernemen. Met Accounting Figures wil ik u helpen het maximale uit uw fiscale situatie te halen — met juist <strong>advies</strong>, sterke begeleiding en <strong>open communicatie</strong>.",
+      "intro.cta": "Plan een gesprek",
+      "customers.title": "Een greep uit onze klanten",
+      "cta2.title": "Kennismaken?", "cta2.copy": "Start u uw eigen zaak en zoekt u een boekhouder? Niet 100% tevreden over uw huidige boekhouder? Of wilt u meer informatie over onze aanpak? <strong>Plan een consult!</strong>",
+      "cta2.btn": "Plan een consult",
+      "footer.svcs": "Onze diensten", "footer.l1": "Boekhoudkundige diensten", "footer.l2": "Belastingadvies", "footer.l3": "Financieel advies", "footer.l4": "Audit & compliance", "footer.l5": "Investeringsplanning",
+      "footer.newsletter": "Nieuwsbrief", "footer.nl.copy": "Blijf op de hoogte van belastingupdates, financiële tips en zakelijk advies.", "footer.nl.ph": "Uw e-mailadres", "footer.nl.btn": "Inschrijven",
+      "footer.about.title": "Over Accounting Figures", "footer.about.copy": "Wij bieden boekhouding, belastingadvies en financieel advies om bedrijven in Antwerpen en daarbuiten compliant, efficiënt en financieel sterk te houden.",
+      "footer.addr": "Franklinstraat 12, Antwerpen, België", "footer.copy": "© 2025 Accounting Figures | Alle rechten voorbehouden",
+      "footer.nav.about": "Over ons", "footer.nav.team": "Ons team", "footer.nav.contact": "Contact", "footer.nav.privacy": "Privacybeleid", "footer.nav.terms": "Algemene voorwaarden"
+    }
+  };
 
-            <div class="col-xl-4 col-lg-5 ms-auto col-md-12 mt-5 mt-lg-0">
-              <h4 class="mb-4 text-white" data-i18n="footer.about.title">About Accounting Figures</h4>
-              <p class="mb-3" data-i18n="footer.about.copy">We provide expert accounting, tax consultancy, and financial
-                advisory services to help businesses in Antwerp and beyond stay compliant, efficient, and financially
-                strong.</p>
-              <div class="footer-cntct">
-                <ul class="media-icon list-unstyled">
-                  <li>
-                    <p class="mb-0"><i class="flaticon-paper-plane"></i> <span data-i18n="footer.addr">Franklinstraat
-                        12, Antwerp, Belgium</span></p>
-                  </li>
-                  <li><i class="flaticon-email"></i> <a
-                      href="mailto:info@accountingfigures.be">info@accountingfigures.be</a></li>
-                  <li><i class="flaticon-phone"></i> <a href="tel:+3234567890">+32 3 456 78 90</a></li>
-                </ul>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <div class="secondary-footer theme-bg">
-        <div class="container">
-          <div class="copyright">
-            <div class="row">
-              <div class="col-lg-6"><span data-i18n="footer.copy">© 2025 Accounting Figures | All Rights Reserved</span>
-              </div>
-              <div class="col-lg-6 text-lg-end footer-list md-mt-2">
-                <ul class="list-inline">
-                  <li class="list-inline-item mb-0"><a href="about-us.html" data-i18n="footer.nav.about">About Us</a>
-                  </li>
-                  <li class="list-inline-item mb-0"><a href="team.html" data-i18n="footer.nav.team">Our Team</a></li>
-                  <li class="list-inline-item mb-0"><a href="contact.html" data-i18n="footer.nav.contact">Contact</a>
-                  </li>
-                  <li class="list-inline-item mb-0"><a href="privacy-policy.html" data-i18n="footer.nav.privacy">Privacy
-                      Policy</a></li>
-                  <li class="list-inline-item mb-0"><a href="terms.html" data-i18n="footer.nav.terms">Terms &
-                      Conditions</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-  </div>
-
-  <div class="scroll-top"><a class="smoothscroll" href="#top"><i class="flaticon-top"></i></a></div>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-  <script src="js/theme.js"></script>
-  <script src="js/theme-plugin.js"></script>
-  <script src="js/color-customize/color-customizer.js"></script>
-  <script src="js/theme-script.js"></script>
-
-  <script>
-    const TRANSLATIONS = {
-      en: {
-        "lang.current": "English", "meta.title": "Services – For self-employed & independent professionals | Accounting Figures",
-        "nav.home": "Home", "nav.services": "Services", "nav.s1": "For the self-employed and liberal professionals",
-        "nav.s2": "For ambitious entrepreneurs", "nav.s3": "For finance teams", "nav.about": "About Us",
-        "nav.working": "Working At", "nav.news": "News", "cta.contact": "Contact", "search.placeholder": "Search Here",
-        "btn.contactUs": "Contact Us", "btn.freeTrial": "Book a Free Call", "btn.viewMore": "Contact us",
-        "hero.title": "Bookkeeper in Berchem for self-employed persons and independent professionals",
-        "hero.lead": "All your paperwork in order, everything tax-optimized and always ready to answer your questions: we are Accounting Figures, nice to meet you!",
-        "cases.kicker": "Our Expertise", "cases.title": "Services for Self-Employed",
-        "cases.copy": "A tight selection of what we do for freelancers and independent professionals — presented like your homepage case studies.",
-        "cases.s1.tag": "Accounting", "cases.s1.title": "Bookkeeping & Administration", "cases.s1.desc": "Accurate, compliant records for peace of mind.",
-        "cases.s2.tag": "Tax", "cases.s2.title": "Tax & VAT Returns", "cases.s2.desc": "We file on time and optimize legally.",
-        "cases.s3.tag": "Advisory", "cases.s3.title": "Fiscale Optimization", "cases.s3.desc": "Smart structures for maximum net income.",
-        "cases.s4.tag": "Startup", "cases.s4.title": "Company Formation", "cases.s4.desc": "From legal form to the first invoice.",
-        "cases.s5.tag": "Reporting", "cases.s5.title": "Annual Accounts", "cases.s5.desc": "Clear yearly reporting & insights.",
-        "cases.s6.tag": "Support", "cases.s6.title": "Proactive Follow-up", "cases.s6.desc": "We keep in touch and keep you on track.",
-        "expect.title": "What do you expect from your accountant?",
-        "expect.p1": "Are you self-employed (as a secondary job) or a freelancer, or are you starting out? Then you want your accountant to take care of everything and <strong>optimize</strong> your bookkeeping and tax administration.",
-        "expect.p2": "An accountant who supports you with sound and clear advice. And who also puts that advice into <strong>practice</strong>.",
-        "we.title": "We do this for you",
-        "we.copy": "For us, managing your bookkeeping is fundamental. It's our <strong>guidance</strong> that makes the difference. Every independent contractor and freelancer has different priorities—and every situation is unique. With us, you can be sure the whole picture is right.",
-        "we.l1": "Assistance with the establishment", "we.l2": "Bookkeeping and administration", "we.l3": "Advising and tax optimization",
-        "we.l4": "Tax and VAT returns", "we.l5": "Annual accounts and reports", "we.l6": "Clear communication & proactive follow-up",
-        "intro.title": "Bookkeeper Berchem",
-        "intro.copy": "My name is Hilton Georges. After 15 years at various accounting firms, I made the same decision you made: the switch to self-employment. With Accounting Figures, I want to help you get the mostout of your tax situation. With the right <strong>advice</strong>, solid guidance, and <strong>open communication</strong>.",
-        "intro.cta": "Schedule a conversation",
-        "customers.title": "Some of our customers",
-        "cta2.title": "Want to get acquainted?",
-        "cta2.copy": "Are you starting your own business and looking for an accountant? Not 100% satisfied with your current accountant? Or would you like more information about how we would handle your case? <strong>Schedule a consultation!</strong>",
-        "cta2.btn": "Schedule a consultation",
-        "footer.svcs": "Our Services", "footer.l1": "Accounting Services", "footer.l2": "Tax Consultancy", "footer.l3": "Financial Advisory", "footer.l4": "Audit & Compliance", "footer.l5": "Investment Planning",
-        "footer.newsletter": "Newsletter", "footer.nl.copy": "Stay informed with the latest tax updates, financial tips, and business advice.", "footer.nl.ph": "Your Email Address", "footer.nl.btn": "Subscribe",
-        "footer.about.title": "About Accounting Figures", "footer.about.copy": "We provide expert accounting, tax consultancy, and financial advisory services to help businesses in Antwerp and beyond stay compliant, efficient, and financially strong.",
-        "footer.addr": "Franklinstraat 12, Antwerp, Belgium", "footer.copy": "© 2025 Accounting Figures | All Rights Reserved",
-        "footer.nav.about": "About Us", "footer.nav.team": "Our Team", "footer.nav.contact": "Contact", "footer.nav.privacy": "Privacy Policy", "footer.nav.terms": "Terms & Conditions"
-      },
-      nl: {
-        "lang.current": "Nederlands", "meta.title": "Diensten – Voor zelfstandigen & vrije beroepen | Accounting Figures",
-        "nav.home": "Home", "nav.services": "Diensten", "nav.s1": "Voor zelfstandigen en vrije beroepen",
-        "nav.s2": "Voor ambitieuze ondernemers", "nav.s3": "Voor financiële teams", "nav.about": "Over ons",
-        "nav.working": "Werken bij", "nav.news": "Nieuws", "cta.contact": "Contact", "search.placeholder": "Zoek hier",
-        "btn.contactUs": "Neem contact op", "btn.freeTrial": "boek een gratis gesprek", "btn.viewMore": "boek een gratis gesprek",
-        "hero.title": "Boekhouder in Berchem voor zelfstandigen en vrije beroepen",
-        "hero.lead": "Uw papierwerk op orde, fiscaal geoptimaliseerd en altijd klaar om uw vragen te beantwoorden: wij zijn Accounting Figures, aangenaam!",
-        "cases.kicker": "Onze expertise", "cases.title": "Diensten voor Zelfstandigen",
-        "cases.copy": "Een compacte selectie van wat we doen voor freelancers en vrije beroepen — in dezelfde stijl als de case-studies op de startpagina.",
-        "cases.s1.tag": "Boekhouding", "cases.s1.title": "Boekhouding & Administratie", "cases.s1.desc": "Nauwkeurige, conforme dossiers zonder zorgen.",
-        "cases.s2.tag": "Belastingen", "cases.s2.title": "Belasting- & btw-aangiften", "cases.s2.desc": "Op tijd indienen en wettelijk optimaliseren.",
-        "cases.s3.tag": "Advies", "cases.s3.title": "Fiscale optimalisatie", "cases.s3.desc": "Slimme structuren voor meer nettoloon.",
-        "cases.s4.tag": "Opstart", "cases.s4.title": "Oprichtingsbegeleiding", "cases.s4.desc": "Van rechtsvorm tot eerste factuur.",
-        "cases.s5.tag": "Rapportering", "cases.s5.title": "Jaarrekening", "cases.s5.desc": "Heldere jaarcijfers & inzichten.",
-        "cases.s6.tag": "Opvolging", "cases.s6.title": "Proactieve opvolging", "cases.s6.desc": "We houden contact en houden u op koers.",
-        "expect.title": "Wat verwacht u van uw boekhouder?",
-        "expect.p1": "Bent u zelfstandige (in bijberoep) of freelancer, of start u net? Dan wilt u dat uw boekhouder alles ontzorgt en uw boekhouding en fiscaliteit <strong>optimaliseert</strong>.",
-        "expect.p2": "Een boekhouder die u ondersteunt met helder en degelijk advies. En die dat advies ook in de <strong>praktijk</strong> brengt.",
-        "we.title": "Dit doen wij voor u",
-        "we.copy": "Uw boekhouding verzorgen is voor ons de basis. Het is onze <strong>begeleiding</strong> die het verschil maakt. Elke zelfstandige en freelancer heeft andere prioriteiten—elke situatie is uniek. Bij ons klopt het volledige plaatje.",
-        "we.l1": "Begeleiding bij oprichting", "we.l2": "Boekhouding en administratie", "we.l3": "Advies en fiscale optimalisatie",
-        "we.l4": "Belasting- en btw-aangiften", "we.l5": "Jaarrekening en rapportering", "we.l6": "Duidelijke communicatie & proactieve opvolging",
-        "intro.title": "Boekhouder Berchem",
-        "intro.copy": "Ik ben Hilton Georges. Na 15 jaar bij diverse kantoren maakte ik dezelfde keuze als u: de stap naar zelfstandig ondernemen. Met Accounting Figures wil ik u helpen het maximale uit uw fiscale situatie te halen — met juist <strong>advies</strong>, sterke begeleiding en <strong>open communicatie</strong>.",
-        "intro.cta": "Plan een gesprek",
-        "customers.title": "Een greep uit onze klanten",
-        "cta2.title": "Kennismaken?", "cta2.copy": "Start u uw eigen zaak en zoekt u een boekhouder? Niet 100% tevreden over uw huidige boekhouder? Of wilt u meer informatie over onze aanpak? <strong>Plan een consult!</strong>",
-        "cta2.btn": "Plan een consult",
-        "footer.svcs": "Onze diensten", "footer.l1": "Boekhoudkundige diensten", "footer.l2": "Belastingadvies", "footer.l3": "Financieel advies", "footer.l4": "Audit & compliance", "footer.l5": "Investeringsplanning",
-        "footer.newsletter": "Nieuwsbrief", "footer.nl.copy": "Blijf op de hoogte van belastingupdates, financiële tips en zakelijk advies.", "footer.nl.ph": "Uw e-mailadres", "footer.nl.btn": "Inschrijven",
-        "footer.about.title": "Over Accounting Figures", "footer.about.copy": "Wij bieden boekhouding, belastingadvies en financieel advies om bedrijven in Antwerpen en daarbuiten compliant, efficiënt en financieel sterk te houden.",
-        "footer.addr": "Franklinstraat 12, Antwerpen, België", "footer.copy": "© 2025 Accounting Figures | Alle rechten voorbehouden",
-        "footer.nav.about": "Over ons", "footer.nav.team": "Ons team", "footer.nav.contact": "Contact", "footer.nav.privacy": "Privacybeleid", "footer.nav.terms": "Algemene voorwaarden"
+  document.querySelectorAll('#navbarNavDropdown .dropdown-toggle').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      if (window.innerWidth < 992) {
+        e.preventDefault();           // href="#" jump roko
+        e.stopPropagation();          // theme handlers ko rok do
+        var dd = bootstrap.Dropdown.getOrCreateInstance(el, { display: 'static' });
+        dd.toggle();
       }
-    };
-
-    document.querySelectorAll('#navbarNavDropdown .dropdown-toggle').forEach(function (el) {
-      el.addEventListener('click', function (e) {
-        if (window.innerWidth < 992) {
-          e.preventDefault();           // href="#" jump roko
-          e.stopPropagation();          // theme handlers ko rok do
-          var dd = bootstrap.Dropdown.getOrCreateInstance(el, { display: 'static' });
-          dd.toggle();
-        }
-      });
     });
-    function applyI18n(lang) {
-      const dict = TRANSLATIONS[lang] || TRANSLATIONS.en;
+  });
+  function applyI18n(lang) {
+    const dict = TRANSLATIONS[lang] || TRANSLATIONS.en;
 
-      document.querySelectorAll("[data-i18n]").forEach(el => {
-        const k = el.getAttribute("data-i18n");
-        if (dict[k]) el.innerHTML = dict[k];
-      });
-      document.querySelectorAll("[data-i18n-ph]").forEach(el => {
-        const k = el.getAttribute("data-i18n-ph");
-        if (dict[k]) el.setAttribute("placeholder", dict[k]);
-      });
-      document.querySelectorAll("[data-i18n-v]").forEach(el => {
-        const k = el.getAttribute("data-i18n-v");
-        if (dict[k]) el.setAttribute("value", dict[k]);
-      });
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const k = el.getAttribute("data-i18n");
+      if (dict[k]) el.innerHTML = dict[k];
+    });
+    document.querySelectorAll("[data-i18n-ph]").forEach(el => {
+      const k = el.getAttribute("data-i18n-ph");
+      if (dict[k]) el.setAttribute("placeholder", dict[k]);
+    });
+    document.querySelectorAll("[data-i18n-v]").forEach(el => {
+      const k = el.getAttribute("data-i18n-v");
+      if (dict[k]) el.setAttribute("value", dict[k]);
+    });
 
-      document.documentElement.setAttribute("lang", lang === "nl" ? "nl" : "en");
+    document.documentElement.setAttribute("lang", lang === "nl" ? "nl" : "en");
 
-      const btn = document.getElementById("langBtn");
-      if (btn) btn.textContent = dict["lang.current"] || (lang === "nl" ? "Nederlands" : "English");
+    const btn = document.getElementById("langBtn");
+    if (btn) btn.textContent = dict["lang.current"] || (lang === "nl" ? "Nederlands" : "English");
 
-      document.querySelectorAll(".lang-option").forEach(a => {
-        a.classList.toggle("active-lang", a.dataset.lang === lang);
-      });
+    document.querySelectorAll(".lang-option").forEach(a => {
+      a.classList.toggle("active-lang", a.dataset.lang === lang);
+    });
 
-      localStorage.setItem("site_lang", lang);
+    localStorage.setItem("site_lang", lang);
+  }
+
+  function setLanguage(lang) { if (!TRANSLATIONS[lang]) lang = "en"; applyI18n(lang); }
+
+  (function initLang() {
+    const stored = localStorage.getItem("site_lang");
+    const browserIsNL = (navigator.language || "").toLowerCase().startsWith("nl");
+    const initial = stored || (browserIsNL ? "nl" : "en");
+    applyI18n(initial);
+  })();
+
+  (function () {
+    const wrap = document.querySelector('.lang-hover');
+    const btn = document.getElementById('langBtn');
+    if (!wrap || !btn) return;
+
+    btn.addEventListener('touchstart', function (e) {
+      wrap.classList.toggle('open');
+      btn.setAttribute('aria-expanded', wrap.classList.contains('open') ? 'true' : 'false');
+      e.preventDefault();
+    }, { passive: false });
+
+    document.addEventListener('touchstart', function (e) {
+      if (!wrap.classList.contains('open')) return;
+      if (!e.target.closest('.lang-hover')) {
+        wrap.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    }, { passive: true });
+  })();
+
+  document.addEventListener("click", e => {
+    const a = e.target.closest(".lang-option");
+    if (a) { e.preventDefault(); setLanguage(a.dataset.lang); }
+  });
+</script>
+<script>
+  (function () {
+    const collapseEl = document.getElementById('navbarNavDropdown');
+    if (!collapseEl) return;
+
+    const toggler = document.querySelector('.navbar-toggler');
+    const closeBtn = collapseEl.querySelector('.menu-close');
+    const backdrop = document.getElementById('menu-backdrop');
+
+    // Single BS instance
+    const collapse = bootstrap.Collapse.getOrCreateInstance(collapseEl, { toggle: false });
+
+    // Hard close (theme.js ke interference ke bawajood)
+    function hardClose() {
+      try { collapse.hide(); } catch (e) { }
+      // Agar theme ne custom state rakhi ho to fallback:
+      if (toggler && toggler.getAttribute('aria-expanded') === 'true') toggler.click();
+      collapseEl.classList.remove('show', 'collapsing');
+      document.body.classList.remove('menu-open');
+      backdrop && backdrop.classList.remove('show');
     }
 
-    function setLanguage(lang) { if (!TRANSLATIONS[lang]) lang = "en"; applyI18n(lang); }
-
-    (function initLang() {
-      const stored = localStorage.getItem("site_lang");
-      const browserIsNL = (navigator.language || "").toLowerCase().startsWith("nl");
-      const initial = stored || (browserIsNL ? "nl" : "en");
-      applyI18n(initial);
-    })();
-
-    (function () {
-      const wrap = document.querySelector('.lang-hover');
-      const btn = document.getElementById('langBtn');
-      if (!wrap || !btn) return;
-
-      btn.addEventListener('touchstart', function (e) {
-        wrap.classList.toggle('open');
-        btn.setAttribute('aria-expanded', wrap.classList.contains('open') ? 'true' : 'false');
+    // X par direct close — capture phase me taaki koi script block na kare
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function (e) {
         e.preventDefault();
-      }, { passive: false });
+        hardClose();
+      }, true);
+    }
 
-      document.addEventListener('touchstart', function (e) {
-        if (!wrap.classList.contains('open')) return;
-        if (!e.target.closest('.lang-hover')) {
-          wrap.classList.remove('open');
-          btn.setAttribute('aria-expanded', 'false');
-        }
-      }, { passive: true });
-    })();
+    // Backdrop click
+    backdrop && backdrop.addEventListener('click', hardClose, true);
 
-    document.addEventListener("click", e => {
-      const a = e.target.closest(".lang-option");
-      if (a) { e.preventDefault(); setLanguage(a.dataset.lang); }
+    // Body class/backdrop sync
+    collapseEl.addEventListener('show.bs.collapse', () => {
+      document.body.classList.add('menu-open');
+      backdrop && backdrop.classList.add('show');
     });
-  </script>
+    collapseEl.addEventListener('hidden.bs.collapse', () => {
+      document.body.classList.remove('menu-open');
+      backdrop && backdrop.classList.remove('show');
+    });
+
+    // Links/drawer item par close
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('#navbarNavDropdown .nav-link:not(.dropdown-toggle)') ||
+              e.target.closest('#navbarNavDropdown .dropdown-item')) {
+        hardClose();
+      }
+    }, true);
+  })();
+</script>
+
 </body>
 
 </html>

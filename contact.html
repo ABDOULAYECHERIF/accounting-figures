@@ -219,6 +219,136 @@
       color: #6c757d !important;
       opacity: 1 !important;
     }
+
+    /* ================== DESKTOP (>=992px) ================== */
+    @media (min-width: 992px) {
+      .navbar-nav {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+      }
+
+      /* dropdown hugs the link only on desktop */
+      #header-wrap .navbar .dropdown-menu {
+        position: absolute !important;
+        top: calc(100% - 4px) !important;
+        left: 0 !important;
+        margin-top: 0 !important;
+        min-width: 14rem;
+        /* default desktop width */
+        z-index: 1200;
+      }
+
+      .navbar .dropdown:hover>.dropdown-menu {
+        display: block;
+      }
+
+      .navbar .dropdown-toggle:active {
+        pointer-events: none;
+      }
+    }
+
+    /* ================== MOBILE (<992px) ================== */
+    @media (max-width: 991.98px) {
+
+      /* Keep drawer/collapse edges clean */
+      #navbarNavDropdown {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+
+      #navbarNavDropdown .navbar-nav {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+
+      #navbarNavDropdown .nav-item.dropdown {
+        position: relative;
+        overflow: visible !important;
+      }
+
+      /* Menu links centered; leave space at right for +/– */
+      #navbarNavDropdown .navbar-nav .nav-link {
+        display: block !important;
+        width: 100% !important;
+        text-align: center !important;
+        padding-left: 16px !important;
+        padding-right: 48px !important;
+        /* right icon space */
+        position: relative !important;
+        z-index: 3;
+        /* text stays above panel edge */
+      }
+
+      /* Remove Bootstrap caret and use our +/– */
+      #navbarNavDropdown .nav-item.dropdown>.nav-link.dropdown-toggle::before {
+        content: none !important;
+      }
+
+      #navbarNavDropdown .nav-item.dropdown>.nav-link.dropdown-toggle::after {
+        content: "+";
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 22px;
+        font-weight: 800;
+        line-height: 1;
+      }
+
+      #navbarNavDropdown .nav-item.dropdown>.nav-link.dropdown-toggle[aria-expanded="true"]::after {
+        content: "–";
+      }
+
+      /* Submenu panel should flow INSIDE drawer and align perfectly */
+      #header-wrap .navbar .dropdown-menu {
+        position: static !important;
+        /* no absolute on mobile */
+        inset: auto !important;
+        float: none !important;
+        width: 100% !important;
+        /* take full drawer width */
+        max-width: 100% !important;
+        margin: 0 !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        background: #0b0e2a !important;
+        padding-top: .25rem !important;
+        min-width: 0 !important;
+        /* kill Bootstrap min-width */
+      }
+
+
+
+      /* Submenu items */
+      #header-wrap .navbar .dropdown-menu .dropdown-item {
+        white-space: normal !important;
+        word-break: break-word;
+        padding: .85rem 1.25rem !important;
+        text-align: center;
+        color: #fff;
+      }
+    }
+
+    /* remove extra right space since no icon */
+    @media (max-width: 991.98px) {
+      #navbarNavDropdown .navbar-nav .nav-link {
+        padding-right: 16px !important;
+        /* was 48px */
+      }
+
+      /* kill our custom +/– icon */
+      #navbarNavDropdown .nav-item.dropdown>.nav-link.dropdown-toggle::after {
+        content: none !important;
+      }
+    }
+
+    /* hide Bootstrap caret on all sizes */
+    .navbar .dropdown-toggle::after {
+      display: none !important;
+      content: none !important;
+    }
   </style>
 </head>
 
@@ -249,8 +379,8 @@
             <div class="topbar-link d-flex align-items-center">
               <div class="d-none d-sm-flex align-items-center me-3">
                 <i class="flaticon-email"></i>
-                <div><a href="mailto:themeht23@gmail.com"
-                        data-i18n="top.emailText">contact@accountfigures.com</a></div>
+                <div><a href="mailto:themeht23@gmail.com" data-i18n="top.emailText">contact@accountfigures.com</a>
+                </div>
               </div>
               <div class="d-none d-md-flex align-items-center me-3">
                 <i class="flaticon-phone"></i>
@@ -266,8 +396,7 @@
                 <ul class="lang-menu" role="menu" aria-labelledby="langBtn">
                   <li><a href="#" class="lang-option" data-lang="en" role="menuitem">English</a>
                   </li>
-                  <li><a href="#" class="lang-option" data-lang="nl"
-                         role="menuitem">Nederlands</a></li>
+                  <li><a href="#" class="lang-option" data-lang="nl" role="menuitem">Nederlands</a></li>
                 </ul>
               </div>
               <div class="search-icon me-1 me-sm-3">
@@ -292,34 +421,31 @@
               </a>
 
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                      data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
-                      aria-expanded="false"
+                      data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
                       aria-label="Toggle navigation"><span></span><span></span><span></span></button>
 
               <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav mx-auto">
-                  <li class="nav-item"><a class="nav-link" href="index.html"
-                                          data-i18n="nav.home">Home</a></li>
+                  <li class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav.home">Home</a></li>
 
                   <li class="nav-item dropdown" data-bs-auto-close="outside">
-                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                       data-bs-display="static" role="button" aria-expanded="false"
-                       data-i18n="nav.services">Services</a>
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-display="static"
+                       role="button" aria-expanded="false" data-i18n="nav.services">Services</a>
                     <ul class="dropdown-menu dropdown-menu-dark services-menu p-3">
-                      <li><a class="dropdown-item" href="services-self-employed.html"
-                             data-i18n="nav.s1">For the self-employed and liberal
+                      <li><a class="dropdown-item" href="services-self-employed.html" data-i18n="nav.s1">For the
+                        self-employed and liberal
                         professionals</a></li>
-                      <li><a class="dropdown-item" href="services-entrepreneurs.html"
-                             data-i18n="nav.s2">For ambitious entrepreneurs</a></li>
-                      <li><a class="dropdown-item" href="services-finance-teams.html"
-                             data-i18n="nav.s3">For finance teams</a></li>
+                      <li><a class="dropdown-item" href="services-entrepreneurs.html" data-i18n="nav.s2">For ambitious
+                        entrepreneurs</a></li>
+                      <li><a class="dropdown-item" href="services-finance-teams.html" data-i18n="nav.s3">For finance
+                        teams</a></li>
                     </ul>
                   </li>
 
-                  <li class="nav-item"><a class="nav-link" href="about-us.html"
-                                          data-i18n="nav.about">About Us</a></li>
-                  <li class="nav-item"><a class="nav-link" href="working-at.html"
-                                          data-i18n="nav.working">Working At</a></li>
+                  <li class="nav-item"><a class="nav-link" href="about-us.html" data-i18n="nav.about">About Us</a>
+                  </li>
+                  <li class="nav-item"><a class="nav-link" href="working-at.html" data-i18n="nav.working">Working
+                    At</a></li>
                   <li class="nav-item"><a class="nav-link" href="#" data-i18n="nav.news">News</a>
                   </li>
                 </ul>
@@ -366,8 +492,8 @@
                   motivate you.</p>
                 <div class="animated3 mt-5">
                   <a class="btn btn-2 btn-border white" href="#contact-form"><span
-                          class="btn-icon btn-arrow"></span><span class="btn-text"
-                                                                  data-i18n="contact.banner.cta">Send a Message</span></a>
+                          class="btn-icon btn-arrow"></span><span class="btn-text" data-i18n="contact.banner.cta">Send a
+                        Message</span></a>
                 </div>
               </div>
             </div>
@@ -436,29 +562,28 @@
               <form id="contact-form" method="post" action="php/contact.php" novalidate>
                 <div class="row g-3">
                   <div class="col-md-4">
-                    <input type="text" name="name" class="form-control" placeholder="Your Name"
-                           required data-i18n-ph="form.name" data-i18n-er="form.nameReq" />
+                    <input type="text" name="name" class="form-control" placeholder="Your Name" required
+                           data-i18n-ph="form.name" data-i18n-er="form.nameReq" />
                   </div>
                   <div class="col-md-4">
-                    <input type="email" name="email" class="form-control"
-                           placeholder="Your Email" required data-i18n-ph="form.email"
-                           data-i18n-er="form.emailReq" />
+                    <input type="email" name="email" class="form-control" placeholder="Your Email" required
+                           data-i18n-ph="form.email" data-i18n-er="form.emailReq" />
                   </div>
                   <div class="col-md-4">
-                    <input type="text" name="phone" class="form-control"
-                           placeholder="Phone Number" data-i18n-ph="form.phone" />
+                    <input type="text" name="phone" class="form-control" placeholder="Phone Number"
+                           data-i18n-ph="form.phone" />
                   </div>
                   <div class="col-12">
-                                            <textarea name="message" rows="6" class="form-control" placeholder="Message"
-                                                      data-i18n-ph="form.message"></textarea>
+                      <textarea name="message" rows="6" class="form-control" placeholder="Message"
+                                data-i18n-ph="form.message"></textarea>
                   </div>
                   <!-- Honeypot (spam trap) -->
                   <div style="display:none;">
                     <input type="text" name="website" tabindex="-1" autocomplete="off" />
                   </div>
                   <div class="col-12 mt-2">
-                    <button class="btn btn-2"><span class="btn-icon btn-arrow"></span><span
-                            class="btn-text" data-i18n="btn.submit">Submit</span></button>
+                    <button class="btn btn-2"><span class="btn-icon btn-arrow"></span><span class="btn-text"
+                                                                                            data-i18n="btn.submit">Submit</span></button>
                   </div>
                 </div>
               </form>
@@ -501,8 +626,8 @@
               business advice.</p>
             <div class="subscribe-form">
               <form id="mc-form" class="group">
-                <input name="EMAIL" class="email" id="mc-email" placeholder="Your Email Address"
-                       required type="email" data-i18n-ph="footer.nl.ph" />
+                <input name="EMAIL" class="email" id="mc-email" placeholder="Your Email Address" required type="email"
+                       data-i18n-ph="footer.nl.ph" />
                 <input class="btn btn-theme" name="subscribe" value="Subscribe" type="submit"
                        data-i18n-v="footer.nl.btn" />
               </form>
@@ -518,8 +643,8 @@
             <div class="footer-cntct">
               <ul class="media-icon list-unstyled">
                 <li>
-                  <p class="mb-0"><i class="flaticon-paper-plane"></i> <span
-                          data-i18n="footer.addr">Franklinstraat 12, Antwerp, Belgium</span></p>
+                  <p class="mb-0"><i class="flaticon-paper-plane"></i> <span data-i18n="footer.addr">Franklinstraat
+                        12, Antwerp, Belgium</span></p>
                 </li>
                 <li><i class="flaticon-email"></i> <a
                         href="mailto:info@accountingfigures.be">info@accountingfigures.be</a></li>
@@ -542,16 +667,16 @@
             </div>
             <div class="col-lg-6 text-lg-end footer-list md-mt-2">
               <ul class="list-inline">
-                <li class="list-inline-item mb-0"><a href="about-us.html"
-                                                     data-i18n="footer.nav.about">About Us</a></li>
-                <li class="list-inline-item mb-0"><a href="working-at.html"
-                                                     data-i18n="footer.nav.working">Working at</a></li>
-                <li class="list-inline-item mb-0"><a href="contact.html"
-                                                     data-i18n="footer.nav.contact">Contact</a></li>
-                <li class="list-inline-item mb-0"><a href="privacy-policy.html"
-                                                     data-i18n="footer.nav.privacy">Privacy Policy</a></li>
-                <li class="list-inline-item mb-0"><a href="terms.html"
-                                                     data-i18n="footer.nav.terms">Terms & Conditions</a></li>
+                <li class="list-inline-item mb-0"><a href="about-us.html" data-i18n="footer.nav.about">About Us</a>
+                </li>
+                <li class="list-inline-item mb-0"><a href="working-at.html" data-i18n="footer.nav.working">Working
+                  at</a></li>
+                <li class="list-inline-item mb-0"><a href="contact.html" data-i18n="footer.nav.contact">Contact</a>
+                </li>
+                <li class="list-inline-item mb-0"><a href="privacy-policy.html" data-i18n="footer.nav.privacy">Privacy
+                  Policy</a></li>
+                <li class="list-inline-item mb-0"><a href="terms.html" data-i18n="footer.nav.terms">Terms &
+                  Conditions</a></li>
               </ul>
             </div>
           </div>
@@ -768,7 +893,7 @@
 
     // dropdown band karo (mobile/touch ke liye)
     const wrap = document.querySelector(".lang-hover");
-    const btn  = document.getElementById("langBtn");
+    const btn = document.getElementById("langBtn");
     if (wrap && btn) {
       wrap.classList.remove("open");
       btn.setAttribute("aria-expanded", "false");
