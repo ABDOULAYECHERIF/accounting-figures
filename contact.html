@@ -391,17 +391,43 @@
             <!-- Language -->
             <div class="d-flex align-items-center">
               <div class="language-selection me-2 lang-hover">
-                <button id="langBtn" class="langbtn" data-i18n="lang.current" aria-haspopup="true"
-                        aria-expanded="false">English</button>
-                <ul class="lang-menu" role="menu" aria-labelledby="langBtn">
-                  <li><a href="#" class="lang-option" data-lang="en" role="menuitem">English</a>
+
+                <ul class="lang-men" role="menu" aria-labelledby="langBtn" style="list-style:none;display:flex;align-items:center;justify-content:center;padding:2px;background:#f8f8f8;border-radius:24px;width:100px;margin:0;border:1px solid #e0e0e0;">
+                  <li style="flex:1;text-align:center;">
+                    <a href="#" class="lang-option active" data-lang="en" role="menuitem"
+                       style="display:block;padding:4px 0;border-radius:20px;font-size:11px;text-decoration:none;color:#fff;background:#ff6b35;transition:all 0.3s ease;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;font-weight:500;">
+                      EN
+                    </a>
                   </li>
-                  <li><a href="#" class="lang-option" data-lang="nl" role="menuitem">Nederlands</a></li>
+                  <li style="flex:1;text-align:center;">
+                    <a href="#" class="lang-option" data-lang="nl" role="menuitem"
+                       style="display:block;padding:4px 0;border-radius:20px;font-size:11px;text-decoration:none;color:#666;background:transparent;transition:all 0.3s ease;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+                      NL
+                    </a>
+                  </li>
                 </ul>
+
+                <style>
+                  .lang-option:hover {
+                    transform: translateY(-0.5px);
+                  }
+
+                  @media (max-width: 768px) {
+                    .lang-men {
+                      width: 80px !important;
+                      padding: 1px !important;
+                      border-radius: 18px !important;
+                    }
+
+                    .lang-option {
+                      padding: 3px 0 !important;
+                      font-size: 10px !important;
+                      border-radius: 16px !important;
+                    }
+                  }
+                </style>
               </div>
-              <div class="search-icon me-1 me-sm-3">
-                <a id="search" href="javascript:void(0)"><i class="flaticon-search"></i></a>
-              </div>
+
             </div>
 
           </div>
