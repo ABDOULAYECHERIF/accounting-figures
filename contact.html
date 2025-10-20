@@ -379,12 +379,12 @@
             <div class="topbar-link d-flex align-items-center">
               <div class="d-none d-sm-flex align-items-center me-3">
                 <i class="flaticon-email"></i>
-                <div><a href="mailto:themeht23@gmail.com" data-i18n="top.emailText">contact@accountfigures.com</a>
+                <div><a href="mailto:info@accountfigures.com" data-i18n="top.emailText">info@accountfigures.com</a>
                 </div>
               </div>
               <div class="d-none d-md-flex align-items-center me-3">
                 <i class="flaticon-phone"></i>
-                <div><a href="tel:+912345678900"> +32 3 300 02 13</a></div>
+                <div><a href="tel:+32 3 300 02 13"> +32 3 300 02 13</a></div>
               </div>
             </div>
 
@@ -463,8 +463,7 @@
                         professionals</a></li>
                       <li><a class="dropdown-item" href="services-entrepreneurs.html" data-i18n="nav.s2">For ambitious
                         entrepreneurs</a></li>
-                      <li><a class="dropdown-item" href="service-international.html" data-i18n="nav.s3">For finance
-                        teams</a></li>
+                      <li><a class="dropdown-item" href="service-international.html" data-i18n="nav.s3">For International Companies</a></li>
                     </ul>
                   </li>
 
@@ -553,11 +552,11 @@
               <ul class="list-unstyled mb-0">
                 <li class="mb-3">
                   <i class="flaticon-paper-plane me-2"></i>
-                  <span data-i18n="contact.card.addr">Franklinstraat 12, Antwerp, Belgium</span>
+                  <span data-i18n="contact.card.add"> Kerktorenstraat 2/2 9120 Melsele België</span>
                 </li>
                 <li class="mb-3">
                   <i class="flaticon-phone me-2"></i>
-                  <a href="tel:+3234567890">+32 3 456 78 90</a>
+                  <a href="tel:+32 3 300 02 13">+32 3 300 02 13</a>
                 </li>
                 <li class="mb-1">
                   <i class="flaticon-email me-2"></i>
@@ -570,55 +569,199 @@
       </div>
     </section>
 
-    <!-- contact form -->
-    <section class="dark-bg">
+
+    <!-- Contact Form Section -->
+    <section class="af-contact-section" style="background: #081a2b; padding: 80px 0;">
       <div class="container">
         <div class="row justify-content-center text-center">
-          <div class="col-lg-9 col-md-12">
-            <div class="section-title">
-              <h6 data-i18n="contact.form.kicker">Contact Us</h6>
-              <h2 class="title" data-i18n="contact.form.title">Need Assistance? Please Fill The Form
-              </h2>
-            </div>
+          <div class="col-lg-8">
+            <h6 style="color: #ff7a1a; font-size: 18px; font-weight: 600; letter-spacing: 2px; margin-bottom: 15px;">CONTACT ACCOUNTING FIGURES</h6>
+            <h2 style="color: white; font-size: 42px; font-weight: 700; margin-bottom: 20px;">Get Personalized Accounting & Tax Advice</h2>
+            <p style="color: #a0aec0; font-size: 18px; margin-bottom: 40px;">Complete the form below and we'll contact you within 24 hours</p>
           </div>
         </div>
+
         <div class="row justify-content-center">
-          <div class="col-xl-9 col-lg-10">
-            <div class="white-bg box-shadow rounded p-4 p-md-5 contact-form">
-              <form id="contact-form" method="post" action="php/contact.php" novalidate>
-                <div class="row g-3">
-                  <div class="col-md-4">
-                    <input type="text" name="name" class="form-control" placeholder="Your Name" required
-                           data-i18n-ph="form.name" data-i18n-er="form.nameReq" />
+          <div class="col-lg-10">
+            <div style="background: white; border-radius: 20px; padding: 50px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
+              <form id="af-contact-form" method="POST" action="https://formspree.io/f/mqaydvrw">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 25px;">
+                  <div>
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #2d3748;">Full Name *</label>
+                    <input type="text" name="name" required
+                           style="width: 100%; padding: 15px 20px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 16px; background: #f8fafc; transition: all 0.3s;"
+                           onfocus="this.style.borderColor='#3f51ff'; this.style.background='white'; this.style.boxShadow='0 0 0 3px rgba(63,81,255,0.1)'"
+                           onblur="this.style.borderColor='#e2e8f0'; this.style.background='#f8fafc'; this.style.boxShadow='none'"
+                           placeholder="Enter your full name">
                   </div>
-                  <div class="col-md-4">
-                    <input type="email" name="email" class="form-control" placeholder="Your Email" required
-                           data-i18n-ph="form.email" data-i18n-er="form.emailReq" />
-                  </div>
-                  <div class="col-md-4">
-                    <input type="text" name="phone" class="form-control" placeholder="Phone Number"
-                           data-i18n-ph="form.phone" />
-                  </div>
-                  <div class="col-12">
-                      <textarea name="message" rows="6" class="form-control" placeholder="Message"
-                                data-i18n-ph="form.message"></textarea>
-                  </div>
-                  <!-- Honeypot (spam trap) -->
-                  <div style="display:none;">
-                    <input type="text" name="website" tabindex="-1" autocomplete="off" />
-                  </div>
-                  <div class="col-12 mt-2">
-                    <button class="btn btn-2"><span class="btn-icon btn-arrow"></span><span class="btn-text"
-                                                                                            data-i18n="btn.submit">Submit</span></button>
+                  <div>
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #2d3748;">Email Address *</label>
+                    <input type="email" name="email" required
+                           style="width: 100%; padding: 15px 20px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 16px; background: #f8fafc; transition: all 0.3s;"
+                           onfocus="this.style.borderColor='#3f51ff'; this.style.background='white'; this.style.boxShadow='0 0 0 3px rgba(63,81,255,0.1)'"
+                           onblur="this.style.borderColor='#e2e8f0'; this.style.background='#f8fafc'; this.style.boxShadow='none'"
+                           placeholder="your.email@example.com">
                   </div>
                 </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 25px;">
+                  <div>
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #2d3748;">Phone Number</label>
+                    <input type="tel" name="phone"
+                           style="width: 100%; padding: 15px 20px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 16px; background: #f8fafc; transition: all 0.3s;"
+                           onfocus="this.style.borderColor='#3f51ff'; this.style.background='white'; this.style.boxShadow='0 0 0 3px rgba(63,81,255,0.1)'"
+                           onblur="this.style.borderColor='#e2e8f0'; this.style.background='#f8fafc'; this.style.boxShadow='none'"
+                           placeholder="+32 123 456 789">
+                  </div>
+                  <div>
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #2d3748;">Business Type *</label>
+                    <select name="business-type" required
+                            style="width: 100%; padding: 15px 20px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 16px; background: #f8fafc; transition: all 0.3s;"
+                            onfocus="this.style.borderColor='#3f51ff'; this.style.background='white'; this.style.boxShadow='0 0 0 3px rgba(63,81,255,0.1)'"
+                            onblur="this.style.borderColor='#e2e8f0'; this.style.background='#f8fafc'; this.style.boxShadow='none'">
+                      <option value="">Select your business type</option>
+                      <option value="Self-Employed / Freelancer">Self-Employed / Freelancer</option>
+                      <option value="Liberal Professional">Liberal Professional</option>
+                      <option value="Small/Medium Enterprise (KMO)">Small/Medium Enterprise (KMO)</option>
+                      <option value="Startup Company">Startup Company</option>
+                      <option value="International Company">International Company</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div style="margin-bottom: 25px;">
+                  <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #2d3748;">Service Needed *</label>
+                  <select name="service-interest" required
+                          style="width: 100%; padding: 15px 20px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 16px; background: #f8fafc; transition: all 0.3s;"
+                          onfocus="this.style.borderColor='#3f51ff'; this.style.background='white'; this.style.boxShadow='0 0 0 3px rgba(63,81,255,0.1)'"
+                          onblur="this.style.borderColor='#e2e8f0'; this.style.background='#f8fafc'; this.style.boxShadow='none'">
+                    <option value="">Select the service you need</option>
+                    <option value="Complete Accounting Services">Complete Accounting Services</option>
+                    <option value="Tax Advisory & Compliance">Tax Advisory & Compliance</option>
+                    <option value="Financial Advice & Planning">Financial Advice & Planning</option>
+                    <option value="Bookkeeping & Administration">Bookkeeping & Administration</option>
+                    <option value="Startup Business Setup">Startup Business Setup</option>
+                    <option value="International Services">International Services</option>
+                  </select>
+                </div>
+
+                <div style="margin-bottom: 30px;">
+                  <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #2d3748;">Your Message *</label>
+                  <textarea name="message" required rows="6"
+                            style="width: 100%; padding: 15px 20px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 16px; background: #f8fafc; transition: all 0.3s; resize: vertical;"
+                            onfocus="this.style.borderColor='#3f51ff'; this.style.background='white'; this.style.boxShadow='0 0 0 3px rgba(63,81,255,0.1)'"
+                            onblur="this.style.borderColor='#e2e8f0'; this.style.background='#f8fafc'; this.style.boxShadow='none'"
+                            placeholder="Tell us about your business, current challenges, and what you'd like to achieve with our help..."></textarea>
+                </div>
+
+                <!-- Formspree configuration for your email template -->
+                <input type="hidden" name="_subject" value="🏢 NEW CLIENT INQUIRY - ACCOUNTING FIGURES 🏢">
+                <input type="hidden" name="_replyto" value="{{email}}">
+                <input type="text" name="_honey" style="display:none">
+
+                <button type="submit" id="af-submit-btn"
+                        style="background: linear-gradient(135deg, #3f51ff 0%, #2c3bb3 100%); color: white; border: none; padding: 18px 40px; border-radius: 12px; font-size: 18px; font-weight: 600; cursor: pointer; transition: all 0.3s; width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;"
+                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 10px 25px rgba(63,81,255,0.3)'"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                  <span>Send Your Inquiry</span>
+                  <span style="font-size: 20px;">→</span>
+                </button>
+
+                <p style="text-align: center; color: #718096; margin-top: 15px; font-size: 14px;">
+                  We'll contact you within 24 hours • Antwerp Accountantskantoor
+                </p>
               </form>
+
+              <div id="af-message" style="display: none; margin-top: 20px; padding: 15px; border-radius: 10px; text-align: center; font-weight: 600;"></div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
+    <script>
+      // Form handling script
+      document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('af-contact-form');
+        const submitBtn = document.getElementById('af-submit-btn');
+        const messageDiv = document.getElementById('af-message');
+
+        form.addEventListener('submit', async function(e) {
+          e.preventDefault();
+
+          // Validate required fields
+          const requiredFields = form.querySelectorAll('[required]');
+          let isValid = true;
+
+          requiredFields.forEach(field => {
+            if (!field.value.trim()) {
+              isValid = false;
+              field.style.borderColor = '#e53e3e';
+            } else {
+              field.style.borderColor = '#e2e8f0';
+            }
+          });
+
+          if (!isValid) {
+            showMessage('Please fill in all required fields', 'error');
+            return;
+          }
+
+          // Show loading state
+          submitBtn.innerHTML = '<span>Sending...</span><span style="font-size: 20px;">⏳</span>';
+          submitBtn.disabled = true;
+
+          try {
+            // Submit to Formspree
+            const formData = new FormData(form);
+            const response = await fetch(form.action, {
+              method: 'POST',
+              body: formData,
+              headers: {
+                'Accept': 'application/json'
+              }
+            });
+
+            if (response.ok) {
+              showMessage('Thank you! Your message has been sent. We will contact you within 24 hours.', 'success');
+              form.reset();
+            } else {
+              throw new Error('Form submission failed');
+            }
+          } catch (error) {
+            showMessage('Sorry, there was an error sending your message. Please try again or contact us directly.', 'error');
+          } finally {
+            // Reset button
+            submitBtn.innerHTML = '<span>Send Your Inquiry</span><span style="font-size: 20px;">→</span>';
+            submitBtn.disabled = false;
+          }
+        });
+
+        function showMessage(text, type) {
+          messageDiv.textContent = text;
+          messageDiv.style.display = 'block';
+          messageDiv.style.background = type === 'success' ? '#c6f6d5' : '#fed7d7';
+          messageDiv.style.color = type === 'success' ? '#22543d' : '#742a2a';
+          messageDiv.style.border = type === 'success' ? '1px solid #9ae6b4' : '1px solid #feb2b2';
+
+          setTimeout(() => {
+            messageDiv.style.display = 'none';
+          }, 5000);
+        }
+
+        // Add input validation styling
+        const inputs = form.querySelectorAll('input, select, textarea');
+        inputs.forEach(input => {
+          input.addEventListener('input', function() {
+            if (this.hasAttribute('required') && !this.value.trim()) {
+              this.style.borderColor = '#e53e3e';
+            } else {
+              this.style.borderColor = '#e2e8f0';
+            }
+          });
+        });
+      });
+    </script>
   </div>
   <!--body content end-->
 
@@ -637,7 +780,7 @@
                 <li><a href="" data-i18n="footer.l2">Tax Consultancy</a></li>
                 <li><a href="" data-i18n="footer.l3">Financial Advisory</a>
                 </li>
-                <li><a href="" data-i18n="footer.l4">Audit & Compliance</a>
+                <li><a href="" data-i18n="footer.l4">Compliance</a>
                 </li>
                 <li><a href="" data-i18n="footer.l5">Investment Planning</a>
                 </li>
@@ -669,12 +812,11 @@
             <div class="footer-cntct">
               <ul class="media-icon list-unstyled">
                 <li>
-                  <p class="mb-0"><i class="flaticon-paper-plane"></i> <span data-i18n="footer.addr">Franklinstraat
-                        12, Antwerp, Belgium</span></p>
+                  <p class="mb-0"><i class="flaticon-paper-plane"></i> <span data-i18n="footer.add">Kerktorenstraat 2/2 9120 Melsele België</span></p>
                 </li>
                 <li><i class="flaticon-email"></i> <a
                         href="mailto:info@accountingfigures.be">info@accountingfigures.be</a></li>
-                <li><i class="flaticon-phone"></i> <a href="tel:+3234567890">+32 3 456 78 90</a>
+                <li><i class="flaticon-phone"></i> <a href="tel:+32 3 300 02 13">+32 3 300 02 13</a>
                 </li>
               </ul>
             </div>
@@ -691,20 +833,7 @@
             <div class="col-lg-6">
               <span data-i18n="footer.copy">© 2025 Accounting Figures | All Rights Reserved</span>
             </div>
-            <div class="col-lg-6 text-lg-end footer-list md-mt-2">
-              <ul class="list-inline">
-                <li class="list-inline-item mb-0"><a href="about-us.html" data-i18n="footer.nav.about">About Us</a>
-                </li>
-                <li class="list-inline-item mb-0"><a href="working-at.html" data-i18n="footer.nav.working">Working
-                  at</a></li>
-                <li class="list-inline-item mb-0"><a href="contact.html" data-i18n="footer.nav.contact">Contact</a>
-                </li>
-                <li class="list-inline-item mb-0"><a href="privacy-policy.html" data-i18n="footer.nav.privacy">Privacy
-                  Policy</a></li>
-                <li class="list-inline-item mb-0"><a href="terms.html" data-i18n="footer.nav.terms">Terms &
-                  Conditions</a></li>
-              </ul>
-            </div>
+
           </div>
         </div>
       </div>
@@ -765,7 +894,7 @@
       "footer.l1": "Accounting Services",
       "footer.l2": "Tax Consultancy",
       "footer.l3": "Financial Advisory",
-      "footer.l4": "Audit & Compliance",
+      "footer.l4": "Compliance",
       "footer.l5": "Investment Planning",
       "footer.newsletter": "Newsletter",
       "footer.nl.copy": "Stay informed with the latest tax updates, financial tips, and business advice.",
@@ -775,11 +904,7 @@
       "footer.about.copy": "We provide expert accounting, tax consultancy, and financial advisory services to help businesses in Antwerp and beyond stay compliant, efficient, and financially strong.",
       "footer.addr": "Franklinstraat 12, Antwerp, Belgium",
       "footer.copy": "© 2025 Accounting Figures | All Rights Reserved",
-      "footer.nav.about": "About Us",
-      "footer.nav.working": "Working at",
-      "footer.nav.contact": "Contact",
-      "footer.nav.privacy": "Privacy Policy",
-      "footer.nav.terms": "Terms & Conditions"
+
     },
 
     nl: {
@@ -821,7 +946,7 @@
       "footer.l1": "Boekhoudkundige diensten",
       "footer.l2": "Belastingadvies",
       "footer.l3": "Financieel advies",
-      "footer.l4": "Audit & naleving",
+      "footer.l4": "Compliance",
       "footer.l5": "Investeringsplanning",
       "footer.newsletter": "Nieuwsbrief",
       "footer.nl.copy": "Blijf op de hoogte van belastingupdates, financiële tips en zakelijk advies.",
@@ -831,11 +956,7 @@
       "footer.about.copy": "Wij bieden boekhouding, belastingadvies en financieel advies om bedrijven in Antwerpen en daarbuiten sterk en compliant te houden.",
       "footer.addr": "Franklinstraat 12, Antwerpen, België",
       "footer.copy": "© 2025 Accounting Figures | Alle rechten voorbehouden",
-      "footer.nav.about": "Over ons",
-      "footer.nav.working": "Werken bij",
-      "footer.nav.contact": "Contact opnemen",
-      "footer.nav.privacy": "Privacybeleid",
-      "footer.nav.terms": "Algemene voorwaarden"
+
     }
   };
 
