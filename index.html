@@ -736,7 +736,7 @@
                   <h2 class="title">Get Your Personalized Quote Today</h2>
                 </div>
                 <p class="line-h-3">For any request, kindly fill in the information below and Accounting Figures will get back to you as possible</p>
-                <form id="quote-form" method="POST" action="https://formspree.io/f/xeordypw">
+                <form id="quote-form" method="POST" action="https://formspree.io/f/mldpqqew">
                   <div id="quote-message" style="display: none; margin-bottom: 20px; padding: 12px; border-radius: 8px; text-align: center; font-weight: 600;"></div>
 
                   <div class="form-group">
@@ -752,16 +752,7 @@
                   </div>
 
                   <div class="form-group">
-                    <select name="service" class="form-control" required>
-                      <option value="" disabled selected>- Select Service *</option>
-                      <option value="Complete Accounting Services">Complete Accounting Services</option>
-                      <option value="Tax Advisory & Compliance">Tax Advisory & Compliance</option>
-                      <option value="Financial Advice & Planning">Financial Advice & Planning</option>
-                      <option value="Bookkeeping & Administration">Bookkeeping & Administration</option>
-                      <option value="Startup Business Setup">Startup Business Setup</option>
-                      <option value="International Services">International Services</option>
-                      <option value="Business Consultation">Business Consultation</option>
-                    </select>
+
                   </div>
 
                   <div class="form-group">
@@ -785,12 +776,80 @@
       </section>
       <!--form end-->
 
+      <style>
+        /* Additional CSS for better select styling */
+        .custom-select {
+          position: relative;
+        }
+
+        .custom-select:focus {
+          outline: none;
+          border-color: #3f51ff !important;
+          box-shadow: 0 0 0 3px rgba(63, 81, 255, 0.1);
+        }
+
+        .custom-select option {
+          padding: 12px;
+          background: white;
+          color: #2d3748;
+        }
+
+        .custom-select option:first-child {
+          color: #a0aec0;
+        }
+
+        /* Remove default arrow in some browsers and use our custom one */
+        .custom-select::-ms-expand {
+          display: none;
+        }
+
+        /* Fix for Firefox */
+        @-moz-document url-prefix() {
+          .custom-select {
+            text-indent: 0.01px;
+            text-overflow: '';
+            padding-right: 40px;
+          }
+        }
+
+        /* Fix for IE11 */
+        @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+          .custom-select {
+            padding-right: 40px;
+          }
+          .custom-select::-ms-expand {
+            display: none;
+          }
+        }
+      </style>
+
       <script>
         // Quote form handling
         document.addEventListener('DOMContentLoaded', function() {
           const quoteForm = document.getElementById('quote-form');
           const quoteSubmitBtn = document.getElementById('quote-submit-btn');
           const quoteMessage = document.getElementById('quote-message');
+          const serviceSelect = quoteForm ? quoteForm.querySelector('select[name="service"]') : null;
+
+          // Force the select to be visible and clickable
+          if (serviceSelect) {
+            // Remove any potential z-index issues
+            serviceSelect.style.zIndex = '1000';
+            serviceSelect.style.position = 'relative';
+
+            // Add click event to ensure it's working
+            serviceSelect.addEventListener('click', function(e) {
+              console.log('Select clicked - working properly');
+            });
+
+            // Add change event to verify selection
+            serviceSelect.addEventListener('change', function(e) {
+              console.log('Selected:', this.value);
+              if (this.value) {
+                this.style.borderColor = '';
+              }
+            });
+          }
 
           if (quoteForm) {
             quoteForm.addEventListener('submit', async function(e) {
@@ -804,18 +863,21 @@
                 if (!field.value.trim()) {
                   isValid = false;
                   field.style.borderColor = '#e53e3e';
+                  field.style.borderWidth = '2px';
                 } else {
                   field.style.borderColor = '';
+                  field.style.borderWidth = '';
                 }
               });
 
               // Special validation for select
-              const serviceSelect = quoteForm.querySelector('select[name="service"]');
-              if (!serviceSelect.value) {
+              if (serviceSelect && !serviceSelect.value) {
                 isValid = false;
                 serviceSelect.style.borderColor = '#e53e3e';
-              } else {
+                serviceSelect.style.borderWidth = '2px';
+              } else if (serviceSelect) {
                 serviceSelect.style.borderColor = '';
+                serviceSelect.style.borderWidth = '';
               }
 
               if (!isValid) {
@@ -843,11 +905,14 @@
                   showQuoteMessage('Thank you! Your quote request has been sent. We will get back to you within 24 hours.', 'success');
                   quoteForm.reset();
                   // Reset select to default
-                  serviceSelect.selectedIndex = 0;
+                  if (serviceSelect) {
+                    serviceSelect.selectedIndex = 0;
+                  }
                 } else {
                   throw new Error('Form submission failed');
                 }
               } catch (error) {
+                console.error('Form submission error:', error);
                 showQuoteMessage('Sorry, there was an error sending your request. Please try again or contact us directly.', 'error');
               } finally {
                 // Reset button
@@ -857,15 +922,17 @@
             });
 
             function showQuoteMessage(text, type) {
-              quoteMessage.textContent = text;
-              quoteMessage.style.display = 'block';
-              quoteMessage.style.background = type === 'success' ? '#c6f6d5' : '#fed7d7';
-              quoteMessage.style.color = type === 'success' ? '#22543d' : '#742a2a';
-              quoteMessage.style.border = type === 'success' ? '1px solid #9ae6b4' : '1px solid #feb2b2';
+              if (quoteMessage) {
+                quoteMessage.textContent = text;
+                quoteMessage.style.display = 'block';
+                quoteMessage.style.background = type === 'success' ? '#c6f6d5' : '#fed7d7';
+                quoteMessage.style.color = type === 'success' ? '#22543d' : '#742a2a';
+                quoteMessage.style.border = type === 'success' ? '1px solid #9ae6b4' : '1px solid #feb2b2';
 
-              setTimeout(() => {
-                quoteMessage.style.display = 'none';
-              }, 5000);
+                setTimeout(() => {
+                  quoteMessage.style.display = 'none';
+                }, 5000);
+              }
             }
 
             // Add input validation styling
@@ -874,8 +941,10 @@
               input.addEventListener('input', function() {
                 if (this.hasAttribute('required') && !this.value.trim()) {
                   this.style.borderColor = '#e53e3e';
+                  this.style.borderWidth = '2px';
                 } else {
                   this.style.borderColor = '';
+                  this.style.borderWidth = '';
                 }
               });
 
@@ -884,17 +953,30 @@
                 input.addEventListener('change', function() {
                   if (this.hasAttribute('required') && !this.value) {
                     this.style.borderColor = '#e53e3e';
+                    this.style.borderWidth = '2px';
                   } else {
                     this.style.borderColor = '';
+                    this.style.borderWidth = '';
                   }
                 });
               }
+
+              // Add focus styles for better UX
+              input.addEventListener('focus', function() {
+                this.style.borderColor = '#3f51ff';
+                this.style.borderWidth = '2px';
+              });
+
+              input.addEventListener('blur', function() {
+                if (!this.hasAttribute('required') || this.value.trim()) {
+                  this.style.borderColor = '';
+                  this.style.borderWidth = '';
+                }
+              });
             });
           }
         });
       </script>
-
-
     </div>
     <!--body content end-->
 
