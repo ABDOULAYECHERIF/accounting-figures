@@ -928,7 +928,7 @@
     </div>
   </section>
 
-  <!-- ======= Customers (tight, side-by-side) ======= -->
+  <!-- ===== Customers carousel (tight) ===== -->
   <section class="py-6 py-lg-8 bg-white customers-tight">
     <div class="container">
       <div class="row align-items-center">
@@ -936,25 +936,109 @@
           <h2 class="mb-0" data-i18n="customers.title">Some of our customers</h2>
         </div>
         <div class="col-lg-9 mt-4 mt-lg-0">
-          <div class="owl-carousel" data-items="3" data-md-items="3" data-sm-items="2" data-margin="30"
-               data-autoplay="true">
-            <div class="item text-center">
-              <img class="img-fluid mx-auto mb-3" style="max-height:110px" src="images/client/01.png" alt="Client 1">
-              <div class="small text-muted">Client One</div>
-            </div>
-            <div class="item text-center">
-              <img class="img-fluid mx-auto mb-3" style="max-height:110px" src="images/client/02.png" alt="Client 2">
-              <div class="small text-muted">Client Two</div>
-            </div>
-            <div class="item text-center">
-              <img class="img-fluid mx-auto mb-3" style="max-height:110px" src="images/client/03.png" alt="Client 3">
-              <div class="small text-muted">Client Three</div>
+          <div class="customer-scroll-container">
+            <div class="customer-scroll-track">
+              <!-- First set of customers -->
+              <div class="customer-item">Dry Martini</div>
+              <div class="customer-item">NoFilter</div>
+              <div class="customer-item">Ellefant</div>
+              <div class="customer-item">Swatyco</div>
+              <div class="customer-item">SK Motors</div>
+              <div class="customer-item">BOB Cars</div>
+              <div class="customer-item">Elomda2850</div>
+              <div class="customer-item">Flexeso</div>
+              <div class="customer-item">Elba Group</div>
+              <div class="customer-item">Fiber Pro</div>
+              <div class="customer-item">Ice Screem</div>
+              <div class="customer-item">CMS Consulting</div>
+              <div class="customer-item">Mies and Place</div>
+
+              <!-- Duplicate set for seamless loop -->
+              <div class="customer-item">Dry Martini</div>
+              <div class="customer-item">NoFilter</div>
+              <div class="customer-item">Ellefant</div>
+              <div class="customer-item">Swatyco</div>
+              <div class="customer-item">SK Motors</div>
+              <div class="customer-item">BOB Cars</div>
+              <div class="customer-item">Elomda2850</div>
+              <div class="customer-item">Flexeso</div>
+              <div class="customer-item">Elba Group</div>
+              <div class="customer-item">Fiber Pro</div>
+              <div class="customer-item">Ice Screem</div>
+              <div class="customer-item">CMS Consulting</div>
+              <div class="customer-item">Mies and Place</div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <style>
+    .customer-scroll-container {
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      padding: 10px 0;
+    }
+
+    .customer-scroll-track {
+      display: flex;
+      animation: scroll 10s linear infinite;
+      white-space: nowrap;
+    }
+
+    .customer-item {
+      flex: 0 0 auto;
+      padding: 15px 25px;
+      margin: 0 10px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 1.1rem;
+      color: #333;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .customer-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* Pause animation on hover */
+    .customer-scroll-container:hover .customer-scroll-track {
+      animation-play-state: paused;
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      .customer-item {
+        padding: 12px 20px;
+        font-size: 1rem;
+        margin: 0 8px;
+      }
+
+      @keyframes scroll {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+    }
+  </style>
+
 
   <!-- ======= CTA ======= -->
   <section class="py-6 py-lg-8">
